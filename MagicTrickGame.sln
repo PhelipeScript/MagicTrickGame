@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicTrickGame", "MagicTrickGame\MagicTrickGame.csproj", "{4FB9AEE3-D9F1-4FFB-8CE0-972C415BB5DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FB9AEE3-D9F1-4FFB-8CE0-972C415BB5DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB9AEE3-D9F1-4FFB-8CE0-972C415BB5DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB9AEE3-D9F1-4FFB-8CE0-972C415BB5DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB9AEE3-D9F1-4FFB-8CE0-972C415BB5DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28694E33-C309-4148-A6CA-F1C54AD2978A}
+	EndGlobalSection
+EndGlobal
