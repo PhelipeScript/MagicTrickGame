@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MagicTrickServer;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MagicTrickGame
 {
@@ -21,6 +22,8 @@ namespace MagicTrickGame
         public string createdMatchId = "";
         public string[] matches;
         public int matchId;
+        public string matchName;
+        public string[] players;
         private string userId;
         private string userPassword;
 
@@ -115,6 +118,8 @@ namespace MagicTrickGame
             lstMatches.Items.Clear();
             pnlMatchInfo.Visible = false;
             this.isMatchSelected = false;
+            txtJoinGamePassword.Text = "";
+            txtJoinGameUsername.Text = "";
             lblSelectMatchError.Text = "Selecione uma partida.";
         }
 
@@ -156,7 +161,7 @@ namespace MagicTrickGame
         {
             string[] selectedMatchData = this.matches[lstMatches.SelectedIndex].Split(',');
             this.matchId = Convert.ToInt32(selectedMatchData[0]);
-            string matchName = selectedMatchData[1];
+            this.matchName = selectedMatchData[1];
             string matchDate = selectedMatchData[2];
             string matchStatus = selectedMatchData[3];
 
@@ -174,7 +179,7 @@ namespace MagicTrickGame
             }
 
             lblMatchId.Text = this.matchId.ToString();
-            lblMatchName.Text = matchName;
+            lblMatchName.Text = this.matchName;
             lblMatchStatus.Text = matchStatus;
             lblMatchDate.Text = matchDate;
             pnlMatchInfo.Visible = true;
@@ -226,6 +231,30 @@ namespace MagicTrickGame
 
             this.userId = response.Split(',')[0];
             this.userPassword = response.Split(',')[1];
+            this.listPlayers();
+        }
+
+        private void listPlayers()
+        {
+            pnlJoinGame.Visible = false;
+            pnlPlayers.Visible = true;
+            lblSelectedMatchName.Text = this.matchName;
+
+            string response = Jogo.ListarJogadores(this.matchId);
+            if (response.Substring(0, 4) == "ERRO")
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            response = response.Replace("\r", "");
+            response = response.Substring(0, response.Length - 1);
+            this.players = response.Split('\n');
+
+            for (int i = 0; i < this.players.Length; i++)
+            {
+                lstPlayers.Items.Add(this.players[i]);
+            }
         }
 
         private void btnJoinMatch_Handle()
