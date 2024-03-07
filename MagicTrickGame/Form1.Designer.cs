@@ -69,11 +69,11 @@
             this.lstMatches = new System.Windows.Forms.ListBox();
             this.lblBack = new System.Windows.Forms.LinkLabel();
             this.pnlPlayers = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lstPlayers = new System.Windows.Forms.ListBox();
+            this.lblSelectedMatchName = new System.Windows.Forms.Label();
             this.btnStartMatch = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.lblSelectedMatchName = new System.Windows.Forms.Label();
-            this.lstPlayers = new System.Windows.Forms.ListBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.lblGroupName = new System.Windows.Forms.Label();
             this.pnlNewGame.SuspendLayout();
             this.pnlMenu.SuspendLayout();
@@ -84,43 +84,52 @@
             // 
             // btnNewGame
             // 
+            this.btnNewGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(49)))), ((int)(((byte)(59)))));
             this.btnNewGame.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNewGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewGame.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewGame.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btnNewGame.Location = new System.Drawing.Point(3, 12);
             this.btnNewGame.Name = "btnNewGame";
             this.btnNewGame.Size = new System.Drawing.Size(222, 70);
             this.btnNewGame.TabIndex = 0;
             this.btnNewGame.Text = "Criar Partida";
-            this.btnNewGame.UseVisualStyleBackColor = true;
+            this.btnNewGame.UseVisualStyleBackColor = false;
             this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
             // btnJoinGame
             // 
+            this.btnJoinGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(49)))), ((int)(((byte)(59)))));
             this.btnJoinGame.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnJoinGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJoinGame.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJoinGame.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btnJoinGame.Location = new System.Drawing.Point(3, 111);
             this.btnJoinGame.Name = "btnJoinGame";
             this.btnJoinGame.Size = new System.Drawing.Size(222, 70);
             this.btnJoinGame.TabIndex = 1;
             this.btnJoinGame.Text = "Entrar Partida";
-            this.btnJoinGame.UseVisualStyleBackColor = true;
+            this.btnJoinGame.UseVisualStyleBackColor = false;
             this.btnJoinGame.Click += new System.EventHandler(this.btnJoinGame_Click);
             // 
             // btnExit
             // 
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(49)))), ((int)(((byte)(59)))));
             this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btnExit.Location = new System.Drawing.Point(3, 209);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(222, 70);
             this.btnExit.TabIndex = 2;
             this.btnExit.Text = "Sair";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // pnlNewGame
             // 
-            this.pnlNewGame.BackColor = System.Drawing.Color.LightGray;
+            this.pnlNewGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(158)))), ((int)(((byte)(199)))));
             this.pnlNewGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlNewGame.Controls.Add(this.lblNewGamePasswordError);
             this.pnlNewGame.Controls.Add(this.lblNewGameMatchNameError);
@@ -274,7 +283,7 @@
             // 
             // pnlJoinGame
             // 
-            this.pnlJoinGame.BackColor = System.Drawing.Color.LightGray;
+            this.pnlJoinGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(158)))), ((int)(((byte)(199)))));
             this.pnlJoinGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlJoinGame.Controls.Add(this.lblSelectMatchError);
             this.pnlJoinGame.Controls.Add(this.pnlMatchInfo);
@@ -571,7 +580,7 @@
             // 
             // pnlPlayers
             // 
-            this.pnlPlayers.BackColor = System.Drawing.Color.LightGray;
+            this.pnlPlayers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(158)))), ((int)(((byte)(199)))));
             this.pnlPlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlPlayers.Controls.Add(this.label7);
             this.pnlPlayers.Controls.Add(this.lstPlayers);
@@ -583,6 +592,39 @@
             this.pnlPlayers.Size = new System.Drawing.Size(346, 364);
             this.pnlPlayers.TabIndex = 14;
             this.pnlPlayers.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(13, 61);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(177, 19);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Jogadores da partida:";
+            // 
+            // lstPlayers
+            // 
+            this.lstPlayers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lstPlayers.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstPlayers.FormattingEnabled = true;
+            this.lstPlayers.ItemHeight = 18;
+            this.lstPlayers.Location = new System.Drawing.Point(17, 83);
+            this.lstPlayers.Name = "lstPlayers";
+            this.lstPlayers.Size = new System.Drawing.Size(305, 198);
+            this.lstPlayers.TabIndex = 16;
+            // 
+            // lblSelectedMatchName
+            // 
+            this.lblSelectedMatchName.AutoEllipsis = true;
+            this.lblSelectedMatchName.AutoSize = true;
+            this.lblSelectedMatchName.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectedMatchName.Location = new System.Drawing.Point(89, 16);
+            this.lblSelectedMatchName.MaximumSize = new System.Drawing.Size(246, 27);
+            this.lblSelectedMatchName.Name = "lblSelectedMatchName";
+            this.lblSelectedMatchName.Size = new System.Drawing.Size(246, 27);
+            this.lblSelectedMatchName.TabIndex = 15;
+            this.lblSelectedMatchName.Text = "AtenasTeste0aaaaaaaaaaaa";
             // 
             // btnStartMatch
             // 
@@ -608,39 +650,6 @@
             this.label15.TabIndex = 6;
             this.label15.Text = "Partida:";
             // 
-            // lblSelectedMatchName
-            // 
-            this.lblSelectedMatchName.AutoEllipsis = true;
-            this.lblSelectedMatchName.AutoSize = true;
-            this.lblSelectedMatchName.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectedMatchName.Location = new System.Drawing.Point(89, 16);
-            this.lblSelectedMatchName.MaximumSize = new System.Drawing.Size(246, 27);
-            this.lblSelectedMatchName.Name = "lblSelectedMatchName";
-            this.lblSelectedMatchName.Size = new System.Drawing.Size(246, 27);
-            this.lblSelectedMatchName.TabIndex = 15;
-            this.lblSelectedMatchName.Text = "AtenasTeste0aaaaaaaaaaaa";
-            // 
-            // lstPlayers
-            // 
-            this.lstPlayers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lstPlayers.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstPlayers.FormattingEnabled = true;
-            this.lstPlayers.ItemHeight = 18;
-            this.lstPlayers.Location = new System.Drawing.Point(17, 83);
-            this.lstPlayers.Name = "lstPlayers";
-            this.lstPlayers.Size = new System.Drawing.Size(305, 198);
-            this.lstPlayers.TabIndex = 16;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(13, 61);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(177, 19);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Jogadores da partida:";
-            // 
             // lblGroupName
             // 
             this.lblGroupName.AutoSize = true;
@@ -662,12 +671,12 @@
             this.BackgroundImage = global::MagicTrickGame.Properties.Resources.bg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1034, 611);
-            this.Controls.Add(this.pnlPlayers);
             this.Controls.Add(this.lblGroupName);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlNewGame);
             this.Controls.Add(this.pnlJoinGame);
+            this.Controls.Add(this.pnlPlayers);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
