@@ -16,7 +16,7 @@ namespace MagicTrickGame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MagicTrick());
+            Application.Run(new Menu());
         }
     }
 }

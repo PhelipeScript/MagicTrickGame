@@ -49,16 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Game.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Game.Designer.cs">
+      <DependentUpon>Game.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Game.resx">
+      <DependentUpon>Game.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -85,6 +94,93 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\game-bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copas1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copas2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copas3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copas4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Espadas1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Espadas2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Espadas3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Espadas4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Estrela1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Estrela2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Estrela3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Estrela4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lua1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lua2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lua3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lua4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ouros1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ouros2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ouros3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ouros4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Paus1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Paus2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Paus3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Paus4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Triângulo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Triângulo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Triângulo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Triângulo4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

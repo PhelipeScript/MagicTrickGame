@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MagicTrickGame
 {
-    public partial class MagicTrick : Form
+    public partial class Menu : Form
     {
         public bool isNewGameMatchNameOk = false;
         public bool isNewGamePasswordOk = false;
@@ -27,7 +27,7 @@ namespace MagicTrickGame
         private string userId;
         private string userPassword;
 
-        public MagicTrick()
+        public Menu()
         {
             InitializeComponent();
             lblVersion.Text = $"Versão: {Jogo.Versao}";

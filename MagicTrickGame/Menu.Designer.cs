@@ -1,6 +1,6 @@
 ﻿namespace MagicTrickGame
 {
-    partial class MagicTrick
+    partial class Menu
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MagicTrick));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.btnNewGame = new System.Windows.Forms.Button();
             this.btnJoinGame = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
@@ -663,7 +663,7 @@
             this.lblGroupName.TabIndex = 16;
             this.lblGroupName.Text = "Atenas";
             // 
-            // MagicTrick
+            // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -680,9 +680,10 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1050, 650);
             this.MinimumSize = new System.Drawing.Size(1050, 650);
-            this.Name = "MagicTrick";
+            this.Name = "Menu";
             this.Text = "MagicTrick";
             this.pnlNewGame.ResumeLayout(false);
             this.pnlNewGame.PerformLayout();

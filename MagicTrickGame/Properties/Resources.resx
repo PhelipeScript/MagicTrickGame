@@ -121,4 +121,91 @@
   <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Copas1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Copas1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Copas2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Copas2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Copas3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Copas3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Copas4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Copas4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Espadas1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Espadas1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Espadas2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Espadas2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Espadas3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Espadas3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Espadas4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Espadas4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Estrela1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Estrela1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Estrela2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Estrela2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Estrela3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Estrela3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Estrela4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Estrela4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="game_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\game-bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lua1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Lua1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lua2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Lua2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lua3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Lua3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lua4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Lua4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ouros1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ouros1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ouros2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ouros2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ouros3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ouros3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ouros4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ouros4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Paus1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paus1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Paus2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paus2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Paus3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paus3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Paus4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paus4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Triângulo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Triângulo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Triângulo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Triângulo2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Triângulo3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Triângulo3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Triângulo4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Triângulo4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
