@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button24.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCard2P1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAHgAAAClCAYAAACXxDkjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAx8NJREFUeF5k/YWXnVXW9o3yH3zv1020NO4eAkkIMaKQ4O7a0EhjTdN44zTu7tBA
+        DgAACw4BQL7hQQAAx8NJREFUeF5k/YWXnVXW9o3yH3zv1020NO4eAkkIMaKQ4O7a0EhjTdN44zTu7tBA
         iCcVLbd4peKeSlK23XdVBfp55vldc8M7xjknY+xRqV23rHvNOa95TVnrPuP/99/Oioppx6q/f+tU/UtN
         sYbXLFD/lAU3P27hbS9YeMtzltz2ksW3P2+h2ucsvOlJC2991tqrn7XIpn9x3LMW2vqWBbe8brEtL/Hd
         cxbf+hLXeNkiDW9buOEtC29/2yLb37XAzo+tfecnFtz5KX/71EINX1p47/fWuv1Li+z8ku8/s8iuzy20
@@ -976,10 +976,10 @@
         QZOM3xmdkVtgoE1olY1nijfWbf33sccuOU/G849Vq/4DoGpWXqlOqscAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="button26.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCard1P1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAHgAAAClCAYAAACXxDkjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAw41JREFUeF5k/fWXXdex/gvrL7jje09si1sMZkpsx04cx0mcxJaaYe9mZlar1WLJ
+        DgAACw4BQL7hQQAAw41JREFUeF5k/fWXXdex/gvrL7jje09si1sMZkpsx04cx0mcxJaaYe9mZlar1WLJ
         QssCiy1mZmZmbEGLmVmyk3PO/bHu56klnTPu+2qMNXZrw1pzzap66imYczX6//0Xn5r6VWJa9phQZv6N
         cFqOpecXW3JWsSWl51lSWoHFhXItMSXTEvl/Ymo27+dbOIv30vk7I8/S84qspk9fq+w+wMLpORafmmOJ
         vF9cVWX5xRWWkptvKTl5lsffiam5FpucZZFJabymWkIoy2JTciwumXPxfojrhzl/Eq+JnCu7qMKKy3pY
