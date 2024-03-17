@@ -69,6 +69,7 @@
             this.lstMatches = new System.Windows.Forms.ListBox();
             this.lblBack = new System.Windows.Forms.LinkLabel();
             this.pnlPlayers = new System.Windows.Forms.Panel();
+            this.btnBackToMatchList = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.lstPlayers = new System.Windows.Forms.ListBox();
             this.lblSelectedMatchName = new System.Windows.Forms.Label();
@@ -582,6 +583,7 @@
             // 
             this.pnlPlayers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(158)))), ((int)(((byte)(199)))));
             this.pnlPlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPlayers.Controls.Add(this.btnBackToMatchList);
             this.pnlPlayers.Controls.Add(this.label7);
             this.pnlPlayers.Controls.Add(this.lstPlayers);
             this.pnlPlayers.Controls.Add(this.lblSelectedMatchName);
@@ -592,6 +594,22 @@
             this.pnlPlayers.Size = new System.Drawing.Size(346, 364);
             this.pnlPlayers.TabIndex = 14;
             this.pnlPlayers.Visible = false;
+            // 
+            // btnBackToMatchList
+            // 
+            this.btnBackToMatchList.BackColor = System.Drawing.Color.Silver;
+            this.btnBackToMatchList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBackToMatchList.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkRed;
+            this.btnBackToMatchList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBackToMatchList.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBackToMatchList.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnBackToMatchList.Location = new System.Drawing.Point(17, 296);
+            this.btnBackToMatchList.Name = "btnBackToMatchList";
+            this.btnBackToMatchList.Size = new System.Drawing.Size(117, 49);
+            this.btnBackToMatchList.TabIndex = 18;
+            this.btnBackToMatchList.Text = "Cancelar";
+            this.btnBackToMatchList.UseVisualStyleBackColor = false;
+            this.btnBackToMatchList.Click += new System.EventHandler(this.btnBackToMatchList_Click);
             // 
             // label7
             // 
@@ -633,12 +651,13 @@
             this.btnStartMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStartMatch.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartMatch.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnStartMatch.Location = new System.Drawing.Point(94, 298);
+            this.btnStartMatch.Location = new System.Drawing.Point(162, 296);
             this.btnStartMatch.Name = "btnStartMatch";
             this.btnStartMatch.Size = new System.Drawing.Size(160, 49);
             this.btnStartMatch.TabIndex = 11;
             this.btnStartMatch.Text = "Iniciar Partida";
             this.btnStartMatch.UseVisualStyleBackColor = false;
+            this.btnStartMatch.Click += new System.EventHandler(this.btnStartMatch_Click);
             // 
             // label15
             // 
@@ -747,6 +766,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListBox lstPlayers;
         private System.Windows.Forms.Label lblGroupName;
+        private System.Windows.Forms.Button btnBackToMatchList;
     }
 }
 

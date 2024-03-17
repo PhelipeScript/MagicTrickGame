@@ -13,12 +13,24 @@ namespace MagicTrickGame
 {
     public partial class Match : Form
     {
-        public int matchId = 4083;
+        private int timerWhoStartsCounter = 0;
+        private int timerWhoStartsCounterLimit = 0;
+        private string whoIsPlayingNowText = "";
+        private string playerWhoStartsId;
+        public int matchId;
         public List<Player> players = new List<Player>();
 
-        public Match()
+        public Match(int matchId, string playerWhoStartsId)
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            this.matchId = matchId;
+            this.playerWhoStartsId = playerWhoStartsId;
+
+            lblWhoIsPlayingNow.Text = "";
+            timerWhoStarts.Interval = 100;
+            timerWhoStarts.Start();
+
             string response = Jogo.ListarJogadores(this.matchId);
             if (response.Substring(0, 4) == "ERRO")
             {
@@ -42,6 +54,37 @@ namespace MagicTrickGame
             }
         }
 
+        private void timerWhoStarts_Tick(object sender, EventArgs e)
+        {
+            this.handleWhoIsPlayingNowLabel();
+        }
+
+        private void handleWhoIsPlayingNowLabel()
+        {
+            if (this.whoIsPlayingNowText == "")
+            {
+                Player playerWhoStart = this.players.Find(player => player.id == this.playerWhoStartsId);
+                this.whoIsPlayingNowText = $"Jogador {playerWhoStart.id} {playerWhoStart.name} Começa!";
+                this.timerWhoStartsCounterLimit = this.whoIsPlayingNowText.Length * 2;
+            }
+
+            if (this.timerWhoStartsCounter >= this.timerWhoStartsCounterLimit)
+            {
+                timerWhoStarts.Stop();
+                lblWhoIsPlayingNow.Text = "";
+                this.whoIsPlayingNowText = "";
+                lblWhoIsPlayingNow.Visible = false;
+                this.timerWhoStartsCounter = 0;
+            } else
+            {
+                if (this.timerWhoStartsCounter < this.whoIsPlayingNowText.Length)
+                {
+                    this.lblWhoIsPlayingNow.Text += this.whoIsPlayingNowText[this.timerWhoStartsCounter];
+                }
+                this.timerWhoStartsCounter++;
+            }
+        }
+
         private void handlePlayersAmount(int playerAmount)
         {
             switch (playerAmount)
@@ -53,6 +96,7 @@ namespace MagicTrickGame
                     pnlPlayer4.Visible = false;
 
                     this.players[0].playerPosition = PlayerPosition.BOTTOM;
+                    lblP1Id.Text = this.players[0].id;
                     lblP1Name.Text = this.players[0].name;
                     lblP1Bet.Text = null;
                     lblP1Score.Text = this.players[0].score.ToString();
@@ -65,6 +109,7 @@ namespace MagicTrickGame
                     }
 
                     this.players[1].playerPosition = PlayerPosition.TOP;
+                    lblP3Id.Text = this.players[1].id;
                     lblP3Name.Text = this.players[1].name;
                     lblP3Bet.Text = null;
                     lblP3Score.Text = this.players[1].score.ToString();
@@ -85,6 +130,7 @@ namespace MagicTrickGame
 
                     /*Player 1*/
                     this.players[0].playerPosition = PlayerPosition.BOTTOM;
+                    lblP1Id.Text = this.players[0].id;
                     lblP1Name.Text = this.players[0].name;
                     lblP1Bet.Text = null;
                     lblP1Score.Text = this.players[0].score.ToString();
@@ -98,6 +144,7 @@ namespace MagicTrickGame
 
                     /*Player 2*/
                     this.players[1].playerPosition = PlayerPosition.LEFT;
+                    lblP2Id.Text = this.players[1].id;
                     lblP2Name.Text = this.players[1].name;
                     lblP2Bet.Text = null;
                     lblP2Score.Text = this.players[1].score.ToString();
@@ -111,6 +158,7 @@ namespace MagicTrickGame
 
                     /*Player 3*/
                     this.players[2].playerPosition = PlayerPosition.TOP;
+                    lblP3Id.Text = this.players[2].id;
                     lblP3Name.Text = this.players[2].name;
                     lblP3Bet.Text = null;
                     lblP3Score.Text = this.players[2].score.ToString();
@@ -124,6 +172,7 @@ namespace MagicTrickGame
 
                     /*Player 4*/
                     this.players[3].playerPosition = PlayerPosition.RIGHT;
+                    lblP4Id.Text = this.players[3].id;
                     lblP4Name.Text = this.players[3].name;
                     lblP4Bet.Text = null;
                     lblP4Score.Text = this.players[3].score.ToString();
@@ -158,5 +207,9 @@ namespace MagicTrickGame
 
         }
 
+        private void Match_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+        }
     }
 }

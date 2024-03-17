@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Match));
             this.pnlPlayer3 = new System.Windows.Forms.Panel();
+            this.lblP3Id = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.lblP3Bet = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.lblP3Score = new System.Windows.Forms.Label();
@@ -51,6 +54,8 @@
             this.btnCard7P3 = new System.Windows.Forms.Button();
             this.btnCard0P3 = new System.Windows.Forms.Button();
             this.pnlPlayer2 = new System.Windows.Forms.Panel();
+            this.lblP2Id = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.lblP2Bet = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblP2Score = new System.Windows.Forms.Label();
@@ -72,6 +77,8 @@
             this.btnCard7P2 = new System.Windows.Forms.Button();
             this.btnCard0P2 = new System.Windows.Forms.Button();
             this.pnlPlayer4 = new System.Windows.Forms.Panel();
+            this.lblP4Id = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.lblP4Bet = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblP4Score = new System.Windows.Forms.Label();
@@ -97,7 +104,10 @@
             this.btnCardP3Played = new System.Windows.Forms.Button();
             this.btnCardP2Played = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblWhoIsPlayingNow = new System.Windows.Forms.Label();
             this.pnlPlayer1 = new System.Windows.Forms.Panel();
+            this.lblP1Id = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.lblP1Bet = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.lblP1Score = new System.Windows.Forms.Label();
@@ -118,6 +128,7 @@
             this.btnCard1P1 = new System.Windows.Forms.Button();
             this.btnCard7P1 = new System.Windows.Forms.Button();
             this.btnCard0P1 = new System.Windows.Forms.Button();
+            this.timerWhoStarts = new System.Windows.Forms.Timer(this.components);
             this.pnlPlayer3.SuspendLayout();
             this.pnlPlayer2.SuspendLayout();
             this.pnlPlayer4.SuspendLayout();
@@ -131,6 +142,8 @@
             this.pnlPlayer3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlPlayer3.BackColor = System.Drawing.Color.Transparent;
             this.pnlPlayer3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPlayer3.Controls.Add(this.lblP3Id);
+            this.pnlPlayer3.Controls.Add(this.label7);
             this.pnlPlayer3.Controls.Add(this.lblP3Bet);
             this.pnlPlayer3.Controls.Add(this.label14);
             this.pnlPlayer3.Controls.Add(this.lblP3Score);
@@ -156,6 +169,28 @@
             this.pnlPlayer3.Name = "pnlPlayer3";
             this.pnlPlayer3.Size = new System.Drawing.Size(541, 228);
             this.pnlPlayer3.TabIndex = 15;
+            // 
+            // lblP3Id
+            // 
+            this.lblP3Id.AutoEllipsis = true;
+            this.lblP3Id.AutoSize = true;
+            this.lblP3Id.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblP3Id.Location = new System.Drawing.Point(20, 204);
+            this.lblP3Id.MaximumSize = new System.Drawing.Size(42, 16);
+            this.lblP3Id.Name = "lblP3Id";
+            this.lblP3Id.Size = new System.Drawing.Size(42, 16);
+            this.lblP3Id.TabIndex = 40;
+            this.lblP3Id.Text = "32045";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 204);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(23, 16);
+            this.label7.TabIndex = 39;
+            this.label7.Text = "ID:";
             // 
             // lblP3Bet
             // 
@@ -189,9 +224,11 @@
             // 
             // lblP3Name
             // 
+            this.lblP3Name.AutoEllipsis = true;
             this.lblP3Name.AutoSize = true;
             this.lblP3Name.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblP3Name.Location = new System.Drawing.Point(43, 204);
+            this.lblP3Name.Location = new System.Drawing.Point(101, 204);
+            this.lblP3Name.MaximumSize = new System.Drawing.Size(175, 16);
             this.lblP3Name.Name = "lblP3Name";
             this.lblP3Name.Size = new System.Drawing.Size(59, 16);
             this.lblP3Name.TabIndex = 35;
@@ -211,7 +248,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(3, 204);
+            this.label18.Location = new System.Drawing.Point(61, 204);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(45, 16);
             this.label18.TabIndex = 33;
@@ -443,6 +480,8 @@
             this.pnlPlayer2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pnlPlayer2.BackColor = System.Drawing.Color.Transparent;
             this.pnlPlayer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPlayer2.Controls.Add(this.lblP2Id);
+            this.pnlPlayer2.Controls.Add(this.label10);
             this.pnlPlayer2.Controls.Add(this.lblP2Bet);
             this.pnlPlayer2.Controls.Add(this.label5);
             this.pnlPlayer2.Controls.Add(this.lblP2Score);
@@ -467,6 +506,28 @@
             this.pnlPlayer2.Name = "pnlPlayer2";
             this.pnlPlayer2.Size = new System.Drawing.Size(207, 605);
             this.pnlPlayer2.TabIndex = 14;
+            // 
+            // lblP2Id
+            // 
+            this.lblP2Id.AutoEllipsis = true;
+            this.lblP2Id.AutoSize = true;
+            this.lblP2Id.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblP2Id.Location = new System.Drawing.Point(160, 585);
+            this.lblP2Id.MaximumSize = new System.Drawing.Size(42, 16);
+            this.lblP2Id.Name = "lblP2Id";
+            this.lblP2Id.Size = new System.Drawing.Size(42, 16);
+            this.lblP2Id.TabIndex = 36;
+            this.lblP2Id.Text = "32045";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(143, 585);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(23, 16);
+            this.label10.TabIndex = 35;
+            this.label10.Text = "ID:";
             // 
             // lblP2Bet
             // 
@@ -500,9 +561,11 @@
             // 
             // lblP2Name
             // 
+            this.lblP2Name.AutoEllipsis = true;
             this.lblP2Name.AutoSize = true;
             this.lblP2Name.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblP2Name.Location = new System.Drawing.Point(43, 543);
+            this.lblP2Name.MaximumSize = new System.Drawing.Size(160, 16);
             this.lblP2Name.Name = "lblP2Name";
             this.lblP2Name.Size = new System.Drawing.Size(59, 16);
             this.lblP2Name.TabIndex = 17;
@@ -757,6 +820,8 @@
             this.pnlPlayer4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pnlPlayer4.BackColor = System.Drawing.Color.Transparent;
             this.pnlPlayer4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPlayer4.Controls.Add(this.lblP4Id);
+            this.pnlPlayer4.Controls.Add(this.label15);
             this.pnlPlayer4.Controls.Add(this.lblP4Bet);
             this.pnlPlayer4.Controls.Add(this.label8);
             this.pnlPlayer4.Controls.Add(this.lblP4Score);
@@ -781,6 +846,28 @@
             this.pnlPlayer4.Name = "pnlPlayer4";
             this.pnlPlayer4.Size = new System.Drawing.Size(207, 605);
             this.pnlPlayer4.TabIndex = 16;
+            // 
+            // lblP4Id
+            // 
+            this.lblP4Id.AutoEllipsis = true;
+            this.lblP4Id.AutoSize = true;
+            this.lblP4Id.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblP4Id.Location = new System.Drawing.Point(164, 585);
+            this.lblP4Id.MaximumSize = new System.Drawing.Size(42, 16);
+            this.lblP4Id.Name = "lblP4Id";
+            this.lblP4Id.Size = new System.Drawing.Size(42, 16);
+            this.lblP4Id.TabIndex = 38;
+            this.lblP4Id.Text = "32045";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(147, 585);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(23, 16);
+            this.label15.TabIndex = 37;
+            this.label15.Text = "ID:";
             // 
             // lblP4Bet
             // 
@@ -814,9 +901,11 @@
             // 
             // lblP4Name
             // 
+            this.lblP4Name.AutoEllipsis = true;
             this.lblP4Name.AutoSize = true;
             this.lblP4Name.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblP4Name.Location = new System.Drawing.Point(43, 543);
+            this.lblP4Name.MaximumSize = new System.Drawing.Size(160, 16);
             this.lblP4Name.Name = "lblP4Name";
             this.lblP4Name.Size = new System.Drawing.Size(59, 16);
             this.lblP4Name.TabIndex = 23;
@@ -1057,76 +1146,76 @@
             this.btnCardP1Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCardP1Played.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnCardP1Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas1;
             this.btnCardP1Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCardP1Played.FlatAppearance.BorderSize = 0;
             this.btnCardP1Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardP1Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCardP1Played.ForeColor = System.Drawing.Color.Black;
-            this.btnCardP1Played.Location = new System.Drawing.Point(131, 97);
+            this.btnCardP1Played.Location = new System.Drawing.Point(213, 97);
             this.btnCardP1Played.MaximumSize = new System.Drawing.Size(109, 150);
             this.btnCardP1Played.Name = "btnCardP1Played";
             this.btnCardP1Played.Size = new System.Drawing.Size(71, 95);
             this.btnCardP1Played.TabIndex = 17;
             this.btnCardP1Played.UseVisualStyleBackColor = true;
+            this.btnCardP1Played.Visible = false;
             // 
             // btnCardP4Played
             // 
             this.btnCardP4Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCardP4Played.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnCardP4Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas2;
             this.btnCardP4Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCardP4Played.FlatAppearance.BorderSize = 0;
             this.btnCardP4Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardP4Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCardP4Played.ForeColor = System.Drawing.Color.Black;
-            this.btnCardP4Played.Location = new System.Drawing.Point(208, 64);
+            this.btnCardP4Played.Location = new System.Drawing.Point(290, 64);
             this.btnCardP4Played.MaximumSize = new System.Drawing.Size(109, 150);
             this.btnCardP4Played.Name = "btnCardP4Played";
             this.btnCardP4Played.Size = new System.Drawing.Size(95, 71);
             this.btnCardP4Played.TabIndex = 15;
             this.btnCardP4Played.UseVisualStyleBackColor = true;
+            this.btnCardP4Played.Visible = false;
             // 
             // btnCardP3Played
             // 
             this.btnCardP3Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCardP3Played.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnCardP3Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas3;
             this.btnCardP3Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCardP3Played.FlatAppearance.BorderSize = 0;
             this.btnCardP3Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardP3Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCardP3Played.ForeColor = System.Drawing.Color.Black;
-            this.btnCardP3Played.Location = new System.Drawing.Point(131, 0);
+            this.btnCardP3Played.Location = new System.Drawing.Point(213, 0);
             this.btnCardP3Played.MaximumSize = new System.Drawing.Size(109, 150);
             this.btnCardP3Played.Name = "btnCardP3Played";
             this.btnCardP3Played.Size = new System.Drawing.Size(71, 95);
             this.btnCardP3Played.TabIndex = 14;
             this.btnCardP3Played.UseVisualStyleBackColor = true;
+            this.btnCardP3Played.Visible = false;
             // 
             // btnCardP2Played
             // 
             this.btnCardP2Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCardP2Played.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnCardP2Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas4;
             this.btnCardP2Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCardP2Played.FlatAppearance.BorderSize = 0;
             this.btnCardP2Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardP2Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCardP2Played.ForeColor = System.Drawing.Color.Black;
-            this.btnCardP2Played.Location = new System.Drawing.Point(30, 64);
+            this.btnCardP2Played.Location = new System.Drawing.Point(112, 64);
             this.btnCardP2Played.MaximumSize = new System.Drawing.Size(109, 150);
             this.btnCardP2Played.Name = "btnCardP2Played";
             this.btnCardP2Played.Size = new System.Drawing.Size(95, 71);
             this.btnCardP2Played.TabIndex = 18;
             this.btnCardP2Played.UseVisualStyleBackColor = true;
+            this.btnCardP2Played.Visible = false;
             // 
             // panel5
             // 
@@ -1134,12 +1223,28 @@
             this.panel5.BackColor = System.Drawing.Color.Transparent;
             this.panel5.Controls.Add(this.btnCardP1Played);
             this.panel5.Controls.Add(this.btnCardP3Played);
-            this.panel5.Controls.Add(this.btnCardP2Played);
             this.panel5.Controls.Add(this.btnCardP4Played);
-            this.panel5.Location = new System.Drawing.Point(376, 240);
+            this.panel5.Controls.Add(this.btnCardP2Played);
+            this.panel5.Controls.Add(this.lblWhoIsPlayingNow);
+            this.panel5.Location = new System.Drawing.Point(294, 240);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(339, 192);
+            this.panel5.Size = new System.Drawing.Size(502, 192);
             this.panel5.TabIndex = 19;
+            // 
+            // lblWhoIsPlayingNow
+            // 
+            this.lblWhoIsPlayingNow.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblWhoIsPlayingNow.AutoEllipsis = true;
+            this.lblWhoIsPlayingNow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(17)))));
+            this.lblWhoIsPlayingNow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblWhoIsPlayingNow.Font = new System.Drawing.Font("Ink Free", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWhoIsPlayingNow.ForeColor = System.Drawing.Color.Silver;
+            this.lblWhoIsPlayingNow.Location = new System.Drawing.Point(0, 0);
+            this.lblWhoIsPlayingNow.Name = "lblWhoIsPlayingNow";
+            this.lblWhoIsPlayingNow.Size = new System.Drawing.Size(502, 192);
+            this.lblWhoIsPlayingNow.TabIndex = 39;
+            this.lblWhoIsPlayingNow.Text = "Jogador 34762 Player3 Começa";
+            this.lblWhoIsPlayingNow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlPlayer1
             // 
@@ -1147,6 +1252,8 @@
             this.pnlPlayer1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlPlayer1.BackColor = System.Drawing.Color.Transparent;
             this.pnlPlayer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPlayer1.Controls.Add(this.lblP1Id);
+            this.pnlPlayer1.Controls.Add(this.label4);
             this.pnlPlayer1.Controls.Add(this.lblP1Bet);
             this.pnlPlayer1.Controls.Add(this.label20);
             this.pnlPlayer1.Controls.Add(this.lblP1Score);
@@ -1172,6 +1279,28 @@
             this.pnlPlayer1.Name = "pnlPlayer1";
             this.pnlPlayer1.Size = new System.Drawing.Size(541, 228);
             this.pnlPlayer1.TabIndex = 20;
+            // 
+            // lblP1Id
+            // 
+            this.lblP1Id.AutoEllipsis = true;
+            this.lblP1Id.AutoSize = true;
+            this.lblP1Id.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblP1Id.Location = new System.Drawing.Point(20, 5);
+            this.lblP1Id.MaximumSize = new System.Drawing.Size(42, 16);
+            this.lblP1Id.Name = "lblP1Id";
+            this.lblP1Id.Size = new System.Drawing.Size(42, 16);
+            this.lblP1Id.TabIndex = 34;
+            this.lblP1Id.Text = "32045";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(23, 16);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "ID:";
             // 
             // lblP1Bet
             // 
@@ -1205,9 +1334,11 @@
             // 
             // lblP1Name
             // 
+            this.lblP1Name.AutoEllipsis = true;
             this.lblP1Name.AutoSize = true;
             this.lblP1Name.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblP1Name.Location = new System.Drawing.Point(43, 5);
+            this.lblP1Name.Location = new System.Drawing.Point(101, 5);
+            this.lblP1Name.MaximumSize = new System.Drawing.Size(175, 16);
             this.lblP1Name.Name = "lblP1Name";
             this.lblP1Name.Size = new System.Drawing.Size(59, 16);
             this.lblP1Name.TabIndex = 29;
@@ -1227,7 +1358,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(3, 5);
+            this.label24.Location = new System.Drawing.Point(61, 5);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(45, 16);
             this.label24.TabIndex = 27;
@@ -1469,6 +1600,11 @@
             this.btnCard0P1.TabIndex = 0;
             this.btnCard0P1.UseVisualStyleBackColor = true;
             // 
+            // timerWhoStarts
+            // 
+            this.timerWhoStarts.Interval = 1000;
+            this.timerWhoStarts.Tick += new System.EventHandler(this.timerWhoStarts_Tick);
+            // 
             // Match
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1488,6 +1624,7 @@
             this.MinimumSize = new System.Drawing.Size(1100, 710);
             this.Name = "Match";
             this.Text = " MagicTrick";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Match_FormClosed);
             this.pnlPlayer3.ResumeLayout(false);
             this.pnlPlayer3.PerformLayout();
             this.pnlPlayer2.ResumeLayout(false);
@@ -1591,5 +1728,15 @@
         private System.Windows.Forms.Label lblP4Name;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblWhoIsPlayingNow;
+        private System.Windows.Forms.Timer timerWhoStarts;
+        private System.Windows.Forms.Label lblP3Id;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblP1Id;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblP2Id;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblP4Id;
+        private System.Windows.Forms.Label label15;
     }
 }

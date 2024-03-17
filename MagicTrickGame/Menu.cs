@@ -24,13 +24,33 @@ namespace MagicTrickGame
         public int matchId;
         public string matchName;
         public string[] players;
-        private string userId;
-        private string userPassword;
+        public Player me = new Player();
 
         public Menu()
         {
             InitializeComponent();
             lblVersion.Text = $"Versão: {Jogo.Versao}";
+        }
+
+        private void ResetNewGameInputs()
+        {
+            txtNewGameMatchName.Text = "";
+            txtNewGamePassword.Text = "";
+        }
+
+        private void ResetJoinGameInputs()
+        {
+            cboStatus.SelectedIndex = 0;
+            lstMatches.Items.Clear();
+            pnlMatchInfo.Visible = false;
+            txtJoinGamePassword.Text = "";
+            txtJoinGameUsername.Text = "";
+            this.isMatchSelected = false;
+        }
+
+        private void ResetPlayerList()
+        {
+            lstPlayers.Items.Clear();
         }
 
         private void btnNewGame_Click(object sender, EventArgs e)
@@ -41,8 +61,7 @@ namespace MagicTrickGame
 
         private void lblGoBack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            txtNewGameMatchName.Text = "";
-            txtNewGamePassword.Text = "";
+            this.ResetNewGameInputs();
             pnlNewGame.Visible = false;
             pnlMenu.Visible = true;
         }
@@ -95,6 +114,31 @@ namespace MagicTrickGame
             this.btnNewGameCreate_Handle();
         }
 
+        private string CreateNewMatch(string matchName, string matchPassword)
+        {
+            string response = Jogo.CriarPartida(matchName, matchPassword, "Atenas");
+            if (response.Length > 4 && response.Substring(0, 4) == "ERRO")
+            {
+                lblNewGameMatchNameError.Text = response;
+                /*MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
+                return null;
+            }
+
+            return response;
+        }
+
+        private void btnNewGameCreate_Click(object sender, EventArgs e)
+        {
+            this.createdMatchId = this.CreateNewMatch(txtNewGameMatchName.Text, txtNewGamePassword.Text);
+                
+            if (this.createdMatchId == null) { return; }
+
+            pnlNewGame.Visible = false;
+            pnlJoinGame.Visible = true;
+            cboStatus.SelectedIndex = 0;
+            this.ResetNewGameInputs();
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Tem certeza que deseja sair o jogo?", "Confirmação de Saída", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -115,28 +159,39 @@ namespace MagicTrickGame
         {
             pnlJoinGame.Visible = false;
             pnlMenu.Visible = true;
-            lstMatches.Items.Clear();
-            pnlMatchInfo.Visible = false;
-            this.isMatchSelected = false;
-            txtJoinGamePassword.Text = "";
-            txtJoinGameUsername.Text = "";
+            this.ResetJoinGameInputs();
             lblSelectMatchError.Text = "Selecione uma partida.";
         }
 
-        private void btnFetchMatches_Click(object sender, EventArgs e)
+        public string[] fetchMatches()
         {
             string status = cboStatus.Text.Substring(0, 1);
             string response = Jogo.ListarPartidas(status);
+            
+            if (response.Length <= 0)
+            {
+                MessageBox.Show($"Nenhuma partida encontrada", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ResetJoinGameInputs();
+                return null;
+            }
+
             if (response.Substring(0, 4) == "ERRO")
             {
                 MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return null;
             }
 
             response = response.Replace("\r", "");
             response = response.Substring(0, response.Length - 1);
 
-            this.matches = response.Split('\n');
+            return response.Split('\n');
+        }
+
+        private void btnFetchMatches_Click(object sender, EventArgs e)
+        {
+            this.matches = this.fetchMatches();
+
+            if (this.matches == null) { return; }
 
             lstMatches.Items.Clear();
             int defaultSelectedIndex = 0;
@@ -185,53 +240,54 @@ namespace MagicTrickGame
             pnlMatchInfo.Visible = true;
         }
 
-        private void btnNewGameCreate_Click(object sender, EventArgs e)
+        private string[] JoinMatch(int matchId, string username, string matchPassword)
         {
-            string matchName = txtNewGameMatchName.Text;
-            string matchPassword = txtNewGamePassword.Text;
-
-            string response = Jogo.CriarPartida(matchName, matchPassword, "Atenas");
-            if (response.Length > 4 && response.Substring(0, 4) == "ERRO")
-            {
-                lblNewGameMatchNameError.Text = "Esse nome já existe. Tente escolher outro.";
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            this.createdMatchId = response;
-            pnlNewGame.Visible = false;
-            pnlJoinGame.Visible = true;
-            cboStatus.SelectedIndex = 0;
-        }
-
-        private void btnJoinMatch_Click(object sender, EventArgs e)
-        {
-            string matchPassword = txtJoinGamePassword.Text;
-            string username = txtJoinGameUsername.Text;
-            
-            string response = Jogo.EntrarPartida(this.matchId, username, matchPassword);
+            string response = Jogo.EntrarPartida(matchId, username, matchPassword);
             if (response.Substring(0, 4) == "ERRO")
             {
                 if (response.Contains("Senha"))
                 {
-                    lblJoinGamePasswordError.Text = response.Substring(5);
-                } 
+                    lblJoinGamePasswordError.Text = response;
+                }
                 else if (response.Contains("jogador com este nome"))
                 {
-                    lblJoinGameUsernameError.Text = response.Substring(5);
-                } else
+                    lblJoinGameUsernameError.Text = response;
+                }
+                else
                 {
                     MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                return;
+                return null;
+            }
+            response = response.Replace("\r", "");
+            response = response.Substring(0, response.Length - 1);
+
+            return response.Split(',');
+        }
+
+        private void btnJoinMatch_Click(object sender, EventArgs e)
+        {
+            string[] playerCreatedData = this.JoinMatch(this.matchId, txtJoinGameUsername.Text, txtJoinGamePassword.Text);
+
+            if (playerCreatedData == null) { return; }
+
+            me.id = playerCreatedData[0];
+            me.password = playerCreatedData[1];
+            this.listPlayers();
+        }
+
+        private string[] fetchPlayers(int matchId)
+        {
+            string response = Jogo.ListarJogadores(matchId);
+            if (response.Substring(0, 4) == "ERRO")
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
 
             response = response.Replace("\r", "");
             response = response.Substring(0, response.Length - 1);
-
-            this.userId = response.Split(',')[0];
-            this.userPassword = response.Split(',')[1];
-            this.listPlayers();
+            return response.Split('\n');
         }
 
         private void listPlayers()
@@ -240,17 +296,12 @@ namespace MagicTrickGame
             pnlPlayers.Visible = true;
             lblSelectedMatchName.Text = this.matchName;
 
-            string response = Jogo.ListarJogadores(this.matchId);
-            if (response.Substring(0, 4) == "ERRO")
-            {
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            
+            this.players = this.fetchPlayers(this.matchId);
 
-            response = response.Replace("\r", "");
-            response = response.Substring(0, response.Length - 1);
-            this.players = response.Split('\n');
+            if (this.players == null) { return; }
 
+            this.ResetPlayerList();
             for (int i = 0; i < this.players.Length; i++)
             {
                 lstPlayers.Items.Add(this.players[i]);
@@ -304,6 +355,54 @@ namespace MagicTrickGame
             }
 
             this.btnJoinMatch_Handle();
+        }
+
+        private void btnBackToMatchList_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Tem certeza que deseja cancelar?", "Confirmação de Saída", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (result == DialogResult.Yes)
+            {
+                pnlJoinGame.Visible = true;
+                pnlPlayers.Visible = false;
+                this.ResetJoinGameInputs();
+                this.ResetPlayerList();
+            }
+        }
+
+        private string StartMatch(int playerId, string playerPassword) 
+        {
+            string response = Jogo.IniciarPartida(playerId, playerPassword);
+            if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            return response;
+        }
+
+        private void btnStartMatch_Click(object sender, EventArgs e)
+        {
+            string playerWhoStartsId = this.StartMatch(Int32.Parse(me.id), me.password);
+
+            if (playerWhoStartsId == null) { return; }
+
+            Form match = new Match(this.matchId, playerWhoStartsId);
+            
+            match.Show();
+            this.Hide();
+
+            match.FormClosed += this.Match_FormClosed;
+            this.ResetJoinGameInputs();
+            this.ResetNewGameInputs();
+            this.ResetPlayerList();
+        }
+
+        private void Match_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
+            pnlPlayers.Visible = false;
+            pnlMenu.Visible = true;
         }
     }
 }

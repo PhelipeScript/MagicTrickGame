@@ -26,12 +26,20 @@ namespace MagicTrickGame
         public List<Button> btnCards = new List<Button>();
         public PlayerPosition playerPosition;
 
-        public Player(string playerData)
+        public Player(string playerData = "")
         {
-            string[] data = playerData.Split(',');
-            this.id = data[0];
-            this.name = data[1];
-            this.score = Convert.ToInt32(data[2]);
+            if (playerData == "")
+            {
+                this.id = null;
+                this.name = null;
+                this.score = 0;
+            } else
+            {
+                string[] data = playerData.Split(',');
+                this.id = data[0];
+                this.name = data[1];
+                this.score = Convert.ToInt32(data[2]);
+            }
         }
 
         public void fetchCards(int matchId) 
