@@ -20,7 +20,7 @@ namespace MagicTrickGame
         public int matchId;
         public List<Player> players = new List<Player>();
 
-        public Match(int matchId, string playerWhoStartsId)
+        public Match(int matchId, string playerWhoStartsId, Player me)
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
@@ -44,6 +44,13 @@ namespace MagicTrickGame
             {
                 this.players.Add(new Player(playerData));
             };
+
+            while (this.players[0].id != me.id)
+            {
+                Player player = this.players[0];
+                this.players.RemoveAt(0);
+                this.players.Add(player);
+            }
 
             this.handlePlayersAmount(this.players.Count);
 

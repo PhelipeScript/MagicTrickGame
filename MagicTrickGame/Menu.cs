@@ -387,7 +387,7 @@ namespace MagicTrickGame
 
             if (playerWhoStartsId == null) { return; }
 
-            Form match = new Match(this.matchId, playerWhoStartsId);
+            Form match = new Match(this.matchId, playerWhoStartsId, me);
             
             match.Show();
             this.Hide();
