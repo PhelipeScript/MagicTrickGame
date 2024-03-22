@@ -129,6 +129,7 @@
             this.btnCard7P1 = new System.Windows.Forms.Button();
             this.btnCard0P1 = new System.Windows.Forms.Button();
             this.timerWhoStarts = new System.Windows.Forms.Timer(this.components);
+            this.btnSkipBet = new System.Windows.Forms.Button();
             this.pnlPlayer3.SuspendLayout();
             this.pnlPlayer2.SuspendLayout();
             this.pnlPlayer4.SuspendLayout();
@@ -502,7 +503,7 @@
             this.pnlPlayer2.Controls.Add(this.btnCard3P2);
             this.pnlPlayer2.Controls.Add(this.btnCard7P2);
             this.pnlPlayer2.Controls.Add(this.btnCard0P2);
-            this.pnlPlayer2.Location = new System.Drawing.Point(31, 49);
+            this.pnlPlayer2.Location = new System.Drawing.Point(32, 12);
             this.pnlPlayer2.Name = "pnlPlayer2";
             this.pnlPlayer2.Size = new System.Drawing.Size(207, 605);
             this.pnlPlayer2.TabIndex = 14;
@@ -842,7 +843,7 @@
             this.pnlPlayer4.Controls.Add(this.btnCard3P4);
             this.pnlPlayer4.Controls.Add(this.btnCard7P4);
             this.pnlPlayer4.Controls.Add(this.btnCard0P4);
-            this.pnlPlayer4.Location = new System.Drawing.Point(846, 49);
+            this.pnlPlayer4.Location = new System.Drawing.Point(845, 16);
             this.pnlPlayer4.Name = "pnlPlayer4";
             this.pnlPlayer4.Size = new System.Drawing.Size(207, 605);
             this.pnlPlayer4.TabIndex = 16;
@@ -1605,6 +1606,20 @@
             this.timerWhoStarts.Interval = 1000;
             this.timerWhoStarts.Tick += new System.EventHandler(this.timerWhoStarts_Tick);
             // 
+            // btnSkipBet
+            // 
+            this.btnSkipBet.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSkipBet.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSkipBet.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSkipBet.ForeColor = System.Drawing.Color.Black;
+            this.btnSkipBet.Location = new System.Drawing.Point(179, 643);
+            this.btnSkipBet.Name = "btnSkipBet";
+            this.btnSkipBet.Size = new System.Drawing.Size(87, 23);
+            this.btnSkipBet.TabIndex = 39;
+            this.btnSkipBet.Text = "Pular Aposta";
+            this.btnSkipBet.UseVisualStyleBackColor = false;
+            this.btnSkipBet.Click += new System.EventHandler(this.btnSkipBet_Click);
+            // 
             // Match
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1613,6 +1628,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1084, 671);
+            this.Controls.Add(this.btnSkipBet);
             this.Controls.Add(this.pnlPlayer1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.pnlPlayer4);
@@ -1738,5 +1754,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblP4Id;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnSkipBet;
     }
 }

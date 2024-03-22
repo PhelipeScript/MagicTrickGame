@@ -14,6 +14,7 @@ namespace MagicTrickGame
         public char suitLetter;
         public string suitName;
         public int value;
+        public int index;
         public Bitmap img;
         private Dictionary<char, string> suitNamesDict = new Dictionary<char, string>
         {
@@ -92,9 +93,9 @@ namespace MagicTrickGame
             },
         };
 
-        public Card(string value, string suitLetter, PlayerPosition playerPosition)
+        public Card(string index, string suitLetter, PlayerPosition playerPosition)
         {
-            this.value = Convert.ToInt32(value);
+            this.index = Convert.ToInt32(index);
             this.suitLetter = Convert.ToChar(suitLetter);
             this.suitName = this.suitNamesDict[this.suitLetter];
 

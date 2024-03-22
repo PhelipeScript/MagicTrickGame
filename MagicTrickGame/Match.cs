@@ -59,6 +59,9 @@ namespace MagicTrickGame
                 player.fetchCards(this.matchId);
                 player.distributeCards();
             }
+
+            this.players[0].password = me.password;
+            this.players[0].AddClickEventToButtons();
         }
 
         private void timerWhoStarts_Tick(object sender, EventArgs e)
@@ -217,6 +220,11 @@ namespace MagicTrickGame
         private void Match_FormClosed(object sender, FormClosedEventArgs e)
         {
             
+        }
+
+        private void btnSkipBet_Click(object sender, EventArgs e)
+        {
+            this.players[0].SkipBet();
         }
     }
 }

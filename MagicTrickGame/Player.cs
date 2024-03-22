@@ -81,5 +81,49 @@ namespace MagicTrickGame
                 this.btnCards[i].Enabled = true;
             }
         }
+
+        public void AddClickEventToButtons()
+        {
+            foreach (var btn in this.btnCards)
+            {
+                btn.Click += this.BtnCardClickEventHandler;
+            }
+        }
+
+        private void BtnCardClickEventHandler(object sender, EventArgs e)
+        {
+            Button btnCard = (Button)sender;
+            int btnCardIndex = this.btnCards.IndexOf(btnCard);
+
+            int cardValue = this.PlayCard(Convert.ToInt32(this.id), this.password, this.cards[btnCardIndex].index);
+
+            if (cardValue != -1) 
+            {
+                this.cards[btnCardIndex].value = cardValue;
+                btnCard.Text = cardValue.ToString();
+            }
+        }
+
+        private int PlayCard(int playerId, string playerPassword, int cardIndex)
+        {
+            string response = Jogo.Jogar(playerId, playerPassword, cardIndex);
+            if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
+            return Convert.ToInt32(response);
+        }
+
+        public void SkipBet()
+        {
+            string response = Jogo.Apostar(Convert.ToInt32(this.id), this.password, 0);
+            if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
     }
 }
