@@ -372,8 +372,25 @@ namespace MagicTrickGame
         private string StartMatch(int playerId, string playerPassword) 
         {
             string response = Jogo.IniciarPartida(playerId, playerPassword);
+
             if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
             {
+                if (response.Substring(5) == "Partida não está aberta")
+                {
+                    string whoStartes = Jogo.VerificarVez(this.matchId);
+
+                    if (whoStartes.Length >= 4 && whoStartes.Substring(0, 4) == "ERRO")
+                    {
+                        MessageBox.Show($"Ocorreu um erro:\n {whoStartes.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    } else
+                    {
+                        whoStartes = whoStartes.Replace("\r", "");
+                        whoStartes = whoStartes.Substring(0, whoStartes.Length - 1);
+                        return whoStartes.Split('\n')[0].Split(',')[1];
+                    }
+                }
+
                 MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }

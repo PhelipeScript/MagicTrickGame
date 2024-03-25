@@ -99,11 +99,6 @@
             this.btnCard3P4 = new System.Windows.Forms.Button();
             this.btnCard7P4 = new System.Windows.Forms.Button();
             this.btnCard0P4 = new System.Windows.Forms.Button();
-            this.btnCardP1Played = new System.Windows.Forms.Button();
-            this.btnCardP4Played = new System.Windows.Forms.Button();
-            this.btnCardP3Played = new System.Windows.Forms.Button();
-            this.btnCardP2Played = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.lblWhoIsPlayingNow = new System.Windows.Forms.Label();
             this.pnlPlayer1 = new System.Windows.Forms.Panel();
             this.lblP1Id = new System.Windows.Forms.Label();
@@ -130,11 +125,17 @@
             this.btnCard0P1 = new System.Windows.Forms.Button();
             this.timerWhoStarts = new System.Windows.Forms.Timer(this.components);
             this.btnSkipBet = new System.Windows.Forms.Button();
+            this.btnCheckWhoPlays = new System.Windows.Forms.Button();
+            this.btnCardP2Played = new System.Windows.Forms.Button();
+            this.btnCardP4Played = new System.Windows.Forms.Button();
+            this.btnCardP3Played = new System.Windows.Forms.Button();
+            this.btnCardP1Played = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.pnlPlayer3.SuspendLayout();
             this.pnlPlayer2.SuspendLayout();
             this.pnlPlayer4.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.pnlPlayer1.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlPlayer3
@@ -843,7 +844,7 @@
             this.pnlPlayer4.Controls.Add(this.btnCard3P4);
             this.pnlPlayer4.Controls.Add(this.btnCard7P4);
             this.pnlPlayer4.Controls.Add(this.btnCard0P4);
-            this.pnlPlayer4.Location = new System.Drawing.Point(845, 16);
+            this.pnlPlayer4.Location = new System.Drawing.Point(845, 12);
             this.pnlPlayer4.Name = "pnlPlayer4";
             this.pnlPlayer4.Size = new System.Drawing.Size(207, 605);
             this.pnlPlayer4.TabIndex = 16;
@@ -1142,96 +1143,6 @@
             this.btnCard0P4.TabIndex = 1;
             this.btnCard0P4.UseVisualStyleBackColor = true;
             // 
-            // btnCardP1Played
-            // 
-            this.btnCardP1Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCardP1Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas1;
-            this.btnCardP1Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCardP1Played.FlatAppearance.BorderSize = 0;
-            this.btnCardP1Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCardP1Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCardP1Played.ForeColor = System.Drawing.Color.Black;
-            this.btnCardP1Played.Location = new System.Drawing.Point(213, 97);
-            this.btnCardP1Played.MaximumSize = new System.Drawing.Size(109, 150);
-            this.btnCardP1Played.Name = "btnCardP1Played";
-            this.btnCardP1Played.Size = new System.Drawing.Size(71, 95);
-            this.btnCardP1Played.TabIndex = 17;
-            this.btnCardP1Played.UseVisualStyleBackColor = true;
-            this.btnCardP1Played.Visible = false;
-            // 
-            // btnCardP4Played
-            // 
-            this.btnCardP4Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCardP4Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas2;
-            this.btnCardP4Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCardP4Played.FlatAppearance.BorderSize = 0;
-            this.btnCardP4Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCardP4Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCardP4Played.ForeColor = System.Drawing.Color.Black;
-            this.btnCardP4Played.Location = new System.Drawing.Point(290, 64);
-            this.btnCardP4Played.MaximumSize = new System.Drawing.Size(109, 150);
-            this.btnCardP4Played.Name = "btnCardP4Played";
-            this.btnCardP4Played.Size = new System.Drawing.Size(95, 71);
-            this.btnCardP4Played.TabIndex = 15;
-            this.btnCardP4Played.UseVisualStyleBackColor = true;
-            this.btnCardP4Played.Visible = false;
-            // 
-            // btnCardP3Played
-            // 
-            this.btnCardP3Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCardP3Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas3;
-            this.btnCardP3Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCardP3Played.FlatAppearance.BorderSize = 0;
-            this.btnCardP3Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCardP3Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCardP3Played.ForeColor = System.Drawing.Color.Black;
-            this.btnCardP3Played.Location = new System.Drawing.Point(213, 0);
-            this.btnCardP3Played.MaximumSize = new System.Drawing.Size(109, 150);
-            this.btnCardP3Played.Name = "btnCardP3Played";
-            this.btnCardP3Played.Size = new System.Drawing.Size(71, 95);
-            this.btnCardP3Played.TabIndex = 14;
-            this.btnCardP3Played.UseVisualStyleBackColor = true;
-            this.btnCardP3Played.Visible = false;
-            // 
-            // btnCardP2Played
-            // 
-            this.btnCardP2Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCardP2Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas4;
-            this.btnCardP2Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCardP2Played.FlatAppearance.BorderSize = 0;
-            this.btnCardP2Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCardP2Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCardP2Played.ForeColor = System.Drawing.Color.Black;
-            this.btnCardP2Played.Location = new System.Drawing.Point(112, 64);
-            this.btnCardP2Played.MaximumSize = new System.Drawing.Size(109, 150);
-            this.btnCardP2Played.Name = "btnCardP2Played";
-            this.btnCardP2Played.Size = new System.Drawing.Size(95, 71);
-            this.btnCardP2Played.TabIndex = 18;
-            this.btnCardP2Played.UseVisualStyleBackColor = true;
-            this.btnCardP2Played.Visible = false;
-            // 
-            // panel5
-            // 
-            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel5.BackColor = System.Drawing.Color.Transparent;
-            this.panel5.Controls.Add(this.btnCardP1Played);
-            this.panel5.Controls.Add(this.btnCardP3Played);
-            this.panel5.Controls.Add(this.btnCardP4Played);
-            this.panel5.Controls.Add(this.btnCardP2Played);
-            this.panel5.Controls.Add(this.lblWhoIsPlayingNow);
-            this.panel5.Location = new System.Drawing.Point(294, 240);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(502, 192);
-            this.panel5.TabIndex = 19;
-            // 
             // lblWhoIsPlayingNow
             // 
             this.lblWhoIsPlayingNow.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1240,9 +1151,9 @@
             this.lblWhoIsPlayingNow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblWhoIsPlayingNow.Font = new System.Drawing.Font("Ink Free", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWhoIsPlayingNow.ForeColor = System.Drawing.Color.Silver;
-            this.lblWhoIsPlayingNow.Location = new System.Drawing.Point(0, 0);
+            this.lblWhoIsPlayingNow.Location = new System.Drawing.Point(16, 0);
             this.lblWhoIsPlayingNow.Name = "lblWhoIsPlayingNow";
-            this.lblWhoIsPlayingNow.Size = new System.Drawing.Size(502, 192);
+            this.lblWhoIsPlayingNow.Size = new System.Drawing.Size(468, 192);
             this.lblWhoIsPlayingNow.TabIndex = 39;
             this.lblWhoIsPlayingNow.Text = "Jogador 34762 Player3 Começa";
             this.lblWhoIsPlayingNow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1251,7 +1162,7 @@
             // 
             this.pnlPlayer1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pnlPlayer1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlPlayer1.BackColor = System.Drawing.Color.Transparent;
+            this.pnlPlayer1.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.pnlPlayer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlPlayer1.Controls.Add(this.lblP1Id);
             this.pnlPlayer1.Controls.Add(this.label4);
@@ -1610,15 +1521,127 @@
             // 
             this.btnSkipBet.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSkipBet.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSkipBet.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSkipBet.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSkipBet.ForeColor = System.Drawing.Color.Black;
-            this.btnSkipBet.Location = new System.Drawing.Point(179, 643);
+            this.btnSkipBet.Location = new System.Drawing.Point(179, 623);
             this.btnSkipBet.Name = "btnSkipBet";
-            this.btnSkipBet.Size = new System.Drawing.Size(87, 23);
+            this.btnSkipBet.Size = new System.Drawing.Size(87, 43);
             this.btnSkipBet.TabIndex = 39;
             this.btnSkipBet.Text = "Pular Aposta";
             this.btnSkipBet.UseVisualStyleBackColor = false;
             this.btnSkipBet.Click += new System.EventHandler(this.btnSkipBet_Click);
+            // 
+            // btnCheckWhoPlays
+            // 
+            this.btnCheckWhoPlays.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnCheckWhoPlays.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCheckWhoPlays.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckWhoPlays.ForeColor = System.Drawing.Color.Black;
+            this.btnCheckWhoPlays.Location = new System.Drawing.Point(819, 623);
+            this.btnCheckWhoPlays.Name = "btnCheckWhoPlays";
+            this.btnCheckWhoPlays.Size = new System.Drawing.Size(87, 43);
+            this.btnCheckWhoPlays.TabIndex = 40;
+            this.btnCheckWhoPlays.Text = "Verificar Vez";
+            this.btnCheckWhoPlays.UseVisualStyleBackColor = false;
+            this.btnCheckWhoPlays.Click += new System.EventHandler(this.btnCheckWhoPlays_Click);
+            // 
+            // btnCardP2Played
+            // 
+            this.btnCardP2Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCardP2Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas4;
+            this.btnCardP2Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCardP2Played.FlatAppearance.BorderSize = 0;
+            this.btnCardP2Played.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP2Played.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP2Played.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP2Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCardP2Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCardP2Played.ForeColor = System.Drawing.Color.Black;
+            this.btnCardP2Played.Location = new System.Drawing.Point(112, 64);
+            this.btnCardP2Played.MaximumSize = new System.Drawing.Size(109, 150);
+            this.btnCardP2Played.Name = "btnCardP2Played";
+            this.btnCardP2Played.Size = new System.Drawing.Size(95, 71);
+            this.btnCardP2Played.TabIndex = 18;
+            this.btnCardP2Played.UseVisualStyleBackColor = true;
+            // 
+            // btnCardP4Played
+            // 
+            this.btnCardP4Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCardP4Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas2;
+            this.btnCardP4Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCardP4Played.FlatAppearance.BorderSize = 0;
+            this.btnCardP4Played.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP4Played.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP4Played.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP4Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCardP4Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCardP4Played.ForeColor = System.Drawing.Color.Black;
+            this.btnCardP4Played.Location = new System.Drawing.Point(290, 64);
+            this.btnCardP4Played.MaximumSize = new System.Drawing.Size(109, 150);
+            this.btnCardP4Played.Name = "btnCardP4Played";
+            this.btnCardP4Played.Size = new System.Drawing.Size(95, 71);
+            this.btnCardP4Played.TabIndex = 15;
+            this.btnCardP4Played.UseVisualStyleBackColor = true;
+            // 
+            // btnCardP3Played
+            // 
+            this.btnCardP3Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCardP3Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas3;
+            this.btnCardP3Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCardP3Played.FlatAppearance.BorderSize = 0;
+            this.btnCardP3Played.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP3Played.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP3Played.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP3Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCardP3Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCardP3Played.ForeColor = System.Drawing.Color.Black;
+            this.btnCardP3Played.Location = new System.Drawing.Point(213, 0);
+            this.btnCardP3Played.MaximumSize = new System.Drawing.Size(109, 150);
+            this.btnCardP3Played.Name = "btnCardP3Played";
+            this.btnCardP3Played.Size = new System.Drawing.Size(71, 95);
+            this.btnCardP3Played.TabIndex = 14;
+            this.btnCardP3Played.UseVisualStyleBackColor = true;
+            // 
+            // btnCardP1Played
+            // 
+            this.btnCardP1Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCardP1Played.BackgroundImage = global::MagicTrickGame.Properties.Resources.Copas1;
+            this.btnCardP1Played.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCardP1Played.FlatAppearance.BorderSize = 0;
+            this.btnCardP1Played.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP1Played.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP1Played.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnCardP1Played.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCardP1Played.Font = new System.Drawing.Font("Impact", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCardP1Played.ForeColor = System.Drawing.Color.Black;
+            this.btnCardP1Played.Location = new System.Drawing.Point(213, 97);
+            this.btnCardP1Played.MaximumSize = new System.Drawing.Size(109, 150);
+            this.btnCardP1Played.Name = "btnCardP1Played";
+            this.btnCardP1Played.Size = new System.Drawing.Size(71, 95);
+            this.btnCardP1Played.TabIndex = 17;
+            this.btnCardP1Played.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel5.BackColor = System.Drawing.Color.Transparent;
+            this.panel5.Controls.Add(this.lblWhoIsPlayingNow);
+            this.panel5.Controls.Add(this.btnCardP1Played);
+            this.panel5.Controls.Add(this.btnCardP3Played);
+            this.panel5.Controls.Add(this.btnCardP4Played);
+            this.panel5.Controls.Add(this.btnCardP2Played);
+            this.panel5.Location = new System.Drawing.Point(294, 240);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(502, 192);
+            this.panel5.TabIndex = 19;
             // 
             // Match
             // 
@@ -1628,9 +1651,10 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1084, 671);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.btnCheckWhoPlays);
             this.Controls.Add(this.btnSkipBet);
             this.Controls.Add(this.pnlPlayer1);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.pnlPlayer4);
             this.Controls.Add(this.pnlPlayer2);
             this.Controls.Add(this.pnlPlayer3);
@@ -1647,9 +1671,9 @@
             this.pnlPlayer2.PerformLayout();
             this.pnlPlayer4.ResumeLayout(false);
             this.pnlPlayer4.PerformLayout();
-            this.panel5.ResumeLayout(false);
             this.pnlPlayer1.ResumeLayout(false);
             this.pnlPlayer1.PerformLayout();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1700,11 +1724,6 @@
         private System.Windows.Forms.Button btnCard3P4;
         private System.Windows.Forms.Button btnCard7P4;
         private System.Windows.Forms.Button btnCard0P4;
-        private System.Windows.Forms.Button btnCardP1Played;
-        private System.Windows.Forms.Button btnCardP4Played;
-        private System.Windows.Forms.Button btnCardP3Played;
-        private System.Windows.Forms.Button btnCardP2Played;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblP2Score;
@@ -1755,5 +1774,11 @@
         private System.Windows.Forms.Label lblP4Id;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnSkipBet;
+        private System.Windows.Forms.Button btnCheckWhoPlays;
+        private System.Windows.Forms.Button btnCardP2Played;
+        private System.Windows.Forms.Button btnCardP4Played;
+        private System.Windows.Forms.Button btnCardP3Played;
+        private System.Windows.Forms.Button btnCardP1Played;
+        private System.Windows.Forms.Panel panel5;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MagicTrickServer;
@@ -42,6 +43,33 @@ namespace MagicTrickGame
             }
         }
 
+        public List<Card> checkCardsLeft(int matchId)
+        {
+            string response = Jogo.ConsultarMao(matchId);
+            if (response.Substring(0, 4) == "ERRO")
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            response = response.Replace("\r", "");
+            response = response.Substring(0, response.Length - 1);
+            string[] cards = response.Split('\n');
+            List<Card> cardsLeft = new List<Card>();
+
+            foreach (var card in cards)
+            {
+                string[] cardData = card.Split(',');
+
+                if (cardData[0] == this.id)
+                {
+                    cardsLeft.Add(new Card(cardData[1], cardData[2], this.playerPosition));
+                }
+            }
+
+            return cardsLeft;
+        }
+
         public void fetchCards(int matchId) 
         {
             string response = Jogo.ConsultarMao(matchId);
@@ -54,6 +82,7 @@ namespace MagicTrickGame
             response = response.Replace("\r", "");
             response = response.Substring(0, response.Length - 1);
             string[] cards = response.Split('\n');
+            this.cards.Clear();
 
             foreach (var card in cards)
             {
@@ -77,6 +106,7 @@ namespace MagicTrickGame
 
             for (int i = 0; i < this.cards.Count; i++)
             {
+                this.btnCards[i].Text = "";
                 this.btnCards[i].BackgroundImage = this.cards[i].img;
                 this.btnCards[i].Enabled = true;
             }
@@ -100,7 +130,6 @@ namespace MagicTrickGame
             if (cardValue != -1) 
             {
                 this.cards[btnCardIndex].value = cardValue;
-                btnCard.Text = cardValue.ToString();
             }
         }
 
