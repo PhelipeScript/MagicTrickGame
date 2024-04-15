@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bet.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Menu.cs">

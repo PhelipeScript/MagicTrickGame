@@ -128,7 +128,7 @@ namespace MagicTrickGame
                     this.players[0].playerPosition = PlayerPosition.BOTTOM;
                     lblP1Id.Text = this.players[0].id;
                     lblP1Name.Text = this.players[0].name;
-                    lblP1Bet.Text = null;
+                    lblP1Bet.Text = "0/?";
                     lblP1Score.Text = this.players[0].score.ToString();
                     foreach (Control control in pnlPlayer1.Controls)
                     {
@@ -141,7 +141,7 @@ namespace MagicTrickGame
                     this.players[1].playerPosition = PlayerPosition.TOP;
                     lblP3Id.Text = this.players[1].id;
                     lblP3Name.Text = this.players[1].name;
-                    lblP3Bet.Text = null;
+                    lblP3Bet.Text = "0/?";
                     lblP3Score.Text = this.players[1].score.ToString();
                     foreach (Control control in pnlPlayer3.Controls)
                     {
@@ -151,7 +151,7 @@ namespace MagicTrickGame
                         }
                     }
 
-                    this.maxRoundByCardsPlayed = 12;
+                    this.maxRoundByCardsPlayed = 11;
                     break;
                 case 4:
                     pnlPlayer1.Visible = true;
@@ -163,7 +163,7 @@ namespace MagicTrickGame
                     this.players[0].playerPosition = PlayerPosition.BOTTOM;
                     lblP1Id.Text = this.players[0].id;
                     lblP1Name.Text = this.players[0].name;
-                    lblP1Bet.Text = null;
+                    lblP1Bet.Text = "0/?";
                     lblP1Score.Text = this.players[0].score.ToString();
                     foreach (Control control in pnlPlayer1.Controls)
                     {
@@ -177,7 +177,7 @@ namespace MagicTrickGame
                     this.players[1].playerPosition = PlayerPosition.LEFT;
                     lblP2Id.Text = this.players[1].id;
                     lblP2Name.Text = this.players[1].name;
-                    lblP2Bet.Text = null;
+                    lblP2Bet.Text = "0/?";
                     lblP2Score.Text = this.players[1].score.ToString();
                     foreach (Control control in pnlPlayer2.Controls)
                     {
@@ -191,7 +191,7 @@ namespace MagicTrickGame
                     this.players[2].playerPosition = PlayerPosition.TOP;
                     lblP3Id.Text = this.players[2].id;
                     lblP3Name.Text = this.players[2].name;
-                    lblP3Bet.Text = null;
+                    lblP3Bet.Text = "0/?";
                     lblP3Score.Text = this.players[2].score.ToString();
                     foreach (Control control in pnlPlayer3.Controls)
                     {
@@ -205,7 +205,7 @@ namespace MagicTrickGame
                     this.players[3].playerPosition = PlayerPosition.RIGHT;
                     lblP4Id.Text = this.players[3].id;
                     lblP4Name.Text = this.players[3].name;
-                    lblP4Bet.Text = null;
+                    lblP4Bet.Text = "0/?";
                     lblP4Score.Text = this.players[3].score.ToString();
                     foreach (Control control in pnlPlayer4.Controls)
                     {
@@ -215,7 +215,7 @@ namespace MagicTrickGame
                         }
                     }
 
-                    this.maxRoundByCardsPlayed = 14;
+                    this.maxRoundByCardsPlayed = 13;
                     break;
                 default:
                     MessageBox.Show($"Ocorreu um erro:\n Quantidade de jogadores inválida.", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -235,10 +235,10 @@ namespace MagicTrickGame
 
         private void btnCheckWhoPlays_Click(object sender, EventArgs e)
         {
-            this.updatePlayerCard();
-            string response = Jogo.VerificarVez(this.matchId);
+            this.updatePlayersCard();
 
-            if (response.Length >= 4 && response.Substring(0, 4) == "ERRO") 
+            string response = Jogo.VerificarVez2(this.matchId);
+            if (response.Substring(0, 4) == "ERRO")
             {
                 MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -246,185 +246,226 @@ namespace MagicTrickGame
 
             response = response.Replace("\r", "");
             response = response.Substring(0, response.Length - 1);
-            string[] data = response.Split('\n');
-
-            for (int i = 0; i < data.Length; i++)
+            foreach (string line in response.Split('\n'))
             {
-                string[] dataLine = data[i].Split(',');
-                if (dataLine[0] == "J")
-                {   
-                    if (this.players.Count == 2)
-                    {
-                        if (dataLine[1] == this.players[0].id)
-                        {
-                            pnlPlayer3.BackColor = Color.Transparent;
-                            pnlPlayer1.BackColor = Color.DarkSlateBlue;
-                        }
-                        else if (dataLine[1] == this.players[1].id)
-                        {
-                            pnlPlayer3.BackColor = Color.DarkSlateBlue;
-                            pnlPlayer1.BackColor = Color.Transparent;
-                        }
-                    } else 
-                    {
-                        if (dataLine[1] == this.players[0].id)
-                        {
-                            pnlPlayer4.BackColor = Color.Transparent;
-                            pnlPlayer3.BackColor = Color.Transparent;
-                            pnlPlayer2.BackColor = Color.Transparent;
-                            pnlPlayer1.BackColor = Color.DarkSlateBlue;
-                        } else if (dataLine[1] == this.players[1].id)
-                        {
-                            pnlPlayer4.BackColor = Color.Transparent;
-                            pnlPlayer3.BackColor = Color.Transparent;
-                            pnlPlayer2.BackColor = Color.DarkSlateBlue;
-                            pnlPlayer1.BackColor = Color.Transparent;
-                        } else if (dataLine[1] == this.players[2].id)
-                        {
-                            pnlPlayer4.BackColor = Color.Transparent;
-                            pnlPlayer3.BackColor = Color.DarkSlateBlue;
-                            pnlPlayer2.BackColor = Color.Transparent;
-                            pnlPlayer1.BackColor = Color.Transparent;
-                        } else if (dataLine[1] == this.players[3].id)
-                        {
-                            pnlPlayer4.BackColor = Color.DarkSlateBlue;
-                            pnlPlayer3.BackColor = Color.Transparent;
-                            pnlPlayer2.BackColor = Color.Transparent;
-                            pnlPlayer1.BackColor = Color.Transparent;
-                        }
+                string[] data = line.Split(',');
 
-                    }
-                    
+                if (data[0].Contains("J"))
+                {
+                    this.showRoundStatus(data[3], data[1]);
+                } else if (data[0].Contains("A:"))
+                {
+                    this.updatePlayerBet(data[0].Substring(2), Convert.ToChar(data[1]), Convert.ToInt32(data[2]), Convert.ToInt32(data[3]), Convert.ToInt32(data[4]));   
                 } 
-            } 
+            };
         }
 
-        public void updatePlayerCard()
+        private void updatePlayerBet(string playerId, char cardSuitLetter, int cardValue, int round, int index)
         {
-            string[] history = this.fetchHistoryByRound(this.round);
-            if (history == null) return;
+            if (playerId == this.players[0].id)
+            {
+                if (this.players[0].bet == null)
+                {
+                    this.players[0].bet = new Bet(playerId, cardSuitLetter, cardValue, round, index);
+                    this.players[0].cards[index-1].value = cardValue;
+                    this.players[0].btnCards[index - 1].Text = cardValue.ToString();
+                }
+                this.lblP1Bet.Text = this.lblP1Bet.Text.Split('/')[0] + $"/{this.players[0].bet.CardValue}";
+            }
 
-            if (this.allPlayersPlayedThisRound() && this.roundByCardsPlayed == this.maxRoundByCardsPlayed)
+            if (this.players.Count == 2)
+            {
+                if (playerId == this.players[1].id)
+                {
+                    if (this.players[1].bet == null)
+                    {
+                        this.players[1].bet = new Bet(playerId, cardSuitLetter, cardValue, round, index);
+                        this.players[1].cards[index - 1].value = cardValue;
+                        this.players[1].btnCards[index - 1].Text = cardValue.ToString();
+                    }
+                    this.lblP3Bet.Text = this.lblP3Bet.Text.Split('/')[0] + $"/{this.players[1].bet.CardValue}";
+                }
+            } 
+            else
+            {
+                if (playerId == this.players[1].id)
+                {
+                    if (this.players[1].bet == null)
+                    {
+                        this.players[1].bet = new Bet(playerId, cardSuitLetter, cardValue, round, index);
+                        this.players[1].cards[index - 1].value = cardValue;
+                        this.players[1].btnCards[index - 1].Text = cardValue.ToString();
+                    }
+                    this.lblP2Bet.Text = this.lblP2Bet.Text.Split('/')[0] + $"/{this.players[1].bet.CardValue}";
+                }
+                else if (playerId == this.players[2].id)
+                {
+                    if (this.players[2].bet == null)
+                    {
+                        this.players[2].bet = new Bet(playerId, cardSuitLetter, cardValue, round, index);
+                        this.players[2].cards[index - 1].value = cardValue;
+                        this.players[2].btnCards[index - 1].Text = cardValue.ToString();
+                    }
+                    this.lblP3Bet.Text = this.lblP3Bet.Text.Split('/')[0] + $"/{this.players[2].bet.CardValue}";
+                }
+                else if (playerId == this.players[3].id)
+                {
+                    if (this.players[3].bet == null)
+                    {
+                        this.players[3].bet = new Bet(playerId, cardSuitLetter, cardValue, round, index);
+                        this.players[3].cards[index - 1].value = cardValue;
+                        this.players[3].btnCards[index - 1].Text = cardValue.ToString();
+                    }
+                    this.lblP4Bet.Text = this.lblP4Bet.Text.Split('/')[0] + $"/{this.players[3].bet.CardValue}";
+                }
+            }
+            
+        }
+
+        private void showRoundStatus(string statusLetter, string playerId)
+        {
+            pnlPlayer4.BackColor = Color.Transparent;
+            pnlPlayer3.BackColor = Color.Transparent;
+            pnlPlayer2.BackColor = Color.Transparent;
+            pnlPlayer1.BackColor = Color.Transparent;
+
+            foreach (Player player in this.players)
+            {
+                player.status = PlayerStatus.Wait;
+            }
+
+            if (playerId == this.players[0].id)
+            {
+                pnlPlayer1.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
+                this.players[0].status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
+            } 
+            else if (this.players.Count == 2)
+            {
+                if (playerId == this.players[1].id)
+                {
+                    pnlPlayer3.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
+                    this.players[1].status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
+                }
+            }
+            else
+            {
+                if (playerId == this.players[1].id)
+                {
+                    pnlPlayer2.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
+                    this.players[1].status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
+                }
+                else if (playerId == this.players[2].id)
+                {
+                    pnlPlayer3.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
+                    this.players[2].status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
+                }
+                else if (playerId == this.players[3].id)
+                {
+                    pnlPlayer4.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
+                    this.players[3].status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
+                }
+            }
+        }
+
+        private void updatePlayersCard()
+        {
+            string response = Jogo.ExibirJogadas2(this.matchId, this.round);
+            if (response == "") return;
+            if (response.Substring(0, 4) == "ERRO")
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            this.resetCardsPlayed();
+            response = response.Replace("\r", "");
+            response = response.Substring(0, response.Length - 1);
+
+            int currentRound = 1;
+            while (currentRound * this.players.Count < response.Split('\n').Length)
+            {
+                currentRound++;
+            }
+            this.roundByCardsPlayed = currentRound;
+
+            foreach (string line in response.Split('\n'))
+            {
+                string[] data = line.Split(',');
+                int cardIndex = Convert.ToInt32(data[4]) - 1;
+
+                if (data[1] == this.players[0].id)
+                {
+                    this.players[0].cards[cardIndex].value = Convert.ToInt32(data[3]);
+                    this.players[0].btnCards[cardIndex].Text = data[3];
+                    if (data[0] == this.roundByCardsPlayed.ToString()) 
+                    {
+                        this.btnCardP1Played.Text = data[3];
+                        this.btnCardP1Played.BackgroundImage = this.players[0].cards[cardIndex].img;
+                    }
+
+                } else if (this.players.Count == 2)
+                {
+                    if (data[1] == this.players[1].id)
+                    {
+                        this.players[1].cards[cardIndex].value = Convert.ToInt32(data[3]);
+                        this.players[1].btnCards[cardIndex].Text = data[3];
+                        if (data[0] == this.roundByCardsPlayed.ToString())
+                        {
+                            this.btnCardP3Played.Text = data[3];
+                            this.btnCardP3Played.BackgroundImage = this.players[1].cards[cardIndex].img;
+                        }
+                    }
+                }
+                else
+                {
+                    if (data[1] == this.players[1].id)
+                    {
+                        this.players[1].cards[cardIndex].value = Convert.ToInt32(data[3]);
+                        this.players[1].btnCards[cardIndex].Text = data[3];
+                        if (data[0] == this.roundByCardsPlayed.ToString())
+                        {
+                            this.btnCardP2Played.Text = data[3];
+                            this.btnCardP2Played.BackgroundImage = this.players[1].cards[cardIndex].img;
+                        }
+                    }
+                    else if (data[1] == this.players[2].id)
+                    {
+                        this.players[2].cards[cardIndex].value = Convert.ToInt32(data[3]);
+                        this.players[2].btnCards[cardIndex].Text = data[3];
+                        if (data[0] == this.roundByCardsPlayed.ToString())
+                        {
+                            this.btnCardP3Played.Text = data[3];
+                            this.btnCardP3Played.BackgroundImage = this.players[2].cards[cardIndex].img;
+                        }
+                    }
+                    else if (data[1] == this.players[3].id)
+                    {
+                        this.players[3].cards[cardIndex].value = Convert.ToInt32(data[3]);
+                        this.players[3].btnCards[cardIndex].Text = data[3];
+                        if (data[0] == this.roundByCardsPlayed.ToString())
+                        {
+                            this.btnCardP4Played.Text = data[3];
+                            this.btnCardP4Played.BackgroundImage = this.players[3].cards[cardIndex].img;
+                        }
+                    }
+                }
+            };
+
+            if (currentRound == this.maxRoundByCardsPlayed && currentRound * this.players.Count % response.Split('\n').Length == 0 && this.round < this.players.Count)
             {
                 this.round++;
-                foreach (var player in this.players)
+                this.roundByCardsPlayed = 1;
+                foreach (Player player in this.players)
                 {
+                    player.bet = null;
                     player.fetchCards(this.matchId);
                     player.distributeCards();
                 }
+                this.lblP1Bet.Text = "0/?";
+                this.lblP2Bet.Text = "0/?";
+                this.lblP3Bet.Text = "0/?";
+                this.lblP4Bet.Text = "0/?";
             }
-
-            for (int i = 0; i < this.players.Count; i++)
-            {
-                List<Card> playerCardsLeft = this.players[i].checkCardsLeft(this.matchId);
-                if (playerCardsLeft == null) return;
-
-                int maxIndex = this.players.Count == 2 ? 12 : 14;
-                int cardsLeftIndex = 0;
-                int playerCardsIndex = 0;
-                do {
-                    if (this.players[i].cards[playerCardsIndex].index == playerCardsLeft[cardsLeftIndex].index)
-                    {
-                        cardsLeftIndex++;
-                    } else
-                    {
-                        if (this.players[i].btnCards[playerCardsIndex].Text == "")
-                        {
-                            string[] historyData = history[history.Length - 1].Split(',');
-                            this.players[i].cards[playerCardsIndex].value = Convert.ToInt32(historyData[3]);
-                            this.players[i].btnCards[playerCardsIndex].Text = historyData[3];
-
-                            if (this.players.Count == 2)
-                            {
-                                if (i == 0)
-                                {
-                                    btnCardP1Played.Text = this.players[i].btnCards[playerCardsIndex].Text;
-                                    btnCardP1Played.BackgroundImage = this.players[i].cards[playerCardsIndex].img;
-                                }
-                                else if (i == 1)
-                                {
-                                    btnCardP3Played.Text = this.players[i].btnCards[playerCardsIndex].Text;
-                                    btnCardP3Played.BackgroundImage = this.players[i].cards[playerCardsIndex].img;
-                                }
-                            } else
-                            {
-                                if (i == 0)
-                                {
-                                    btnCardP1Played.Text = this.players[i].btnCards[playerCardsIndex].Text;
-                                    btnCardP1Played.BackgroundImage = this.players[i].cards[playerCardsIndex].img;
-                                }
-                                else if (i == 1)
-                                {
-                                    btnCardP2Played.Text = this.players[i].btnCards[playerCardsIndex].Text;
-                                    btnCardP2Played.BackgroundImage = this.players[i].cards[playerCardsIndex].img;
-                                }
-                                else if (i == 2)
-                                {
-                                    btnCardP3Played.Text = this.players[i].btnCards[playerCardsIndex].Text;
-                                    btnCardP3Played.BackgroundImage = this.players[i].cards[playerCardsIndex].img;
-                                }
-                                else if (i == 3)
-                                {
-                                    btnCardP4Played.Text = this.players[i].btnCards[playerCardsIndex].Text;
-                                    btnCardP4Played.BackgroundImage = this.players[i].cards[playerCardsIndex].img;
-                                }
-                            }
-                        }
-                    }
-                    playerCardsIndex++;
-                } while (playerCardsIndex < maxIndex);
-            }
-        }
-
-        public bool allPlayersPlayedThisRound()
-        {
-            string[] history = this.fetchHistoryByRound(this.round);
-            if (history == null) return false;
-
-            int playerCounter = 0;
-            for (int i = 0; i < history.Length; i++)
-            {
-                string[] dataLine = history[i].Split(',');
-
-                if (dataLine[0] == this.roundByCardsPlayed.ToString())
-                {
-                    playerCounter++;
-                }
-            }
-
-            if (playerCounter == 0)
-            {
-                this.resetCardsPlayed();
-            }
-
-            if (this.players.Count == playerCounter)
-            {
-                int lastRoundInHistory = Convert.ToInt32(history[history.Length - 1].Split(',')[0]);
-                if (this.roundByCardsPlayed <= lastRoundInHistory)
-                {
-                    this.roundByCardsPlayed++;
-                }
-                return true;
-            }
-            return false;
-        }
-
-        public string[] fetchHistoryByRound(int round)
-        {
-            string response = Jogo.ExibirJogadas(this.matchId, round);
-            if (response == "") return null;
-
-            if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
-            {
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-
-            response = response.Replace("\r", "");
-            response = response.Substring(0, response.Length - 1);
-            string[] history = response.Split('\n');
-
-            return history;
         }
     }
 }
