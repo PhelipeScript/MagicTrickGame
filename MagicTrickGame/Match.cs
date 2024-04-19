@@ -262,64 +262,26 @@ namespace MagicTrickGame
 
         private void updatePlayerBet(string playerId, char cardSuitLetter, int cardValue, int round, int index)
         {
-            if (playerId == this.players[0].id)
-            {
-                if (this.players[0].bet == null)
-                {
-                    this.players[0].bet = new Bet(playerId, cardSuitLetter, cardValue, round, index);
-                    this.players[0].cards[index-1].value = cardValue;
-                    this.players[0].btnCards[index - 1].Text = cardValue.ToString();
-                }
-                this.lblP1Bet.Text = this.lblP1Bet.Text.Split('/')[0] + $"/{this.players[0].bet.CardValue}";
-            }
+            Player player = this.players.Find(p => p.id == playerId);
+            player.bet = player.bet == null ? new Bet(playerId, cardSuitLetter, cardValue, round, index) : player.bet;
+            player.cards[index-1].value = cardValue;
+            player.btnCards[index-1].Text = cardValue.ToString();
 
-            if (this.players.Count == 2)
+            switch (player.playerPosition)
             {
-                if (playerId == this.players[1].id)
-                {
-                    if (this.players[1].bet == null)
-                    {
-                        this.players[1].bet = new Bet(playerId, cardSuitLetter, cardValue, round, index);
-                        this.players[1].cards[index - 1].value = cardValue;
-                        this.players[1].btnCards[index - 1].Text = cardValue.ToString();
-                    }
-                    this.lblP3Bet.Text = this.lblP3Bet.Text.Split('/')[0] + $"/{this.players[1].bet.CardValue}";
-                }
-            } 
-            else
-            {
-                if (playerId == this.players[1].id)
-                {
-                    if (this.players[1].bet == null)
-                    {
-                        this.players[1].bet = new Bet(playerId, cardSuitLetter, cardValue, round, index);
-                        this.players[1].cards[index - 1].value = cardValue;
-                        this.players[1].btnCards[index - 1].Text = cardValue.ToString();
-                    }
-                    this.lblP2Bet.Text = this.lblP2Bet.Text.Split('/')[0] + $"/{this.players[1].bet.CardValue}";
-                }
-                else if (playerId == this.players[2].id)
-                {
-                    if (this.players[2].bet == null)
-                    {
-                        this.players[2].bet = new Bet(playerId, cardSuitLetter, cardValue, round, index);
-                        this.players[2].cards[index - 1].value = cardValue;
-                        this.players[2].btnCards[index - 1].Text = cardValue.ToString();
-                    }
-                    this.lblP3Bet.Text = this.lblP3Bet.Text.Split('/')[0] + $"/{this.players[2].bet.CardValue}";
-                }
-                else if (playerId == this.players[3].id)
-                {
-                    if (this.players[3].bet == null)
-                    {
-                        this.players[3].bet = new Bet(playerId, cardSuitLetter, cardValue, round, index);
-                        this.players[3].cards[index - 1].value = cardValue;
-                        this.players[3].btnCards[index - 1].Text = cardValue.ToString();
-                    }
-                    this.lblP4Bet.Text = this.lblP4Bet.Text.Split('/')[0] + $"/{this.players[3].bet.CardValue}";
-                }
+                case PlayerPosition.BOTTOM:
+                    this.lblP1Bet.Text = this.lblP1Bet.Text.Split('/')[0] + $"/{player.bet.CardValue}";
+                    break;
+                case PlayerPosition.LEFT:
+                    this.lblP2Bet.Text = this.lblP1Bet.Text.Split('/')[0] + $"/{player.bet.CardValue}";
+                    break;
+                case PlayerPosition.TOP:
+                    this.lblP3Bet.Text = this.lblP1Bet.Text.Split('/')[0] + $"/{player.bet.CardValue}";
+                    break;
+                case PlayerPosition.RIGHT:
+                    this.lblP4Bet.Text = this.lblP1Bet.Text.Split('/')[0] + $"/{player.bet.CardValue}";
+                    break;
             }
-            
         }
 
         private void showRoundStatus(string statusLetter, string playerId)
@@ -329,41 +291,28 @@ namespace MagicTrickGame
             pnlPlayer2.BackColor = Color.Transparent;
             pnlPlayer1.BackColor = Color.Transparent;
 
-            foreach (Player player in this.players)
+            foreach (Player p in this.players)
             {
-                player.status = PlayerStatus.Wait;
+                p.status = PlayerStatus.Wait;
             }
 
-            if (playerId == this.players[0].id)
+            Player player = this.players.Find(p => p.id == playerId);
+            player.status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
+
+            switch (player.playerPosition)
             {
-                pnlPlayer1.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
-                this.players[0].status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
-            } 
-            else if (this.players.Count == 2)
-            {
-                if (playerId == this.players[1].id)
-                {
-                    pnlPlayer3.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
-                    this.players[1].status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
-                }
-            }
-            else
-            {
-                if (playerId == this.players[1].id)
-                {
+                case PlayerPosition.BOTTOM:
+                    pnlPlayer1.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
+                    break;
+                case PlayerPosition.LEFT:
                     pnlPlayer2.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
-                    this.players[1].status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
-                }
-                else if (playerId == this.players[2].id)
-                {
+                    break;
+                case PlayerPosition.TOP:
                     pnlPlayer3.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
-                    this.players[2].status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
-                }
-                else if (playerId == this.players[3].id)
-                {
+                    break;
+                case PlayerPosition.RIGHT:
                     pnlPlayer4.BackColor = statusLetter == "C" ? Color.DarkSlateBlue : Color.Sienna;
-                    this.players[3].status = statusLetter == "C" ? PlayerStatus.Play : PlayerStatus.Bet;
-                }
+                    break;
             }
         }
 
@@ -393,61 +342,40 @@ namespace MagicTrickGame
                 string[] data = line.Split(',');
                 int cardIndex = Convert.ToInt32(data[4]) - 1;
 
-                if (data[1] == this.players[0].id)
-                {
-                    this.players[0].cards[cardIndex].value = Convert.ToInt32(data[3]);
-                    this.players[0].btnCards[cardIndex].Text = data[3];
-                    if (data[0] == this.roundByCardsPlayed.ToString()) 
-                    {
-                        this.btnCardP1Played.Text = data[3];
-                        this.btnCardP1Played.BackgroundImage = this.players[0].cards[cardIndex].img;
-                    }
+                Player player = this.players.Find(p => p.id == data[1]);
+                player.cards[cardIndex].value = Convert.ToInt32(data[3]);
+                player.btnCards[cardIndex].Text = data[3];
 
-                } else if (this.players.Count == 2)
+                switch (player.playerPosition)
                 {
-                    if (data[1] == this.players[1].id)
-                    {
-                        this.players[1].cards[cardIndex].value = Convert.ToInt32(data[3]);
-                        this.players[1].btnCards[cardIndex].Text = data[3];
+                    case PlayerPosition.BOTTOM:
                         if (data[0] == this.roundByCardsPlayed.ToString())
                         {
-                            this.btnCardP3Played.Text = data[3];
-                            this.btnCardP3Played.BackgroundImage = this.players[1].cards[cardIndex].img;
+                            this.btnCardP1Played.Text = data[3];
+                            this.btnCardP1Played.BackgroundImage = player.cards[cardIndex].img;
                         }
-                    }
-                }
-                else
-                {
-                    if (data[1] == this.players[1].id)
-                    {
-                        this.players[1].cards[cardIndex].value = Convert.ToInt32(data[3]);
-                        this.players[1].btnCards[cardIndex].Text = data[3];
+                        break;
+                    case PlayerPosition.LEFT:
                         if (data[0] == this.roundByCardsPlayed.ToString())
                         {
                             this.btnCardP2Played.Text = data[3];
-                            this.btnCardP2Played.BackgroundImage = this.players[1].cards[cardIndex].img;
+                            this.btnCardP2Played.BackgroundImage = player.cards[cardIndex].img;
                         }
-                    }
-                    else if (data[1] == this.players[2].id)
-                    {
-                        this.players[2].cards[cardIndex].value = Convert.ToInt32(data[3]);
-                        this.players[2].btnCards[cardIndex].Text = data[3];
+                        break;
+                    case PlayerPosition.TOP:
                         if (data[0] == this.roundByCardsPlayed.ToString())
                         {
                             this.btnCardP3Played.Text = data[3];
-                            this.btnCardP3Played.BackgroundImage = this.players[2].cards[cardIndex].img;
+                            this.btnCardP3Played.BackgroundImage = player.cards[cardIndex].img;
                         }
-                    }
-                    else if (data[1] == this.players[3].id)
-                    {
-                        this.players[3].cards[cardIndex].value = Convert.ToInt32(data[3]);
-                        this.players[3].btnCards[cardIndex].Text = data[3];
+                        break;
+                    case PlayerPosition.RIGHT:
                         if (data[0] == this.roundByCardsPlayed.ToString())
                         {
                             this.btnCardP4Played.Text = data[3];
-                            this.btnCardP4Played.BackgroundImage = this.players[3].cards[cardIndex].img;
+                            this.btnCardP4Played.BackgroundImage = player.cards[cardIndex].img;
                         }
-                    }
+                        break;
                 }
             };
 
