@@ -236,6 +236,7 @@ namespace MagicTrickGame
         private void btnCheckWhoPlays_Click(object sender, EventArgs e)
         {
             this.updatePlayersCard();
+            this.updatePlayersScoreByHistory();
 
             string response = Jogo.VerificarVez2(this.matchId);
             if (response.Substring(0, 4) == "ERRO")
@@ -246,6 +247,9 @@ namespace MagicTrickGame
 
             response = response.Replace("\r", "");
             response = response.Substring(0, response.Length - 1);
+
+            this.updatePlayersScorePerTurn(response);
+
             foreach (string line in response.Split('\n'))
             {
                 string[] data = line.Split(',');
@@ -270,16 +274,16 @@ namespace MagicTrickGame
             switch (player.playerPosition)
             {
                 case PlayerPosition.BOTTOM:
-                    this.lblP1Bet.Text = this.lblP1Bet.Text.Split('/')[0] + $"/{player.bet.CardValue}";
+                    this.lblP1Bet.Text = player.score.ToString() + $"/{player.bet.CardValue}";
                     break;
                 case PlayerPosition.LEFT:
-                    this.lblP2Bet.Text = this.lblP1Bet.Text.Split('/')[0] + $"/{player.bet.CardValue}";
+                    this.lblP2Bet.Text = player.score.ToString() + $"/{player.bet.CardValue}";
                     break;
                 case PlayerPosition.TOP:
-                    this.lblP3Bet.Text = this.lblP1Bet.Text.Split('/')[0] + $"/{player.bet.CardValue}";
+                    this.lblP3Bet.Text = player.score.ToString() + $"/{player.bet.CardValue}";
                     break;
                 case PlayerPosition.RIGHT:
-                    this.lblP4Bet.Text = this.lblP1Bet.Text.Split('/')[0] + $"/{player.bet.CardValue}";
+                    this.lblP4Bet.Text = player.score.ToString() + $"/{player.bet.CardValue}";
                     break;
             }
         }
@@ -316,20 +320,60 @@ namespace MagicTrickGame
             }
         }
 
-        private void updatePlayersCard()
+        private string fetchHistory()
         {
             string response = Jogo.ExibirJogadas2(this.matchId, this.round);
-            if (response == "") return;
+            if (response == "") return null;
             if (response.Substring(0, 4) == "ERRO")
             {
                 MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return null;
             }
 
-            this.resetCardsPlayed();
             response = response.Replace("\r", "");
-            response = response.Substring(0, response.Length - 1);
+            return response.Substring(0, response.Length - 1);
+        }
 
+        private void updatePlayersScoreByHistory()
+        {
+            string response = this.fetchHistory();
+            if (response == null) return;
+
+            string[] history = response.Split('\n');
+
+            foreach (Player player in this.players)
+            {
+                player.score = 0;
+            }
+
+            for (int i = this.players.Count; i < history.Length; i += this.players.Count)
+            {
+                string playerId = history[i].Split(',')[1];
+                Player player = this.players.Find(p => p.id == playerId);
+                player.score++;
+            }
+        }
+
+        private void updatePlayersScorePerTurn(string turnData)
+        {
+            if (turnData.Contains("C:")) return;
+
+            string firstLine = turnData.Split('\n')[0];
+            string[] firstLineData = firstLine.Split(',');
+
+            if (!firstLine[2].Equals("1") && firstLineData[3].Equals("C"))
+            {
+                Player player = this.players.Find(p => p.id == firstLineData[1]);
+                player.score++;
+            }
+        }
+
+        private void updatePlayersCard()
+        {
+            string response = this.fetchHistory();
+            if (response == null) return;
+
+            this.resetCardsPlayed();
             int currentRound = 1;
             while (currentRound * this.players.Count < response.Split('\n').Length)
             {
