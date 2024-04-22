@@ -246,19 +246,17 @@ namespace MagicTrickGame
         private void tmrCheckDatabase_Tick(object sender, EventArgs e)
         {
             tmrCheckDatabase.Enabled = false;
-            string turnData = CheckTurn.Handle(this.matchId);
-            if (turnData == null) return;
-            else this.turnData = turnData;
+            this.turnData = CheckTurn.Handle(this.matchId);
 
-            string[] firstLineTurnData = turnData.Split('\n')[0].Split(',');
-
-            string playersCardsData = FetchCards.Handle(this.matchId);
-            if (playersCardsData == null) return;
-            else if (firstLineTurnData[0].Equals("J") && firstLineTurnData[2].Equals("1") && firstLineTurnData[3].Equals("C"))
-                this.playersCardsData = playersCardsData;
-
-            string historicData = FetchHistoric.Handle(this.matchId, this.round);
-            this.historicData = historicData;
+            if (this.turnData != null)
+            {
+                string[] firstLineTurnData = turnData.Split('\n')[0].Split(',');
+                string playersCardsData = FetchCards.Handle(this.matchId);
+                if (playersCardsData == null) return;
+                else if (firstLineTurnData[0].Equals("J") && firstLineTurnData[2].Equals("1") && firstLineTurnData[3].Equals("C"))
+                    this.playersCardsData = playersCardsData;
+            }
+            this.historicData = FetchHistoric.Handle(this.matchId, this.round);
 
             tmrCheckDatabase.Enabled = true;
         }
@@ -313,7 +311,7 @@ namespace MagicTrickGame
                 p.status = PlayerStatus.Wait;
             }
 
-            if (statusData.Contains("J") == false) return;
+            if (statusData == null || statusData.Contains("J") == false) return;
             string firstLine = statusData.Split('\n')[0];
             string[] firstLineData = firstLine.Split(',');
             string playerId = firstLineData[1];

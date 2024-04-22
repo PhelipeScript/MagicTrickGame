@@ -242,27 +242,35 @@ namespace MagicTrickGame
 
         private string[] JoinMatch(int matchId, string username, string matchPassword)
         {
-            string response = Jogo.EntrarPartida(matchId, username, matchPassword);
-            if (response.Substring(0, 4) == "ERRO")
+            try
             {
-                if (response.Contains("Senha"))
+                string response = Jogo.EntrarPartida(matchId, username, matchPassword);
+                if (response.Substring(0, 4) == "ERRO")
                 {
-                    lblJoinGamePasswordError.Text = response;
+                    if (response.Contains("Senha"))
+                    {
+                        lblJoinGamePasswordError.Text = response;
+                    }
+                    else if (response.Contains("jogador com este nome"))
+                    {
+                        lblJoinGameUsernameError.Text = response;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    return null;
                 }
-                else if (response.Contains("jogador com este nome"))
-                {
-                    lblJoinGameUsernameError.Text = response;
-                }
-                else
-                {
-                    MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                response = response.Replace("\r", "");
+                response = response.Substring(0, response.Length - 1);
+
+                return response.Split(',');
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {e}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-            response = response.Replace("\r", "");
-            response = response.Substring(0, response.Length - 1);
-
-            return response.Split(',');
         }
 
         private void btnJoinMatch_Click(object sender, EventArgs e)

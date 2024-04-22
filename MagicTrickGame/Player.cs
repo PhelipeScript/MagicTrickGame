@@ -115,19 +115,33 @@ namespace MagicTrickGame
 
         public void PlayCard(int playerId, string playerPassword, int cardIndex)
         {
-            string response = Jogo.Jogar(playerId, playerPassword, cardIndex);
-            if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
+            try
             {
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string response = Jogo.Jogar(playerId, playerPassword, cardIndex);
+                if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
+                {
+                    MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {e}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public void BetCard(int playerId, string playerPassword, int cardIndex)
         {
-            string response = Jogo.Apostar(playerId, playerPassword, cardIndex);
-            if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
+            try
             {
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string response = Jogo.Apostar(playerId, playerPassword, cardIndex);
+                if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
+                {
+                    MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {e}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

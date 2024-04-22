@@ -25,15 +25,23 @@ namespace MagicTrickGame.Controllers
         //     {C}:{Id do jogador que jogou essa carta},{naipe},{valor},{index da carta}
         public static string Handle(int matchId)
         {
-            string response = Jogo.VerificarVez2(matchId);
-            if (response.Substring(0, 4) == "ERRO")
+            try
             {
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string response = Jogo.VerificarVez2(matchId);
+                if (response.Substring(0, 4) == "ERRO")
+                {
+                    MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+                response = response.Replace("\r", "");
+                return response.Substring(0, response.Length - 1);
+            } 
+            catch (Exception e)
+            {
+                MessageBox.Show($"Ocorreu um erro:\n {e}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-
-            response = response.Replace("\r", "");
-            return response.Substring(0, response.Length - 1);
         }
     }
 }
