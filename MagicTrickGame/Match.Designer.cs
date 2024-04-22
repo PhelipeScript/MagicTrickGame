@@ -125,7 +125,6 @@
             this.btnCard0P1 = new System.Windows.Forms.Button();
             this.tmrWhoStarts = new System.Windows.Forms.Timer(this.components);
             this.btnSkipBet = new System.Windows.Forms.Button();
-            this.btnCheckWhoPlays = new System.Windows.Forms.Button();
             this.btnCardP2Played = new System.Windows.Forms.Button();
             this.btnCardP4Played = new System.Windows.Forms.Button();
             this.btnCardP3Played = new System.Windows.Forms.Button();
@@ -135,7 +134,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tmrCheckWhoPlays = new System.Windows.Forms.Timer(this.components);
+            this.tmrAutonomous = new System.Windows.Forms.Timer(this.components);
+            this.tmrCheckDatabase = new System.Windows.Forms.Timer(this.components);
             this.pnlPlayer3.SuspendLayout();
             this.pnlPlayer2.SuspendLayout();
             this.pnlPlayer4.SuspendLayout();
@@ -1536,20 +1536,6 @@
             this.btnSkipBet.UseVisualStyleBackColor = false;
             this.btnSkipBet.Click += new System.EventHandler(this.btnSkipBet_Click);
             // 
-            // btnCheckWhoPlays
-            // 
-            this.btnCheckWhoPlays.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnCheckWhoPlays.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCheckWhoPlays.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckWhoPlays.ForeColor = System.Drawing.Color.Black;
-            this.btnCheckWhoPlays.Location = new System.Drawing.Point(819, 623);
-            this.btnCheckWhoPlays.Name = "btnCheckWhoPlays";
-            this.btnCheckWhoPlays.Size = new System.Drawing.Size(87, 43);
-            this.btnCheckWhoPlays.TabIndex = 40;
-            this.btnCheckWhoPlays.Text = "Verificar Vez";
-            this.btnCheckWhoPlays.UseVisualStyleBackColor = false;
-            this.btnCheckWhoPlays.Click += new System.EventHandler(this.btnCheckWhoPlays_Click);
-            // 
             // btnCardP2Played
             // 
             this.btnCardP2Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1652,7 +1638,7 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel1.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.panel1.Location = new System.Drawing.Point(912, 650);
+            this.panel1.Location = new System.Drawing.Point(820, 650);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(16, 16);
             this.panel1.TabIndex = 41;
@@ -1663,7 +1649,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(934, 650);
+            this.label3.Location = new System.Drawing.Point(842, 650);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 16);
             this.label3.TabIndex = 42;
@@ -1675,7 +1661,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(934, 628);
+            this.label6.Location = new System.Drawing.Point(842, 628);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(124, 16);
             this.label6.TabIndex = 44;
@@ -1685,16 +1671,20 @@
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel2.BackColor = System.Drawing.Color.Sienna;
-            this.panel2.Location = new System.Drawing.Point(912, 628);
+            this.panel2.Location = new System.Drawing.Point(820, 628);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(16, 16);
             this.panel2.TabIndex = 43;
             // 
-            // tmrCheckWhoPlays
+            // tmrAutonomous
             // 
-            this.tmrCheckWhoPlays.Enabled = true;
-            this.tmrCheckWhoPlays.Interval = 5000;
-            this.tmrCheckWhoPlays.Tick += new System.EventHandler(this.tmrCheckWhoPlays_Tick);
+            this.tmrAutonomous.Interval = 5000;
+            this.tmrAutonomous.Tick += new System.EventHandler(this.tmrAutonomous_Tick);
+            // 
+            // tmrCheckDatabase
+            // 
+            this.tmrCheckDatabase.Interval = 5000;
+            this.tmrCheckDatabase.Tick += new System.EventHandler(this.tmrCheckDatabase_Tick);
             // 
             // Match
             // 
@@ -1709,7 +1699,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.btnCheckWhoPlays);
             this.Controls.Add(this.btnSkipBet);
             this.Controls.Add(this.pnlPlayer1);
             this.Controls.Add(this.pnlPlayer4);
@@ -1832,7 +1821,6 @@
         private System.Windows.Forms.Label lblP4Id;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnSkipBet;
-        private System.Windows.Forms.Button btnCheckWhoPlays;
         private System.Windows.Forms.Button btnCardP2Played;
         private System.Windows.Forms.Button btnCardP4Played;
         private System.Windows.Forms.Button btnCardP3Played;
@@ -1842,6 +1830,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Timer tmrCheckWhoPlays;
+        private System.Windows.Forms.Timer tmrAutonomous;
+        private System.Windows.Forms.Timer tmrCheckDatabase;
     }
 }

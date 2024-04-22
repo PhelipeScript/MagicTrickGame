@@ -10,7 +10,7 @@ namespace MagicTrickGame
     {
         public static void Handle(Player player, string turnData, List<Historic> historics)
         {
-            if (player.status == PlayerStatus.Wait) return;
+            if (turnData == null || player.status == PlayerStatus.Wait) return;
             if (player.status == PlayerStatus.Bet)
             {
                 int betIndex = 8;

@@ -51,6 +51,9 @@
   <ItemGroup>
     <Compile Include="Bet.cs" />
     <Compile Include="Card.cs" />
+    <Compile Include="Controllers\CheckTurn.cs" />
+    <Compile Include="Controllers\FetchCards.cs" />
+    <Compile Include="Controllers\FetchHistoric.cs" />
     <Compile Include="Historic.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>

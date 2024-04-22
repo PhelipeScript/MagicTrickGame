@@ -56,23 +56,15 @@ namespace MagicTrickGame
             }
         }
 
-        public void fetchCards(int matchId) 
+        public void fetchCards(string playersCardsData) 
         {
-            string response = Jogo.ConsultarMao(matchId);
-            if (response.Substring(0, 4) == "ERRO")
-            {
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (playersCardsData == null) return;
 
-            response = response.Replace("\r", "");
-            response = response.Substring(0, response.Length - 1);
-            string[] cards = response.Split('\n');
             this.cards.Clear();
 
-            foreach (var card in cards)
+            foreach (string line in playersCardsData.Split('\n'))
             {
-                string[] cardData = card.Split(',');
+                string[] cardData = line.Split(',');
 
                 if (cardData[0] == this.id)
                 {
