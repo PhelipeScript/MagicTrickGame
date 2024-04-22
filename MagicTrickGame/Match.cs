@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace MagicTrickGame
         public int roundByCardsPlayed = 1;
         public int maxRoundByCardsPlayed;
         public int round = 1;
+        public List<Historic> historics = new List<Historic>();
 
         public Match(int matchId, string playerWhoStartsId, Player me)
         {
@@ -33,8 +35,8 @@ namespace MagicTrickGame
             this.playerWhoStartsId = playerWhoStartsId;
 
             lblWhoIsPlayingNow.Text = "";
-            timerWhoStarts.Interval = 100;
-            timerWhoStarts.Start();
+            tmrWhoStarts.Interval = 50;
+            tmrWhoStarts.Start();
 
             string response = Jogo.ListarJogadores(this.matchId);
             if (response.Substring(0, 4) == "ERRO")
@@ -84,7 +86,7 @@ namespace MagicTrickGame
             btnCardP4Played.BackgroundImage = null;
         }
 
-        private void timerWhoStarts_Tick(object sender, EventArgs e)
+        private void tmrWhoStarts_Tick(object sender, EventArgs e)
         {
             this.handleWhoIsPlayingNowLabel();
         }
@@ -100,7 +102,7 @@ namespace MagicTrickGame
 
             if (this.timerWhoStartsCounter >= this.timerWhoStartsCounterLimit)
             {
-                timerWhoStarts.Stop();
+                tmrWhoStarts.Stop();
                 lblWhoIsPlayingNow.Text = "";
                 this.whoIsPlayingNowText = "";
                 lblWhoIsPlayingNow.Visible = false;
@@ -233,63 +235,80 @@ namespace MagicTrickGame
             this.players[0].SkipBet();
         }
 
-        private void btnCheckWhoPlays_Click(object sender, EventArgs e)
+        private string checkWhoPlays()
         {
-            this.updatePlayersCard();
-            this.updatePlayersScoreByHistory();
-
             string response = Jogo.VerificarVez2(this.matchId);
             if (response.Substring(0, 4) == "ERRO")
             {
                 MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return null;
             }
 
             response = response.Replace("\r", "");
-            response = response.Substring(0, response.Length - 1);
+            return response.Substring(0, response.Length - 1);
+        }
 
+        private void tmrCheckWhoPlays_Tick(object sender, EventArgs e)
+        {
+            tmrCheckWhoPlays.Enabled = false;
+            string response = this.checkWhoPlays();
+            if (response == null) return;
+
+            this.showRoundStatus(response);
+            this.updatePlayersCard();
+            this.updatePlayersScoreByHistory();
             this.updatePlayersScorePerTurn(response);
+            this.updatePlayersBet(response);
+            this.showPlayersScore();
+            Strategy.Handle(this.players[0], response, this.historics);
+            tmrCheckWhoPlays.Enabled = true;
+        }
 
-            foreach (string line in response.Split('\n'))
+        private void btnCheckWhoPlays_Click(object sender, EventArgs e)
+        {
+            string response = this.checkWhoPlays();
+            if (response == null) return;
+
+            this.showRoundStatus(response);
+            this.updatePlayersCard();
+            this.updatePlayersScoreByHistory();
+            this.updatePlayersScorePerTurn(response);
+            this.updatePlayersBet(response);
+            this.showPlayersScore();
+        }
+
+        private void updatePlayersBet(string betData) 
+        {
+            if (!betData.Contains("A:")) return;
+
+            foreach (string line in betData.Split('\n'))
             {
-                string[] data = line.Split(',');
+                string[] lineData = line.Split(',');
 
-                if (data[0].Contains("J"))
+                if (lineData[0].Contains("A:"))
                 {
-                    this.showRoundStatus(data[3], data[1]);
-                } else if (data[0].Contains("A:"))
-                {
-                    this.updatePlayerBet(data[0].Substring(2), Convert.ToChar(data[1]), Convert.ToInt32(data[2]), Convert.ToInt32(data[3]), Convert.ToInt32(data[4]));   
-                } 
+                    string playerId = lineData[0].Substring(2);
+                    char cardSuitLetter = Convert.ToChar(lineData[1]);
+                    int cardValue = Convert.ToInt32(lineData[2]);
+                    int round = Convert.ToInt32(lineData[3]);
+                    int cardIndex = Convert.ToInt32(lineData[4]);
+
+                    Player player = this.players.Find(p => p.id == playerId);
+                    player.bet = player.bet == null ? new Bet(player.id, cardSuitLetter, cardValue, round, cardIndex) : player.bet;
+                    player.cards[cardIndex-1].value = cardValue;
+                    player.btnCards[cardIndex-1].Text = cardValue.ToString();
+                }
             };
         }
-
-        private void updatePlayerBet(string playerId, char cardSuitLetter, int cardValue, int round, int index)
+        // string statusLetter, string playerId
+        private void showRoundStatus(string statusData)
         {
-            Player player = this.players.Find(p => p.id == playerId);
-            player.bet = player.bet == null ? new Bet(playerId, cardSuitLetter, cardValue, round, index) : player.bet;
-            player.cards[index-1].value = cardValue;
-            player.btnCards[index-1].Text = cardValue.ToString();
+            if (!statusData.Contains("J")) return;
+            string firstLine = statusData.Split('\n')[0];
+            string[] firstLineData = firstLine.Split(',');
+            string playerId = firstLineData[1]; 
+            string statusLetter = firstLineData[3];
 
-            switch (player.playerPosition)
-            {
-                case PlayerPosition.BOTTOM:
-                    this.lblP1Bet.Text = player.score.ToString() + $"/{player.bet.CardValue}";
-                    break;
-                case PlayerPosition.LEFT:
-                    this.lblP2Bet.Text = player.score.ToString() + $"/{player.bet.CardValue}";
-                    break;
-                case PlayerPosition.TOP:
-                    this.lblP3Bet.Text = player.score.ToString() + $"/{player.bet.CardValue}";
-                    break;
-                case PlayerPosition.RIGHT:
-                    this.lblP4Bet.Text = player.score.ToString() + $"/{player.bet.CardValue}";
-                    break;
-            }
-        }
-
-        private void showRoundStatus(string statusLetter, string playerId)
-        {
             pnlPlayer4.BackColor = Color.Transparent;
             pnlPlayer3.BackColor = Color.Transparent;
             pnlPlayer2.BackColor = Color.Transparent;
@@ -334,6 +353,29 @@ namespace MagicTrickGame
             return response.Substring(0, response.Length - 1);
         }
 
+        private void showPlayersScore()
+        {
+            foreach (Player player in this.players)
+            {
+                string playerBet = player.bet == null ? "?" : player.bet.CardValue.ToString();
+                switch (player.playerPosition)
+                {
+                    case PlayerPosition.BOTTOM:
+                        this.lblP1Bet.Text = player.score.ToString() + $"/{playerBet}";
+                        break;
+                    case PlayerPosition.LEFT:
+                        this.lblP2Bet.Text = player.score.ToString() + $"/{playerBet}";
+                        break;
+                    case PlayerPosition.TOP:
+                        this.lblP3Bet.Text = player.score.ToString() + $"/{playerBet}";
+                        break;
+                    case PlayerPosition.RIGHT:
+                        this.lblP4Bet.Text = player.score.ToString() + $"/{playerBet}";
+                        break;
+                }
+            }
+        }
+
         private void updatePlayersScoreByHistory()
         {
             string response = this.fetchHistory();
@@ -361,7 +403,7 @@ namespace MagicTrickGame
             string firstLine = turnData.Split('\n')[0];
             string[] firstLineData = firstLine.Split(',');
 
-            if (!firstLine[2].Equals("1") && firstLineData[3].Equals("C"))
+            if (!firstLineData[2].Equals("1") && firstLineData[3].Equals("C"))
             {
                 Player player = this.players.Find(p => p.id == firstLineData[1]);
                 player.score++;
@@ -381,9 +423,12 @@ namespace MagicTrickGame
             }
             this.roundByCardsPlayed = currentRound;
 
+            this.historics.Clear();
             foreach (string line in response.Split('\n'))
             {
                 string[] data = line.Split(',');
+                this.historics.Add(new Historic(Convert.ToInt32(data[0]), data[2], Convert.ToInt32(data[3]), data[4]));
+
                 int cardIndex = Convert.ToInt32(data[4]) - 1;
 
                 Player player = this.players.Find(p => p.id == data[1]);
@@ -429,8 +474,9 @@ namespace MagicTrickGame
                 this.roundByCardsPlayed = 1;
                 foreach (Player player in this.players)
                 {
+                    player.score = 0;
                     player.bet = null;
-                    player.fetchCards(this.matchId);
+                    player.fetchCards(this.matchId); // buscar as cartas uma vez e passar a resposta como parametro para cada jogador
                     player.distributeCards();
                 }
                 this.lblP1Bet.Text = "0/?";

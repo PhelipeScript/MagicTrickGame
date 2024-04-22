@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.btnNewGame = new System.Windows.Forms.Button();
             this.btnJoinGame = new System.Windows.Forms.Button();
@@ -76,6 +77,7 @@
             this.btnStartMatch = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.lblGroupName = new System.Windows.Forms.Label();
+            this.tmrStartMatch = new System.Windows.Forms.Timer(this.components);
             this.pnlNewGame.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.pnlJoinGame.SuspendLayout();
@@ -682,6 +684,11 @@
             this.lblGroupName.TabIndex = 16;
             this.lblGroupName.Text = "Atenas";
             // 
+            // tmrStartMatch
+            // 
+            this.tmrStartMatch.Interval = 5000;
+            this.tmrStartMatch.Tick += new System.EventHandler(this.tmrStartMatch_Tick);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -767,6 +774,7 @@
         private System.Windows.Forms.ListBox lstPlayers;
         private System.Windows.Forms.Label lblGroupName;
         private System.Windows.Forms.Button btnBackToMatchList;
+        private System.Windows.Forms.Timer tmrStartMatch;
     }
 }
 

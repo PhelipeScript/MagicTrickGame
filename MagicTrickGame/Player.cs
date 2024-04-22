@@ -121,7 +121,7 @@ namespace MagicTrickGame
             }                    
         }
 
-        private void PlayCard(int playerId, string playerPassword, int cardIndex)
+        public void PlayCard(int playerId, string playerPassword, int cardIndex)
         {
             string response = Jogo.Jogar(playerId, playerPassword, cardIndex);
             if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
@@ -130,7 +130,7 @@ namespace MagicTrickGame
             }
         }
 
-        private void BetCard(int playerId, string playerPassword, int cardIndex)
+        public void BetCard(int playerId, string playerPassword, int cardIndex)
         {
             string response = Jogo.Apostar(playerId, playerPassword, cardIndex);
             if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")

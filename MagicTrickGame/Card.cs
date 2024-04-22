@@ -98,7 +98,7 @@ namespace MagicTrickGame
             this.index = Convert.ToInt32(index);
             this.suitLetter = Convert.ToChar(suitLetter);
             this.suitName = this.suitNamesDict[this.suitLetter];
-
+            this.value = -1;
             this.img = this.suitImagesDict[this.suitLetter][playerPosition];
         }
     }

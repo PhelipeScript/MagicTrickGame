@@ -274,6 +274,7 @@ namespace MagicTrickGame
             me.id = playerCreatedData[0];
             me.password = playerCreatedData[1];
             this.listPlayers();
+            tmrStartMatch.Enabled = true;   
         }
 
         private string[] fetchPlayers(int matchId)
@@ -369,6 +370,25 @@ namespace MagicTrickGame
             }
         }
 
+        private string CheckWhoStartedMatch()
+        {
+            string response = Jogo.VerificarVez(this.matchId);
+
+            if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
+            {
+                if (response.Contains("Partida não está em andamento"))
+                {
+                    return null;
+                }
+                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            
+            response = response.Replace("\r", "");
+            response = response.Substring(0, response.Length - 1);
+            return response.Split('\n')[0].Split(',')[1];
+        }
+
         private string StartMatch(int playerId, string playerPassword) 
         {
             string response = Jogo.IniciarPartida(playerId, playerPassword);
@@ -377,35 +397,20 @@ namespace MagicTrickGame
             {
                 if (response.Substring(5) == "Partida não está aberta")
                 {
-                    string whoStartes = Jogo.VerificarVez(this.matchId);
-
-                    if (whoStartes.Length >= 4 && whoStartes.Substring(0, 4) == "ERRO")
-                    {
-                        MessageBox.Show($"Ocorreu um erro:\n {whoStartes.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return null;
-                    } else
-                    {
-                        whoStartes = whoStartes.Replace("\r", "");
-                        whoStartes = whoStartes.Substring(0, whoStartes.Length - 1);
-                        return whoStartes.Split('\n')[0].Split(',')[1];
-                    }
+                    return this.CheckWhoStartedMatch();
                 }
 
                 MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
-            return response;
+            return response; // playerId that starts the match
         }
 
-        private void btnStartMatch_Click(object sender, EventArgs e)
+        private void JoinMatch(string playerWhoStartsId)
         {
-            string playerWhoStartsId = this.StartMatch(Int32.Parse(me.id), me.password);
-
-            if (playerWhoStartsId == null) { return; }
-
             Form match = new Match(this.matchId, playerWhoStartsId, me);
-            
+
             match.Show();
             this.Hide();
 
@@ -413,6 +418,28 @@ namespace MagicTrickGame
             this.ResetJoinGameInputs();
             this.ResetNewGameInputs();
             this.ResetPlayerList();
+        }
+
+        private void btnStartMatch_Click(object sender, EventArgs e)
+        {
+            string playerWhoStartsId = this.StartMatch(Int32.Parse(me.id), me.password);
+            if (playerWhoStartsId == null) { return; }
+
+            this.JoinMatch(playerWhoStartsId);
+            tmrStartMatch.Enabled = false;
+        }
+
+        private void tmrStartMatch_Tick(object sender, EventArgs e)
+        {
+            tmrStartMatch.Enabled = false;
+            string playerWhoStartsId = this.CheckWhoStartedMatch();
+            if (playerWhoStartsId == null)
+            {
+                tmrStartMatch.Enabled = true;
+            } else
+            {
+                this.JoinMatch(playerWhoStartsId);
+            }
         }
 
         private void Match_FormClosed(object sender, FormClosedEventArgs e)

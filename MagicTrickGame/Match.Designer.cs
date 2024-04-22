@@ -123,7 +123,7 @@
             this.btnCard1P1 = new System.Windows.Forms.Button();
             this.btnCard7P1 = new System.Windows.Forms.Button();
             this.btnCard0P1 = new System.Windows.Forms.Button();
-            this.timerWhoStarts = new System.Windows.Forms.Timer(this.components);
+            this.tmrWhoStarts = new System.Windows.Forms.Timer(this.components);
             this.btnSkipBet = new System.Windows.Forms.Button();
             this.btnCheckWhoPlays = new System.Windows.Forms.Button();
             this.btnCardP2Played = new System.Windows.Forms.Button();
@@ -135,6 +135,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tmrCheckWhoPlays = new System.Windows.Forms.Timer(this.components);
             this.pnlPlayer3.SuspendLayout();
             this.pnlPlayer2.SuspendLayout();
             this.pnlPlayer4.SuspendLayout();
@@ -1516,10 +1517,10 @@
             this.btnCard0P1.TabIndex = 0;
             this.btnCard0P1.UseVisualStyleBackColor = true;
             // 
-            // timerWhoStarts
+            // tmrWhoStarts
             // 
-            this.timerWhoStarts.Interval = 1000;
-            this.timerWhoStarts.Tick += new System.EventHandler(this.timerWhoStarts_Tick);
+            this.tmrWhoStarts.Interval = 1000;
+            this.tmrWhoStarts.Tick += new System.EventHandler(this.tmrWhoStarts_Tick);
             // 
             // btnSkipBet
             // 
@@ -1689,6 +1690,12 @@
             this.panel2.Size = new System.Drawing.Size(16, 16);
             this.panel2.TabIndex = 43;
             // 
+            // tmrCheckWhoPlays
+            // 
+            this.tmrCheckWhoPlays.Enabled = true;
+            this.tmrCheckWhoPlays.Interval = 5000;
+            this.tmrCheckWhoPlays.Tick += new System.EventHandler(this.tmrCheckWhoPlays_Tick);
+            // 
             // Match
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1815,7 +1822,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblWhoIsPlayingNow;
-        private System.Windows.Forms.Timer timerWhoStarts;
+        private System.Windows.Forms.Timer tmrWhoStarts;
         private System.Windows.Forms.Label lblP3Id;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblP1Id;
@@ -1835,5 +1842,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Timer tmrCheckWhoPlays;
     }
 }
