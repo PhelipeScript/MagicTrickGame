@@ -124,7 +124,6 @@
             this.btnCard7P1 = new System.Windows.Forms.Button();
             this.btnCard0P1 = new System.Windows.Forms.Button();
             this.tmrWhoStarts = new System.Windows.Forms.Timer(this.components);
-            this.btnSkipBet = new System.Windows.Forms.Button();
             this.btnCardP2Played = new System.Windows.Forms.Button();
             this.btnCardP4Played = new System.Windows.Forms.Button();
             this.btnCardP3Played = new System.Windows.Forms.Button();
@@ -1522,20 +1521,6 @@
             this.tmrWhoStarts.Interval = 1000;
             this.tmrWhoStarts.Tick += new System.EventHandler(this.tmrWhoStarts_Tick);
             // 
-            // btnSkipBet
-            // 
-            this.btnSkipBet.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSkipBet.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSkipBet.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSkipBet.ForeColor = System.Drawing.Color.Black;
-            this.btnSkipBet.Location = new System.Drawing.Point(179, 623);
-            this.btnSkipBet.Name = "btnSkipBet";
-            this.btnSkipBet.Size = new System.Drawing.Size(87, 43);
-            this.btnSkipBet.TabIndex = 39;
-            this.btnSkipBet.Text = "Pular Aposta";
-            this.btnSkipBet.UseVisualStyleBackColor = false;
-            this.btnSkipBet.Click += new System.EventHandler(this.btnSkipBet_Click);
-            // 
             // btnCardP2Played
             // 
             this.btnCardP2Played.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1699,7 +1684,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.btnSkipBet);
             this.Controls.Add(this.pnlPlayer1);
             this.Controls.Add(this.pnlPlayer4);
             this.Controls.Add(this.pnlPlayer2);
@@ -1820,7 +1804,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblP4Id;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button btnSkipBet;
         private System.Windows.Forms.Button btnCardP2Played;
         private System.Windows.Forms.Button btnCardP4Played;
         private System.Windows.Forms.Button btnCardP3Played;

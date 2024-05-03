@@ -29,6 +29,7 @@ namespace MagicTrickGame
         string turnData = null;
         string historicData = null;
         string playersCardsData = null;
+        string playerData = null;
 
         public Match(int matchId, string playerWhoStartsId, Player me)
         {
@@ -43,15 +44,7 @@ namespace MagicTrickGame
             tmrWhoStarts.Start();
             tmrCheckDatabase.Enabled = true;
 
-            string response = Jogo.ListarJogadores(this.matchId);
-            if (response.Substring(0, 4) == "ERRO")
-            {
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            response = response.Replace("\r", "");
-            response = response.Substring(0, response.Length - 1);
+            string response = FetchPlayers.Handle(this.matchId);
             foreach (string playerData in response.Split('\n'))
             {
                 this.players.Add(new Player(playerData));
@@ -127,6 +120,20 @@ namespace MagicTrickGame
 
         private void handlePlayersAmount(int playerAmount)
         {
+            /*Player 1 (me)*/
+            this.players[0].playerPosition = PlayerPosition.BOTTOM;
+            lblP1Id.Text = this.players[0].id;
+            lblP1Name.Text = this.players[0].name;
+            lblP1Bet.Text = "0/?";
+            lblP1Score.Text = this.players[0].score.ToString();
+            foreach (Control control in pnlPlayer1.Controls)
+            {
+                if (control is Button)
+                {
+                    this.players[0].btnCards.Add((Button)control);
+                }
+            }
+
             switch (playerAmount)
             {
                 case 2:
@@ -134,19 +141,6 @@ namespace MagicTrickGame
                     pnlPlayer2.Visible = false;
                     pnlPlayer3.Visible = true;
                     pnlPlayer4.Visible = false;
-
-                    this.players[0].playerPosition = PlayerPosition.BOTTOM;
-                    lblP1Id.Text = this.players[0].id;
-                    lblP1Name.Text = this.players[0].name;
-                    lblP1Bet.Text = "0/?";
-                    lblP1Score.Text = this.players[0].score.ToString();
-                    foreach (Control control in pnlPlayer1.Controls)
-                    {
-                        if (control is Button)
-                        {
-                            this.players[0].btnCards.Add((Button)control);
-                        }
-                    }
 
                     this.players[1].playerPosition = PlayerPosition.TOP;
                     lblP3Id.Text = this.players[1].id;
@@ -168,20 +162,6 @@ namespace MagicTrickGame
                     pnlPlayer2.Visible = true;
                     pnlPlayer3.Visible = true;
                     pnlPlayer4.Visible = true;
-
-                    /*Player 1*/
-                    this.players[0].playerPosition = PlayerPosition.BOTTOM;
-                    lblP1Id.Text = this.players[0].id;
-                    lblP1Name.Text = this.players[0].name;
-                    lblP1Bet.Text = "0/?";
-                    lblP1Score.Text = this.players[0].score.ToString();
-                    foreach (Control control in pnlPlayer1.Controls)
-                    {
-                        if (control is Button)
-                        {
-                            this.players[0].btnCards.Add((Button)control);
-                        }
-                    }
 
                     /*Player 2*/
                     this.players[1].playerPosition = PlayerPosition.LEFT;
@@ -238,23 +218,21 @@ namespace MagicTrickGame
             
         }
 
-        private void btnSkipBet_Click(object sender, EventArgs e)
-        {
-            this.players[0].SkipBet();
-        }
-
         private void tmrCheckDatabase_Tick(object sender, EventArgs e)
         {
             tmrCheckDatabase.Enabled = false;
+            this.playerData = FetchPlayers.Handle(this.matchId);
             this.turnData = CheckTurn.Handle(this.matchId);
 
             if (this.turnData != null)
             {
                 string[] firstLineTurnData = turnData.Split('\n')[0].Split(',');
-                string playersCardsData = FetchCards.Handle(this.matchId);
-                if (playersCardsData == null) return;
-                else if (firstLineTurnData[0].Equals("J") && firstLineTurnData[2].Equals("1") && firstLineTurnData[3].Equals("C"))
-                    this.playersCardsData = playersCardsData;
+                if (firstLineTurnData[0].Equals("F") == false && firstLineTurnData[0].Equals("E") == false)
+                {
+                    string playersCardsData = FetchCards.Handle(this.matchId);
+                    if (firstLineTurnData[0].Equals("J") && firstLineTurnData[2].Equals("1") && firstLineTurnData[3].Equals("C"))
+                        this.playersCardsData = playersCardsData;
+                }
             }
             this.historicData = FetchHistoric.Handle(this.matchId, this.round);
 
@@ -265,15 +243,41 @@ namespace MagicTrickGame
         {
             tmrAutonomous.Enabled = false;
 
-            this.updatePlayersCard(this.historicData, this.playersCardsData);
-            this.showRoundStatus(this.turnData);
+            this.updatePlayersPoints(this.playerData);
             this.updatePlayersScoreByHistory(this.historicData);
             this.updatePlayersScorePerTurn(this.turnData);
             this.updatePlayersBet(this.turnData);
             this.showPlayersScore();
+            this.updatePlayersCard(this.historicData, this.playersCardsData);
+            this.showRoundStatus(this.turnData);
             Strategy.Handle(this.players[0], this.turnData, this.historics);
 
             tmrAutonomous.Enabled = true;
+        }
+
+        private void updatePlayersPoints(string playerData)
+        {
+            if (playerData == null) return;
+            foreach (string line in playerData.Split('\n'))
+            {
+                string[] data = line.Split(',');
+                Player player = this.players.Find(p => p.id == data[0]);
+                switch (player.playerPosition)
+                {
+                    case PlayerPosition.BOTTOM:
+                        lblP1Score.Text = data[2];
+                        break;
+                    case PlayerPosition.LEFT:
+                        lblP2Score.Text = data[2];
+                        break;
+                    case PlayerPosition.TOP:
+                        lblP3Score.Text = data[2];
+                        break;
+                    case PlayerPosition.RIGHT:
+                        lblP4Score.Text = data[2];
+                        break;
+                }
+            };
         }
 
         private void updatePlayersBet(string betData) 
