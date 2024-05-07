@@ -1,6 +1,7 @@
 ﻿using MagicTrickServer;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,19 +9,26 @@ using System.Windows.Forms;
 
 namespace MagicTrickGame.Controllers
 {
-    public class FetchHistoric
+    public static class FetchHistoric
     {
         //
         // Resumo:
-        //     Retorna a relação de jogadas já realizadas no round especificado
+        //     
         //
         // Parâmetros:
         //     Id da Partida
         //     Número do Round
         //
         // Devoluções:
-        //     null caso tenha dado algum erro, senão: 
-        //     {Número do Round},{Id do Jogador},{Naipe},{Valor},{Posição carta jogada}
+        //     
+        /// <summary>
+        ///     Retorna a relação de jogadas já realizadas no round especificado
+        /// </summary>
+        /// <param name="matchId"></param>
+        /// <param name="round"></param>
+        /// <returns>
+        ///     null caso tenha dado algum erro, senão: {Número do Round},{Id do Jogador},{Naipe},{Valor},{Posição carta jogada}
+        /// </returns>
         public static string Handle(int matchId, int round)
         {
             try
@@ -35,6 +43,10 @@ namespace MagicTrickGame.Controllers
 
                 response = response.Replace("\r", "");
                 return response.Substring(0, response.Length - 1);
+            }
+            catch (SqlException)
+            {
+                return null;
             }
             catch (Exception e)
             {

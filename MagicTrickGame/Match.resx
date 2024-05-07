@@ -1816,7 +1816,7 @@
         3t/g3850K6GBJUTL2xuYGUGsm787o9FTZ9S8OJPx/Lm4+Af2Vx1mJrSFiwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="tmrWhoStarts.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="tmrCenterMessage.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <metadata name="tmrAutonomous.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

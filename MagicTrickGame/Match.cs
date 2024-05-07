@@ -16,9 +16,9 @@ namespace MagicTrickGame
 {
     public partial class Match : Form
     {
-        private int timerWhoStartsCounter = 0;
-        private int timerWhoStartsCounterLimit = 0;
-        private string whoIsPlayingNowText = "";
+        private int timerCenterMessageCounter = 0;
+        private int timerCenterMessageCounterLimit = 0;
+        private string centerMessageText = "";
         private string playerWhoStartsId;
         public int matchId;
         public List<Player> players = new List<Player>();
@@ -30,6 +30,7 @@ namespace MagicTrickGame
         string historicData = null;
         string playersCardsData = null;
         string playerData = null;
+        bool isMatchOver = false;
 
         public Match(int matchId, string playerWhoStartsId, Player me)
         {
@@ -39,12 +40,12 @@ namespace MagicTrickGame
             this.matchId = matchId;
             this.playerWhoStartsId = playerWhoStartsId;
 
-            lblWhoIsPlayingNow.Text = "";
-            tmrWhoStarts.Interval = 50;
-            tmrWhoStarts.Start();
+            lblCenterMessage.Text = "";
+            tmrCenterMessage.Interval = 50;
+            tmrCenterMessage.Start();
             tmrCheckDatabase.Enabled = true;
 
-            string response = FetchPlayers.Handle(this.matchId);
+            string response = FetchPlayers.Handle(this.matchId, this.round);
             foreach (string playerData in response.Split('\n'))
             {
                 this.players.Add(new Player(playerData));
@@ -87,34 +88,82 @@ namespace MagicTrickGame
             btnCardP4Played.BackgroundImage = null;
         }
 
-        private void tmrWhoStarts_Tick(object sender, EventArgs e)
+        private void tmrCenterMessage_Tick(object sender, EventArgs e)
         {
-            this.handleWhoIsPlayingNowLabel();
+            if (this.isMatchOver)
+            {
+                this.handleWhoWonTheMatchLabel();
+            } 
+            else
+            {
+                this.handleWhoIsPlayingNowLabel();
+            }
+        }
+
+        private void handleWhoWonTheMatchLabel()
+        {
+            if (this.centerMessageText == "")
+            {
+                this.resetCardsPlayed();
+                lblCenterMessage.Visible = true;
+                if (this.turnData.Split('\n')[0].Split(',')[0].Equals("E"))
+                {
+                    this.centerMessageText = "EMPATE!";
+                } 
+                else
+                {
+                    this.updatePlayersPoints(this.playerData);
+                    Player playerWhoWon = this.players[0];
+                    foreach (Player player in this.players)
+                    {
+                        if (player.finalScore > playerWhoWon.finalScore)
+                        {
+                            playerWhoWon = player;
+                        }
+                    }
+                    this.centerMessageText = $"O vencedor da partida foi: {playerWhoWon.name} com {playerWhoWon.finalScore} pontos.";
+                }
+
+                this.timerCenterMessageCounterLimit = this.centerMessageText.Length * 2;
+            }
+
+            if (this.timerCenterMessageCounter >= this.timerCenterMessageCounterLimit)
+            {
+                tmrCenterMessage.Stop();
+            }
+            else
+            {
+                if (this.timerCenterMessageCounter < this.centerMessageText.Length)
+                {
+                    this.lblCenterMessage.Text += this.centerMessageText[this.timerCenterMessageCounter];
+                }
+                this.timerCenterMessageCounter++;
+            }
         }
 
         private void handleWhoIsPlayingNowLabel()
         {
-            if (this.whoIsPlayingNowText == "")
+            if (this.centerMessageText == "")
             {
                 Player playerWhoStart = this.players.Find(player => player.id == this.playerWhoStartsId);
-                this.whoIsPlayingNowText = $"Jogador {playerWhoStart.id} {playerWhoStart.name} Começa!";
-                this.timerWhoStartsCounterLimit = this.whoIsPlayingNowText.Length * 2;
+                this.centerMessageText = $"Jogador {playerWhoStart.id} {playerWhoStart.name} Começa!";
+                this.timerCenterMessageCounterLimit = this.centerMessageText.Length * 2;
             }
 
-            if (this.timerWhoStartsCounter >= this.timerWhoStartsCounterLimit)
+            if (this.timerCenterMessageCounter >= this.timerCenterMessageCounterLimit)
             {
-                tmrWhoStarts.Stop();
-                lblWhoIsPlayingNow.Text = "";
-                this.whoIsPlayingNowText = "";
-                lblWhoIsPlayingNow.Visible = false;
-                this.timerWhoStartsCounter = 0;
+                tmrCenterMessage.Stop();
+                lblCenterMessage.Text = "";
+                this.centerMessageText = "";
+                lblCenterMessage.Visible = false;
+                this.timerCenterMessageCounter = 0;
             } else
             {
-                if (this.timerWhoStartsCounter < this.whoIsPlayingNowText.Length)
+                if (this.timerCenterMessageCounter < this.centerMessageText.Length)
                 {
-                    this.lblWhoIsPlayingNow.Text += this.whoIsPlayingNowText[this.timerWhoStartsCounter];
+                    this.lblCenterMessage.Text += this.centerMessageText[this.timerCenterMessageCounter];
                 }
-                this.timerWhoStartsCounter++;
+                this.timerCenterMessageCounter++;
             }
         }
 
@@ -221,8 +270,9 @@ namespace MagicTrickGame
         private void tmrCheckDatabase_Tick(object sender, EventArgs e)
         {
             tmrCheckDatabase.Enabled = false;
-            this.playerData = FetchPlayers.Handle(this.matchId);
+            this.playerData = FetchPlayers.Handle(this.matchId, this.round);
             this.turnData = CheckTurn.Handle(this.matchId);
+            this.historicData = FetchHistoric.Handle(this.matchId, this.round);
 
             if (this.turnData != null)
             {
@@ -232,9 +282,14 @@ namespace MagicTrickGame
                     string playersCardsData = FetchCards.Handle(this.matchId);
                     if (firstLineTurnData[0].Equals("J") && firstLineTurnData[2].Equals("1") && firstLineTurnData[3].Equals("C"))
                         this.playersCardsData = playersCardsData;
+                } 
+                else
+                {
+                    this.isMatchOver = true;
+                    tmrCenterMessage.Start();
+                    return;
                 }
             }
-            this.historicData = FetchHistoric.Handle(this.matchId, this.round);
 
             tmrCheckDatabase.Enabled = true;
         }
@@ -244,8 +299,8 @@ namespace MagicTrickGame
             tmrAutonomous.Enabled = false;
 
             this.updatePlayersPoints(this.playerData);
-            this.updatePlayersScoreByHistory(this.historicData);
-            this.updatePlayersScorePerTurn(this.turnData);
+            //this.updatePlayersScoreByHistory(this.historicData);
+            //this.updatePlayersScorePerTurn(this.turnData);
             this.updatePlayersBet(this.turnData);
             this.showPlayersScore();
             this.updatePlayersCard(this.historicData, this.playersCardsData);
@@ -262,6 +317,8 @@ namespace MagicTrickGame
             {
                 string[] data = line.Split(',');
                 Player player = this.players.Find(p => p.id == data[0]);
+                player.score = Convert.ToInt32(data[3]);
+                player.finalScore = Convert.ToInt32(data[2]);
                 switch (player.playerPosition)
                 {
                     case PlayerPosition.BOTTOM:
@@ -364,7 +421,7 @@ namespace MagicTrickGame
             }
         }
 
-        private void updatePlayersScoreByHistory(string historicData)
+        /*private void updatePlayersScoreByHistory(string historicData)
         {
             if (historicData == null) return;
 
@@ -394,7 +451,7 @@ namespace MagicTrickGame
                 Player player = this.players.Find(p => p.id == firstLineData[1]);
                 player.score++;
             }
-        }
+        }*/
 
         private void updatePlayersCard(string historicData, string playersCardsData)
         {

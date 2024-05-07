@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MagicTrickGame.Controllers;
 using MagicTrickServer;
 
 namespace MagicTrickGame
@@ -29,6 +30,7 @@ namespace MagicTrickGame
         public string id;
         public string name;
         public int score;
+        public int finalScore;
         public string password;
         public Bet bet;
         public List<Card> cards = new List<Card>();
@@ -43,6 +45,7 @@ namespace MagicTrickGame
                 this.id = null;
                 this.name = null;
                 this.score = 0;
+                this.finalScore = 0;
                 this.bet = null;
                 this.status = PlayerStatus.Wait;
             } else
@@ -51,6 +54,7 @@ namespace MagicTrickGame
                 this.id = data[0];
                 this.name = data[1];
                 this.score = Convert.ToInt32(data[2]);
+                this.finalScore = 0;
                 this.bet = null;
                 this.status = PlayerStatus.Wait;
             }
@@ -115,44 +119,17 @@ namespace MagicTrickGame
 
         public void PlayCard(int playerId, string playerPassword, int cardIndex)
         {
-            try
-            {
-                string response = Jogo.Jogar(playerId, playerPassword, cardIndex);
-                if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
-                {
-                    MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Ocorreu um erro:\n {e}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Controllers.PlayCard.Handle(playerId, playerPassword, cardIndex);
         }
 
         public void BetCard(int playerId, string playerPassword, int cardIndex)
         {
-            try
-            {
-                string response = Jogo.Apostar(playerId, playerPassword, cardIndex);
-                if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
-                {
-                    MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Ocorreu um erro:\n {e}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Controllers.BetCard.Handle(playerId, playerPassword, cardIndex);
         }
 
-        public void SkipBet()
+        public void SkipBet(int playerId, string playerPassword)
         {
-            string response = Jogo.Apostar(Convert.ToInt32(this.id), this.password, 0);
-            if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
-            {
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            Controllers.BetCard.Handle(playerId, playerPassword, 0);
         }
     }
 }

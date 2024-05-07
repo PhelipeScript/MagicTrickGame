@@ -99,7 +99,7 @@
             this.btnCard3P4 = new System.Windows.Forms.Button();
             this.btnCard7P4 = new System.Windows.Forms.Button();
             this.btnCard0P4 = new System.Windows.Forms.Button();
-            this.lblWhoIsPlayingNow = new System.Windows.Forms.Label();
+            this.lblCenterMessage = new System.Windows.Forms.Label();
             this.pnlPlayer1 = new System.Windows.Forms.Panel();
             this.lblP1Id = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -123,7 +123,7 @@
             this.btnCard1P1 = new System.Windows.Forms.Button();
             this.btnCard7P1 = new System.Windows.Forms.Button();
             this.btnCard0P1 = new System.Windows.Forms.Button();
-            this.tmrWhoStarts = new System.Windows.Forms.Timer(this.components);
+            this.tmrCenterMessage = new System.Windows.Forms.Timer(this.components);
             this.btnCardP2Played = new System.Windows.Forms.Button();
             this.btnCardP4Played = new System.Windows.Forms.Button();
             this.btnCardP3Played = new System.Windows.Forms.Button();
@@ -1147,20 +1147,20 @@
             this.btnCard0P4.TabIndex = 1;
             this.btnCard0P4.UseVisualStyleBackColor = true;
             // 
-            // lblWhoIsPlayingNow
+            // lblCenterMessage
             // 
-            this.lblWhoIsPlayingNow.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblWhoIsPlayingNow.AutoEllipsis = true;
-            this.lblWhoIsPlayingNow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(17)))));
-            this.lblWhoIsPlayingNow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblWhoIsPlayingNow.Font = new System.Drawing.Font("Ink Free", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWhoIsPlayingNow.ForeColor = System.Drawing.Color.Silver;
-            this.lblWhoIsPlayingNow.Location = new System.Drawing.Point(16, 0);
-            this.lblWhoIsPlayingNow.Name = "lblWhoIsPlayingNow";
-            this.lblWhoIsPlayingNow.Size = new System.Drawing.Size(468, 192);
-            this.lblWhoIsPlayingNow.TabIndex = 39;
-            this.lblWhoIsPlayingNow.Text = "Jogador 34762 Player3 Começa";
-            this.lblWhoIsPlayingNow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCenterMessage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCenterMessage.AutoEllipsis = true;
+            this.lblCenterMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(17)))));
+            this.lblCenterMessage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCenterMessage.Font = new System.Drawing.Font("Ink Free", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCenterMessage.ForeColor = System.Drawing.Color.Silver;
+            this.lblCenterMessage.Location = new System.Drawing.Point(16, 0);
+            this.lblCenterMessage.Name = "lblCenterMessage";
+            this.lblCenterMessage.Size = new System.Drawing.Size(468, 192);
+            this.lblCenterMessage.TabIndex = 39;
+            this.lblCenterMessage.Text = "Jogador 34762 Player3 Começa";
+            this.lblCenterMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlPlayer1
             // 
@@ -1516,10 +1516,10 @@
             this.btnCard0P1.TabIndex = 0;
             this.btnCard0P1.UseVisualStyleBackColor = true;
             // 
-            // tmrWhoStarts
+            // tmrCenterMessage
             // 
-            this.tmrWhoStarts.Interval = 1000;
-            this.tmrWhoStarts.Tick += new System.EventHandler(this.tmrWhoStarts_Tick);
+            this.tmrCenterMessage.Interval = 1000;
+            this.tmrCenterMessage.Tick += new System.EventHandler(this.tmrCenterMessage_Tick);
             // 
             // btnCardP2Played
             // 
@@ -1609,7 +1609,7 @@
             // 
             this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel5.BackColor = System.Drawing.Color.Transparent;
-            this.panel5.Controls.Add(this.lblWhoIsPlayingNow);
+            this.panel5.Controls.Add(this.lblCenterMessage);
             this.panel5.Controls.Add(this.btnCardP1Played);
             this.panel5.Controls.Add(this.btnCardP3Played);
             this.panel5.Controls.Add(this.btnCardP4Played);
@@ -1794,8 +1794,8 @@
         private System.Windows.Forms.Label lblP4Name;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label lblWhoIsPlayingNow;
-        private System.Windows.Forms.Timer tmrWhoStarts;
+        private System.Windows.Forms.Label lblCenterMessage;
+        private System.Windows.Forms.Timer tmrCenterMessage;
         private System.Windows.Forms.Label lblP3Id;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblP1Id;

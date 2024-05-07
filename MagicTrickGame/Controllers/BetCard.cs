@@ -4,32 +4,31 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MagicTrickGame.Controllers
 {
-    public static class FetchCards
+    public static class BetCard
     {
         /// <summary>
-        ///     Retorna as cartas que os jogadores possuem atualmente
+        ///     Efetua uma aposta jogando uma carta
         /// </summary>
-        /// <param name="matchId"></param>
-        /// <returns>{Jogador},{Posicao},{Naipe}\n{Jogador},{Posicao},{Naipe} ou null caso houve algum erro</returns>
-        public static string Handle(int matchId)
+        /// <param name="playerId"></param>
+        /// <param name="playerPassword"></param>
+        /// <param name="cardIndex"></param>
+        /// <returns>Valor da carta apostada ou null em caso de erro</returns>
+        public static string Handle(int playerId, string playerPassword, int cardIndex)
         {
             try
             {
-                string response = Jogo.ConsultarMao(matchId);
-                if (response.Substring(0, 4) == "ERRO")
+                string response = Jogo.Apostar(playerId, playerPassword, cardIndex);
+                if (response.Length >= 4 && response.Substring(0, 4) == "ERRO")
                 {
                     MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
-
-                response = response.Replace("\r", "");
-                return response.Substring(0, response.Length - 1);
+                return response;
             }
             catch (SqlException)
             {
