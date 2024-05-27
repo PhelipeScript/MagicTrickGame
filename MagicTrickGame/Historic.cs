@@ -17,5 +17,11 @@ namespace MagicTrickGame
             this.card = new Card(cardIndex, cardSuitLetter, PlayerPosition.BOTTOM);
             card.value = cardValue;
         }
+
+        public Historic(int round, Card playerCard)
+        {
+            this.round = round;
+            this.card = playerCard;
+        }
     }
 }

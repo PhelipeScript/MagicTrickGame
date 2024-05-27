@@ -279,9 +279,7 @@ namespace MagicTrickGame
                 string[] firstLineTurnData = turnData.Split('\n')[0].Split(',');
                 if (firstLineTurnData[0].Equals("F") == false && firstLineTurnData[0].Equals("E") == false)
                 {
-                    string playersCardsData = FetchCards.Handle(this.matchId);
-                    if (firstLineTurnData[0].Equals("J") && firstLineTurnData[2].Equals("1") && firstLineTurnData[3].Equals("C"))
-                        this.playersCardsData = playersCardsData;
+                    this.playersCardsData = FetchCards.Handle(this.matchId);
                 } 
                 else
                 {
@@ -469,10 +467,21 @@ namespace MagicTrickGame
             foreach (string line in historicData.Split('\n'))
             {
                 string[] data = line.Split(',');
-                int cardIndex = Convert.ToInt32(data[4]) - 1;
-                this.historics.Add(new Historic(Convert.ToInt32(data[0]), data[2], Convert.ToInt32(data[3]), data[4]));
 
                 Player player = this.players.Find(p => p.id == data[1]);
+                Card playerCard = player.cards.Find(card => card.index.ToString() == data[4]);
+                if (playerCard == null)
+                {
+                    playerCard = new Card(data[4], data[2], player.playerPosition);
+                    player.cards.Add(playerCard);
+                    player.cards = player.cards.OrderBy(card => card.index).ToList();
+                    player.distributeCards();
+                } 
+                
+                playerCard.value = Convert.ToInt32(data[3]);
+                this.historics.Add(new Historic(Convert.ToInt32(data[0]), playerCard));
+
+                int cardIndex = Convert.ToInt32(data[4]) - 1;
                 player.cards[cardIndex].value = Convert.ToInt32(data[3]);
                 player.btnCards[cardIndex].Text = data[3];
 

@@ -88,7 +88,7 @@ namespace MagicTrickGame
 
             for (int i = 0; i < this.cards.Count; i++)
             {
-                this.btnCards[i].Text = "";
+                this.btnCards[i].Text = this.cards[i].value.Equals(-1) ? "" : this.cards[i].value.ToString();
                 this.btnCards[i].BackgroundImage = this.cards[i].img;
                 this.btnCards[i].Enabled = true;
             }

@@ -1663,12 +1663,12 @@
             // 
             // tmrAutonomous
             // 
-            this.tmrAutonomous.Interval = 5000;
+            this.tmrAutonomous.Interval = 1500;
             this.tmrAutonomous.Tick += new System.EventHandler(this.tmrAutonomous_Tick);
             // 
             // tmrCheckDatabase
             // 
-            this.tmrCheckDatabase.Interval = 5000;
+            this.tmrCheckDatabase.Interval = 1000;
             this.tmrCheckDatabase.Tick += new System.EventHandler(this.tmrCheckDatabase_Tick);
             // 
             // Match
