@@ -49,9 +49,9 @@ namespace MagicTrickGame
                 {
                     if (playerCardsLeft.Count == 0)
                     {
-                        if (player.cards.Exists(card => card.value == -1 && card.suitLetter.Equals("C")) && cardsPlayed.Exists(card => card.suitLetter.Equals("C")) == false)
+                        if (player.cards.Exists(card => card.value == -1 && card.suitLetter == 'C') && cardsPlayed.Exists(card => card.suitLetter == 'C') == false)
                         {
-                            Card heartCard = player.cards.Find(card => card.value == -1 && card.suitLetter.Equals("C"));
+                            Card heartCard = player.cards.Find(card => card.value == -1 && card.suitLetter == 'C');
                             player.PlayCard(Convert.ToInt32(player.id), player.password, heartCard.index);
                         }
                         else
@@ -62,7 +62,7 @@ namespace MagicTrickGame
                     } 
                     else
                     {
-                        if (playerCardsLeft.Exists(card => card.suitLetter.Equals("C")) == false && cardsPlayed.Exists(card => card.suitLetter.Equals("C")))
+                        if (playerCardsLeft.Exists(card => card.suitLetter == 'C') == false && cardsPlayed.Exists(card => card.suitLetter == 'C'))
                         {
                             player.PlayCard(Convert.ToInt32(player.id), player.password, playerCardsLeft[0].index);
                         }
@@ -114,7 +114,7 @@ namespace MagicTrickGame
                     }
                     else
                     {
-                        if (playerCardsLeft.Exists(card => card.suitLetter.Equals("C")) == false && cardsPlayed.Exists(card => card.suitLetter.Equals("C")))
+                        if (playerCardsLeft.Exists(card => card.suitLetter == 'C') == false && cardsPlayed.Exists(card => card.suitLetter == 'C'))
                         {
                             player.PlayCard(Convert.ToInt32(player.id), player.password, playerCardsLeft[playerCardsLeft.Count-1].index);
                         }

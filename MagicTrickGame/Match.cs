@@ -481,8 +481,7 @@ namespace MagicTrickGame
                 playerCard.value = Convert.ToInt32(data[3]);
                 this.historics.Add(new Historic(Convert.ToInt32(data[0]), playerCard));
 
-                int cardIndex = Convert.ToInt32(data[4]) - 1;
-                player.cards[cardIndex].value = Convert.ToInt32(data[3]);
+                int cardIndex = player.cards.IndexOf(playerCard);
                 player.btnCards[cardIndex].Text = data[3];
 
                 switch (player.playerPosition)
