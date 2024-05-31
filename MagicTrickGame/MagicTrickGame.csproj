@@ -56,6 +56,7 @@
     <Compile Include="Controllers\CreateNewMatch.cs" />
     <Compile Include="Controllers\FetchCards.cs" />
     <Compile Include="Controllers\FetchHistoric.cs" />
+    <Compile Include="Controllers\FetchMatches.cs" />
     <Compile Include="Controllers\FetchPlayers.cs" />
     <Compile Include="Controllers\PlayCard.cs" />
     <Compile Include="Historic.cs" />

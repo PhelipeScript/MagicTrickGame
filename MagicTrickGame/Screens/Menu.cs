@@ -143,35 +143,17 @@ namespace MagicTrickGame
             lblSelectMatchError.Text = "Selecione uma partida.";
         }
 
-        public string[] fetchMatches()
-        {
-            string status = cboStatus.Text.Substring(0, 1);
-            string response = Jogo.ListarPartidas(status);
-            
-            if (response.Length <= 0)
-            {
-                MessageBox.Show($"Nenhuma partida encontrada", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ResetJoinGameInputs();
-                return null;
-            }
-
-            if (response.Substring(0, 4) == "ERRO")
-            {
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-
-            response = response.Replace("\r", "");
-            response = response.Substring(0, response.Length - 1);
-
-            return response.Split('\n');
-        }
-
         private void btnFetchMatches_Click(object sender, EventArgs e)
         {
-            this.matches = this.fetchMatches();
+            string status = cboStatus.Text.Substring(0, 1);
+            string matches = FetchMatches.Handle(status);
 
-            if (this.matches == null) { return; }
+            if (matches == null) {
+                this.ResetJoinGameInputs();
+                return; 
+            }
+
+            this.matches = matches.Split('\n');
 
             lstMatches.Items.Clear();
             int defaultSelectedIndex = 0;
