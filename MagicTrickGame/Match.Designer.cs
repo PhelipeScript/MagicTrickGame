@@ -1668,7 +1668,7 @@
             // 
             // tmrCheckDatabase
             // 
-            this.tmrCheckDatabase.Interval = 1000;
+            this.tmrCheckDatabase.Interval = 1500;
             this.tmrCheckDatabase.Tick += new System.EventHandler(this.tmrCheckDatabase_Tick);
             // 
             // Match
