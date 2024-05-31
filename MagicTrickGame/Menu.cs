@@ -1,30 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MagicTrickServer;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MagicTrickGame
 {
     public partial class Menu : Form
     {
-        public bool isNewGameMatchNameOk = false;
-        public bool isNewGamePasswordOk = false;
-        public bool isJoinGamePasswordOk = false;
-        public bool isJoinGameUsernameOk = false;
-        public bool isMatchSelected = false;
-        public string createdMatchId = "";
-        public string[] matches;
-        public int matchId;
-        public string matchName;
-        public string[] players;
-        public Player me = new Player();
+        bool isNewGameMatchNameOk = false;
+        bool isNewGamePasswordOk = false;
+        bool isJoinGamePasswordOk = false;
+        bool isJoinGameUsernameOk = false;
+        bool isMatchSelected = false;
+        string createdMatchId = "";
+        string[] matches;
+        int matchId;
+        string matchName;
+        string[] players;
+        Player me = new Player();
 
         public Menu()
         {
@@ -120,7 +112,6 @@ namespace MagicTrickGame
             if (response.Length > 4 && response.Substring(0, 4) == "ERRO")
             {
                 lblNewGameMatchNameError.Text = response;
-                /*MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
                 return null;
             }
 
