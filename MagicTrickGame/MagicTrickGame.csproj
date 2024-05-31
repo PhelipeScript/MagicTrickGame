@@ -59,26 +59,26 @@
     <Compile Include="Controllers\PlayCard.cs" />
     <Compile Include="Historic.cs" />
     <Compile Include="CardImages.cs" />
-    <Compile Include="Menu.cs">
+    <Compile Include="Screens\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu.Designer.cs">
+    <Compile Include="Screens\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Match.cs">
+    <Compile Include="Screens\Match.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Match.Designer.cs">
+    <Compile Include="Screens\Match.Designer.cs">
       <DependentUpon>Match.cs</DependentUpon>
     </Compile>
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strategy.cs" />
-    <EmbeddedResource Include="Match.resx">
+    <EmbeddedResource Include="Screens\Match.resx">
       <DependentUpon>Match.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu.resx">
+    <EmbeddedResource Include="Screens\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
