@@ -247,30 +247,16 @@ namespace MagicTrickGame
             tmrStartMatch.Enabled = true;   
         }
 
-        private string[] fetchPlayers(int matchId)
-        {
-            string response = Jogo.ListarJogadores(matchId);
-            if (response.Substring(0, 4) == "ERRO")
-            {
-                MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-
-            response = response.Replace("\r", "");
-            response = response.Substring(0, response.Length - 1);
-            return response.Split('\n');
-        }
-
         private void listPlayers()
         {
             pnlJoinGame.Visible = false;
             pnlPlayers.Visible = true;
             lblSelectedMatchName.Text = this.matchName;
 
-            
-            this.players = this.fetchPlayers(this.matchId);
+            string players = FetchPlayers.Handle(this.matchId, 1);
 
-            if (this.players == null) { return; }
+            if (players == null) { return; }
+            this.players = players.Split('\n');
 
             this.ResetPlayerList();
             for (int i = 0; i < this.players.Length; i++)
