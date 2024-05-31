@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MagicTrickGame.Controllers;
 using MagicTrickServer;
 
 namespace MagicTrickGame
@@ -106,21 +107,9 @@ namespace MagicTrickGame
             this.btnNewGameCreate_Handle();
         }
 
-        private string CreateNewMatch(string matchName, string matchPassword)
-        {
-            string response = Jogo.CriarPartida(matchName, matchPassword, "Atenas");
-            if (response.Length > 4 && response.Substring(0, 4) == "ERRO")
-            {
-                lblNewGameMatchNameError.Text = response;
-                return null;
-            }
-
-            return response;
-        }
-
         private void btnNewGameCreate_Click(object sender, EventArgs e)
         {
-            this.createdMatchId = this.CreateNewMatch(txtNewGameMatchName.Text, txtNewGamePassword.Text);
+            this.createdMatchId = CreateNewMatch.Handle(txtNewGameMatchName.Text, txtNewGamePassword.Text);
                 
             if (this.createdMatchId == null) { return; }
 

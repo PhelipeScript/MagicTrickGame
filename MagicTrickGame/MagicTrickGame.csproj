@@ -53,6 +53,7 @@
     <Compile Include="Card.cs" />
     <Compile Include="Controllers\BetCard.cs" />
     <Compile Include="Controllers\CheckTurn.cs" />
+    <Compile Include="Controllers\CreateNewMatch.cs" />
     <Compile Include="Controllers\FetchCards.cs" />
     <Compile Include="Controllers\FetchHistoric.cs" />
     <Compile Include="Controllers\FetchPlayers.cs" />
