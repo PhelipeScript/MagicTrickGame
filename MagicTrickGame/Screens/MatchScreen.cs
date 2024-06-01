@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace MagicTrickGame
 {
-    public partial class Match : Form
+    public partial class MatchScreen : Form
     {
         private int timerCenterMessageCounter = 0;
         private int timerCenterMessageCounterLimit = 0;
@@ -32,7 +32,7 @@ namespace MagicTrickGame
         string playerData = null;
         bool isMatchOver = false;
 
-        public Match(int matchId, string playerWhoStartsId, Player me)
+        public MatchScreen(int matchId, string playerWhoStartsId, Player me)
         {
             InitializeComponent();
             this.resetCardsPlayed();
