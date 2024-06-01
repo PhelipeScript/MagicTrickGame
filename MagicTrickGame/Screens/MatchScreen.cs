@@ -290,16 +290,42 @@ namespace MagicTrickGame
         {
             tmrAutonomous.Enabled = false;
 
+            this.changeRound(this.turnData);
             this.updatePlayersPoints(this.playerData);
-            //this.updatePlayersScoreByHistory(this.historicData);
-            //this.updatePlayersScorePerTurn(this.turnData);
             this.updatePlayersBet(this.turnData);
             this.showPlayersScore();
-            this.updatePlayersCard(this.historicData, this.playersCardsData);
+            this.updatePlayersCard();
             this.showRoundStatus(this.turnData);
             Strategy.Handle(this.players[0], this.turnData, this.historics);
 
             tmrAutonomous.Enabled = true;
+        }
+
+        private void changeRound(string turnData)
+        {
+            if (this.turnData == null || turnData.Contains("J") == false) return;
+
+            string firstLine = turnData.Split('\n')[0];
+            int currentRound = Convert.ToInt32(firstLine.Split(',')[2]);
+
+            if (currentRound < this.roundByCardsPlayed)
+            {
+                this.round++;
+                this.historicData = FetchHistoric.Handle(this.matchId, this.round);
+                foreach (Player player in this.players)
+                {
+                    player.score = 0;
+                    player.bet = null;
+                    player.fetchCards(this.playersCardsData);
+                    player.distributeCards();
+                }
+                this.lblP1Bet.Text = "0/?";
+                this.lblP2Bet.Text = "0/?";
+                this.lblP3Bet.Text = "0/?";
+                this.lblP4Bet.Text = "0/?";
+            }
+
+            this.roundByCardsPlayed = currentRound;
         }
 
         private void updatePlayersPoints(string playerData)
@@ -346,9 +372,11 @@ namespace MagicTrickGame
                     int cardIndex = Convert.ToInt32(lineData[4]);
 
                     Player player = this.players.Find(p => p.id == playerId);
+                    Card playerCard = player.cards.Find(c => c.index == cardIndex);
+                    if (playerCard == null) return;
                     player.bet = player.bet == null ? new Bet(player.id, cardSuitLetter, cardValue, round, cardIndex) : player.bet;
-                    player.cards[cardIndex-1].value = cardValue;
-                    player.btnCards[cardIndex-1].Text = cardValue.ToString();
+                    playerCard.value = cardValue;
+                    player.btnCards[playerCard.index - 1].Text = cardValue.ToString();
                 }
             };
         }
@@ -413,52 +441,14 @@ namespace MagicTrickGame
             }
         }
 
-        /*private void updatePlayersScoreByHistory(string historicData)
+        private void updatePlayersCard()
         {
-            if (historicData == null) return;
-
-            foreach (Player player in this.players)
-            {
-                player.score = 0;
-            }
-
-            string[] historic = historicData.Split('\n');
-            for (int i = this.players.Count; i < historic.Length; i += this.players.Count)
-            {
-                string playerId = historic[i].Split(',')[1];
-                Player player = this.players.Find(p => p.id == playerId);
-                player.score++;
-            }
-        }
-
-        private void updatePlayersScorePerTurn(string turnData)
-        {
-            if (turnData == null || turnData.Contains("C:")) return;
-
-            string firstLine = turnData.Split('\n')[0];
-            string[] firstLineData = firstLine.Split(',');
-
-            if (!firstLineData[2].Equals("1") && firstLineData[3].Equals("C"))
-            {
-                Player player = this.players.Find(p => p.id == firstLineData[1]);
-                player.score++;
-            }
-        }*/
-
-        private void updatePlayersCard(string historicData, string playersCardsData)
-        {
-            if (historicData == null) return;
+            if (this.historicData == null) return;
 
             this.resetCardsPlayed();
-            int currentRound = 1;
-            while (currentRound * this.players.Count < historicData.Split('\n').Length)
-            {
-                currentRound++;
-            }
-            this.roundByCardsPlayed = currentRound;
 
             this.historics.Clear();
-            foreach (string line in historicData.Split('\n'))
+            foreach (string line in this.historicData.Split('\n'))
             {
                 string[] data = line.Split(',');
 
@@ -510,25 +500,6 @@ namespace MagicTrickGame
                         break;
                 }
             };
-
-            
-
-            if (currentRound == this.maxRoundByCardsPlayed && currentRound * this.players.Count % historicData.Split('\n').Length == 0 && this.round < this.players.Count)
-            {
-                this.round++;
-                this.roundByCardsPlayed = 1;
-                foreach (Player player in this.players)
-                {
-                    player.score = 0;
-                    player.bet = null;
-                    player.fetchCards(playersCardsData);
-                    player.distributeCards();
-                }
-                this.lblP1Bet.Text = "0/?";
-                this.lblP2Bet.Text = "0/?";
-                this.lblP3Bet.Text = "0/?";
-                this.lblP4Bet.Text = "0/?";
-            }
         }
     }
 }

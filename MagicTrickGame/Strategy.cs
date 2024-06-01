@@ -14,11 +14,17 @@ namespace MagicTrickGame
             if (player.status == PlayerStatus.Bet)
             {
                 int betIndex = 8;
-                while (player.cards[betIndex-1].value != -1)
+                Card betCard;
+
+                do
                 {
+                    betCard = player.cards.Find(c => c.index == betIndex);
+                    if (betCard == null) return;
+
                     betIndex--;
-                }
-                player.BetCard(Convert.ToInt32(player.id), player.password, betIndex);
+                } while(betCard.value != -1);
+
+                player.BetCard(Convert.ToInt32(player.id), player.password, betCard.index);
             } 
             else if (turnData.Contains("C:")) // alguém jogou um carta
             {
@@ -57,7 +63,10 @@ namespace MagicTrickGame
                         else
                         {
                             Card lowestCard = player.cards.Find(card => card.value == -1);
-                            player.PlayCard(Convert.ToInt32(player.id), player.password, lowestCard.index);
+                            if (lowestCard != null)
+                            {
+                                player.PlayCard(Convert.ToInt32(player.id), player.password, lowestCard.index);
+                            }
                         }
                     } 
                     else
