@@ -1,31 +1,25 @@
 ﻿using MagicTrickGame.Controllers;
-using MagicTrickServer;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MagicTrickGame
 {
     public partial class MatchScreen : Form
     {
-        private int timerCenterMessageCounter = 0;
-        private int timerCenterMessageCounterLimit = 0;
-        private string centerMessageText = "";
-        private string playerWhoStartsId;
-        public int matchId;
-        public List<Player> players = new List<Player>();
-        public int roundByCardsPlayed = 1;
-        public int maxRoundByCardsPlayed;
-        public int round = 1;
-        public List<Historic> historics = new List<Historic>();
+        int timerCenterMessageCounter = 0;
+        int timerCenterMessageCounterLimit = 0;
+        string centerMessageText = "";
+        string playerWhoStartsId;
+        int matchId;
+        List<Player> players = new List<Player>();
+        int roundByCardsPlayed = 1;
+        int maxRoundByCardsPlayed;
+        int round = 1;
+        List<Historic> historics = new List<Historic>();
         string turnData = null;
         string historicData = null;
         string playersCardsData = null;
