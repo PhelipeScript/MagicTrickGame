@@ -1,6 +1,6 @@
 ﻿namespace MagicTrickGame
 {
-    partial class Menu
+    partial class MenuScreen
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -29,7 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.btnNewGame = new System.Windows.Forms.Button();
             this.btnJoinGame = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
@@ -46,17 +55,9 @@
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.lblVersion = new System.Windows.Forms.Label();
             this.pnlJoinGame = new System.Windows.Forms.Panel();
+            this.dgvSelectedMatchPlayers = new System.Windows.Forms.DataGridView();
+            this.dgvMatches = new System.Windows.Forms.DataGridView();
             this.lblSelectMatchError = new System.Windows.Forms.Label();
-            this.pnlMatchInfo = new System.Windows.Forms.Panel();
-            this.lblMatchStatus = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.lblMatchId = new System.Windows.Forms.Label();
-            this.lblMatchDate = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.lblMatchName = new System.Windows.Forms.Label();
             this.btnJoinMatch = new System.Windows.Forms.Button();
             this.lblJoinGameUsernameError = new System.Windows.Forms.Label();
             this.txtJoinGameUsername = new System.Windows.Forms.TextBox();
@@ -64,25 +65,26 @@
             this.lblJoinGamePasswordError = new System.Windows.Forms.Label();
             this.txtJoinGamePassword = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnFetchMatches = new System.Windows.Forms.Button();
+            this.btnUpdateMatches = new System.Windows.Forms.Button();
             this.cboStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.lstMatches = new System.Windows.Forms.ListBox();
             this.lblBack = new System.Windows.Forms.LinkLabel();
             this.pnlPlayers = new System.Windows.Forms.Panel();
             this.btnBackToMatchList = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.lstPlayers = new System.Windows.Forms.ListBox();
             this.lblSelectedMatchName = new System.Windows.Forms.Label();
             this.btnStartMatch = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.lblGroupName = new System.Windows.Forms.Label();
             this.tmrStartMatch = new System.Windows.Forms.Timer(this.components);
+            this.dgvMatchPlayers = new System.Windows.Forms.DataGridView();
             this.pnlNewGame.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.pnlJoinGame.SuspendLayout();
-            this.pnlMatchInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedMatchPlayers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMatches)).BeginInit();
             this.pnlPlayers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMatchPlayers)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNewGame
@@ -288,8 +290,9 @@
             // 
             this.pnlJoinGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(158)))), ((int)(((byte)(199)))));
             this.pnlJoinGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlJoinGame.Controls.Add(this.dgvSelectedMatchPlayers);
+            this.pnlJoinGame.Controls.Add(this.dgvMatches);
             this.pnlJoinGame.Controls.Add(this.lblSelectMatchError);
-            this.pnlJoinGame.Controls.Add(this.pnlMatchInfo);
             this.pnlJoinGame.Controls.Add(this.btnJoinMatch);
             this.pnlJoinGame.Controls.Add(this.lblJoinGameUsernameError);
             this.pnlJoinGame.Controls.Add(this.txtJoinGameUsername);
@@ -297,16 +300,110 @@
             this.pnlJoinGame.Controls.Add(this.lblJoinGamePasswordError);
             this.pnlJoinGame.Controls.Add(this.txtJoinGamePassword);
             this.pnlJoinGame.Controls.Add(this.label8);
-            this.pnlJoinGame.Controls.Add(this.btnFetchMatches);
+            this.pnlJoinGame.Controls.Add(this.btnUpdateMatches);
             this.pnlJoinGame.Controls.Add(this.cboStatus);
             this.pnlJoinGame.Controls.Add(this.label5);
-            this.pnlJoinGame.Controls.Add(this.lstMatches);
             this.pnlJoinGame.Controls.Add(this.lblBack);
-            this.pnlJoinGame.Location = new System.Drawing.Point(184, 235);
+            this.pnlJoinGame.Location = new System.Drawing.Point(158, 216);
             this.pnlJoinGame.Name = "pnlJoinGame";
-            this.pnlJoinGame.Size = new System.Drawing.Size(680, 364);
+            this.pnlJoinGame.Size = new System.Drawing.Size(745, 383);
             this.pnlJoinGame.TabIndex = 14;
             this.pnlJoinGame.Visible = false;
+            // 
+            // dgvSelectedMatchPlayers
+            // 
+            this.dgvSelectedMatchPlayers.AllowUserToAddRows = false;
+            this.dgvSelectedMatchPlayers.AllowUserToDeleteRows = false;
+            this.dgvSelectedMatchPlayers.AllowUserToResizeColumns = false;
+            this.dgvSelectedMatchPlayers.AllowUserToResizeRows = false;
+            this.dgvSelectedMatchPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSelectedMatchPlayers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(158)))), ((int)(((byte)(199)))));
+            this.dgvSelectedMatchPlayers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvSelectedMatchPlayers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSelectedMatchPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvSelectedMatchPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSelectedMatchPlayers.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.MediumSlateBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSelectedMatchPlayers.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvSelectedMatchPlayers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvSelectedMatchPlayers.GridColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvSelectedMatchPlayers.Location = new System.Drawing.Point(440, 4);
+            this.dgvSelectedMatchPlayers.MultiSelect = false;
+            this.dgvSelectedMatchPlayers.Name = "dgvSelectedMatchPlayers";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSelectedMatchPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvSelectedMatchPlayers.RowHeadersVisible = false;
+            this.dgvSelectedMatchPlayers.RowTemplate.Height = 30;
+            this.dgvSelectedMatchPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSelectedMatchPlayers.Size = new System.Drawing.Size(286, 154);
+            this.dgvSelectedMatchPlayers.TabIndex = 24;
+            // 
+            // dgvMatches
+            // 
+            this.dgvMatches.AllowUserToAddRows = false;
+            this.dgvMatches.AllowUserToDeleteRows = false;
+            this.dgvMatches.AllowUserToResizeColumns = false;
+            this.dgvMatches.AllowUserToResizeRows = false;
+            this.dgvMatches.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMatches.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvMatches.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvMatches.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMatches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMatches.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.MediumSlateBlue;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMatches.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvMatches.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvMatches.GridColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvMatches.Location = new System.Drawing.Point(9, 89);
+            this.dgvMatches.MultiSelect = false;
+            this.dgvMatches.Name = "dgvMatches";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMatches.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvMatches.RowHeadersVisible = false;
+            this.dgvMatches.RowTemplate.Height = 30;
+            this.dgvMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMatches.Size = new System.Drawing.Size(408, 289);
+            this.dgvMatches.TabIndex = 14;
+            this.dgvMatches.SelectionChanged += new System.EventHandler(this.dgvMatches_SelectionChanged);
             // 
             // lblSelectMatchError
             // 
@@ -315,120 +412,11 @@
             this.lblSelectMatchError.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblSelectMatchError.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectMatchError.ForeColor = System.Drawing.Color.Red;
-            this.lblSelectMatchError.Location = new System.Drawing.Point(428, 343);
+            this.lblSelectMatchError.Location = new System.Drawing.Point(510, 364);
             this.lblSelectMatchError.Name = "lblSelectMatchError";
             this.lblSelectMatchError.Size = new System.Drawing.Size(132, 14);
             this.lblSelectMatchError.TabIndex = 23;
             this.lblSelectMatchError.Text = "Selecione uma partida.";
-            // 
-            // pnlMatchInfo
-            // 
-            this.pnlMatchInfo.BackColor = System.Drawing.Color.Transparent;
-            this.pnlMatchInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlMatchInfo.Controls.Add(this.lblMatchStatus);
-            this.pnlMatchInfo.Controls.Add(this.label4);
-            this.pnlMatchInfo.Controls.Add(this.label6);
-            this.pnlMatchInfo.Controls.Add(this.label16);
-            this.pnlMatchInfo.Controls.Add(this.lblMatchId);
-            this.pnlMatchInfo.Controls.Add(this.lblMatchDate);
-            this.pnlMatchInfo.Controls.Add(this.label12);
-            this.pnlMatchInfo.Controls.Add(this.label14);
-            this.pnlMatchInfo.Controls.Add(this.lblMatchName);
-            this.pnlMatchInfo.Location = new System.Drawing.Point(346, 3);
-            this.pnlMatchInfo.Name = "pnlMatchInfo";
-            this.pnlMatchInfo.Size = new System.Drawing.Size(298, 122);
-            this.pnlMatchInfo.TabIndex = 16;
-            this.pnlMatchInfo.Visible = false;
-            // 
-            // lblMatchStatus
-            // 
-            this.lblMatchStatus.AutoSize = true;
-            this.lblMatchStatus.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatchStatus.Location = new System.Drawing.Point(63, 77);
-            this.lblMatchStatus.Name = "lblMatchStatus";
-            this.lblMatchStatus.Size = new System.Drawing.Size(19, 19);
-            this.lblMatchStatus.TabIndex = 30;
-            this.lblMatchStatus.Text = "?";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 6);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(260, 27);
-            this.label4.TabIndex = 23;
-            this.label4.Text = "Informações da Partida";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(7, 39);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 19);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "id:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(7, 77);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(62, 19);
-            this.label16.TabIndex = 29;
-            this.label16.Text = "status:";
-            // 
-            // lblMatchId
-            // 
-            this.lblMatchId.AutoSize = true;
-            this.lblMatchId.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatchId.Location = new System.Drawing.Point(33, 40);
-            this.lblMatchId.Name = "lblMatchId";
-            this.lblMatchId.Size = new System.Drawing.Size(19, 19);
-            this.lblMatchId.TabIndex = 24;
-            this.lblMatchId.Text = "?";
-            // 
-            // lblMatchDate
-            // 
-            this.lblMatchDate.AutoSize = true;
-            this.lblMatchDate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatchDate.Location = new System.Drawing.Point(134, 96);
-            this.lblMatchDate.Name = "lblMatchDate";
-            this.lblMatchDate.Size = new System.Drawing.Size(19, 19);
-            this.lblMatchDate.TabIndex = 28;
-            this.lblMatchDate.Text = "?";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(7, 58);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 19);
-            this.label12.TabIndex = 25;
-            this.label12.Text = "nome:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(7, 96);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(131, 19);
-            this.label14.TabIndex = 27;
-            this.label14.Text = "data de criação:";
-            // 
-            // lblMatchName
-            // 
-            this.lblMatchName.AutoSize = true;
-            this.lblMatchName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatchName.Location = new System.Drawing.Point(63, 58);
-            this.lblMatchName.Name = "lblMatchName";
-            this.lblMatchName.Size = new System.Drawing.Size(19, 19);
-            this.lblMatchName.TabIndex = 26;
-            this.lblMatchName.Text = "?";
             // 
             // btnJoinMatch
             // 
@@ -438,7 +426,7 @@
             this.btnJoinMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJoinMatch.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnJoinMatch.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnJoinMatch.Location = new System.Drawing.Point(413, 301);
+            this.btnJoinMatch.Location = new System.Drawing.Point(495, 322);
             this.btnJoinMatch.Name = "btnJoinMatch";
             this.btnJoinMatch.Size = new System.Drawing.Size(157, 39);
             this.btnJoinMatch.TabIndex = 22;
@@ -453,7 +441,7 @@
             this.lblJoinGameUsernameError.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblJoinGameUsernameError.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJoinGameUsernameError.ForeColor = System.Drawing.Color.Red;
-            this.lblJoinGameUsernameError.Location = new System.Drawing.Point(364, 268);
+            this.lblJoinGameUsernameError.Location = new System.Drawing.Point(446, 289);
             this.lblJoinGameUsernameError.Name = "lblJoinGameUsernameError";
             this.lblJoinGameUsernameError.Size = new System.Drawing.Size(293, 14);
             this.lblJoinGameUsernameError.TabIndex = 21;
@@ -462,7 +450,7 @@
             // txtJoinGameUsername
             // 
             this.txtJoinGameUsername.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJoinGameUsername.Location = new System.Drawing.Point(358, 239);
+            this.txtJoinGameUsername.Location = new System.Drawing.Point(440, 260);
             this.txtJoinGameUsername.Name = "txtJoinGameUsername";
             this.txtJoinGameUsername.Size = new System.Drawing.Size(286, 26);
             this.txtJoinGameUsername.TabIndex = 20;
@@ -472,7 +460,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(354, 217);
+            this.label10.Location = new System.Drawing.Point(436, 238);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(96, 19);
             this.label10.TabIndex = 19;
@@ -485,7 +473,7 @@
             this.lblJoinGamePasswordError.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblJoinGamePasswordError.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJoinGamePasswordError.ForeColor = System.Drawing.Color.Red;
-            this.lblJoinGamePasswordError.Location = new System.Drawing.Point(364, 189);
+            this.lblJoinGamePasswordError.Location = new System.Drawing.Point(446, 218);
             this.lblJoinGamePasswordError.Name = "lblJoinGamePasswordError";
             this.lblJoinGamePasswordError.Size = new System.Drawing.Size(208, 14);
             this.lblJoinGamePasswordError.TabIndex = 18;
@@ -494,7 +482,7 @@
             // txtJoinGamePassword
             // 
             this.txtJoinGamePassword.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJoinGamePassword.Location = new System.Drawing.Point(358, 160);
+            this.txtJoinGamePassword.Location = new System.Drawing.Point(440, 189);
             this.txtJoinGamePassword.Name = "txtJoinGamePassword";
             this.txtJoinGamePassword.Size = new System.Drawing.Size(286, 26);
             this.txtJoinGamePassword.TabIndex = 17;
@@ -504,26 +492,26 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(354, 138);
+            this.label8.Location = new System.Drawing.Point(436, 167);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 19);
             this.label8.TabIndex = 16;
             this.label8.Text = "Senha da partida:";
             // 
-            // btnFetchMatches
+            // btnUpdateMatches
             // 
-            this.btnFetchMatches.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.btnFetchMatches.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFetchMatches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFetchMatches.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFetchMatches.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnFetchMatches.Location = new System.Drawing.Point(9, 45);
-            this.btnFetchMatches.Name = "btnFetchMatches";
-            this.btnFetchMatches.Size = new System.Drawing.Size(157, 39);
-            this.btnFetchMatches.TabIndex = 12;
-            this.btnFetchMatches.Text = "Listar Partidas";
-            this.btnFetchMatches.UseVisualStyleBackColor = false;
-            this.btnFetchMatches.Click += new System.EventHandler(this.btnFetchMatches_Click);
+            this.btnUpdateMatches.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnUpdateMatches.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdateMatches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateMatches.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateMatches.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnUpdateMatches.Location = new System.Drawing.Point(9, 45);
+            this.btnUpdateMatches.Name = "btnUpdateMatches";
+            this.btnUpdateMatches.Size = new System.Drawing.Size(186, 39);
+            this.btnUpdateMatches.TabIndex = 12;
+            this.btnUpdateMatches.Text = "Atualizar Partidas";
+            this.btnUpdateMatches.UseVisualStyleBackColor = false;
+            this.btnUpdateMatches.Click += new System.EventHandler(this.btnUpdateMatches_Click);
             // 
             // cboStatus
             // 
@@ -534,8 +522,9 @@
             "Todas",
             "Jogando",
             "Abertas",
-            "Finalizadas"});
-            this.cboStatus.Location = new System.Drawing.Point(172, 60);
+            "Finalizadas",
+            "Empates"});
+            this.cboStatus.Location = new System.Drawing.Point(204, 61);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(111, 24);
             this.cboStatus.TabIndex = 10;
@@ -544,22 +533,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(169, 44);
+            this.label5.Location = new System.Drawing.Point(201, 45);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(123, 16);
             this.label5.TabIndex = 9;
             this.label5.Text = "Status da partida: ";
-            // 
-            // lstMatches
-            // 
-            this.lstMatches.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstMatches.FormattingEnabled = true;
-            this.lstMatches.ItemHeight = 16;
-            this.lstMatches.Location = new System.Drawing.Point(8, 90);
-            this.lstMatches.Name = "lstMatches";
-            this.lstMatches.Size = new System.Drawing.Size(278, 260);
-            this.lstMatches.TabIndex = 8;
-            this.lstMatches.SelectedIndexChanged += new System.EventHandler(this.lstMatches_SelectedIndexChanged);
             // 
             // lblBack
             // 
@@ -586,8 +564,8 @@
             this.pnlPlayers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(158)))), ((int)(((byte)(199)))));
             this.pnlPlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlPlayers.Controls.Add(this.btnBackToMatchList);
+            this.pnlPlayers.Controls.Add(this.dgvMatchPlayers);
             this.pnlPlayers.Controls.Add(this.label7);
-            this.pnlPlayers.Controls.Add(this.lstPlayers);
             this.pnlPlayers.Controls.Add(this.lblSelectedMatchName);
             this.pnlPlayers.Controls.Add(this.btnStartMatch);
             this.pnlPlayers.Controls.Add(this.label15);
@@ -622,17 +600,6 @@
             this.label7.Size = new System.Drawing.Size(177, 19);
             this.label7.TabIndex = 17;
             this.label7.Text = "Jogadores da partida:";
-            // 
-            // lstPlayers
-            // 
-            this.lstPlayers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lstPlayers.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstPlayers.FormattingEnabled = true;
-            this.lstPlayers.ItemHeight = 18;
-            this.lstPlayers.Location = new System.Drawing.Point(17, 83);
-            this.lstPlayers.Name = "lstPlayers";
-            this.lstPlayers.Size = new System.Drawing.Size(305, 198);
-            this.lstPlayers.TabIndex = 16;
             // 
             // lblSelectedMatchName
             // 
@@ -686,10 +653,57 @@
             // 
             // tmrStartMatch
             // 
-            this.tmrStartMatch.Interval = 5000;
+            this.tmrStartMatch.Interval = 1500;
             this.tmrStartMatch.Tick += new System.EventHandler(this.tmrStartMatch_Tick);
             // 
-            // Menu
+            // dgvMatchPlayers
+            // 
+            this.dgvMatchPlayers.AllowUserToAddRows = false;
+            this.dgvMatchPlayers.AllowUserToDeleteRows = false;
+            this.dgvMatchPlayers.AllowUserToResizeColumns = false;
+            this.dgvMatchPlayers.AllowUserToResizeRows = false;
+            this.dgvMatchPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMatchPlayers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(158)))), ((int)(((byte)(199)))));
+            this.dgvMatchPlayers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvMatchPlayers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMatchPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvMatchPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMatchPlayers.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.MediumSlateBlue;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMatchPlayers.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvMatchPlayers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvMatchPlayers.GridColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvMatchPlayers.Location = new System.Drawing.Point(17, 83);
+            this.dgvMatchPlayers.MultiSelect = false;
+            this.dgvMatchPlayers.Name = "dgvMatchPlayers";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMatchPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvMatchPlayers.RowHeadersVisible = false;
+            this.dgvMatchPlayers.RowTemplate.Height = 30;
+            this.dgvMatchPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMatchPlayers.Size = new System.Drawing.Size(305, 203);
+            this.dgvMatchPlayers.TabIndex = 25;
+            // 
+            // MenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -697,11 +711,11 @@
             this.BackgroundImage = global::MagicTrickGame.Properties.Resources.bg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1034, 611);
+            this.Controls.Add(this.pnlJoinGame);
             this.Controls.Add(this.lblGroupName);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlNewGame);
-            this.Controls.Add(this.pnlJoinGame);
             this.Controls.Add(this.pnlPlayers);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -709,17 +723,18 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1050, 650);
             this.MinimumSize = new System.Drawing.Size(1050, 650);
-            this.Name = "Menu";
+            this.Name = "MenuScreen";
             this.Text = "MagicTrick";
             this.pnlNewGame.ResumeLayout(false);
             this.pnlNewGame.PerformLayout();
             this.pnlMenu.ResumeLayout(false);
             this.pnlJoinGame.ResumeLayout(false);
             this.pnlJoinGame.PerformLayout();
-            this.pnlMatchInfo.ResumeLayout(false);
-            this.pnlMatchInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedMatchPlayers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMatches)).EndInit();
             this.pnlPlayers.ResumeLayout(false);
             this.pnlPlayers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMatchPlayers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -744,10 +759,9 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Panel pnlJoinGame;
         private System.Windows.Forms.LinkLabel lblBack;
-        private System.Windows.Forms.ListBox lstMatches;
         private System.Windows.Forms.ComboBox cboStatus;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnFetchMatches;
+        private System.Windows.Forms.Button btnUpdateMatches;
         private System.Windows.Forms.Button btnJoinMatch;
         private System.Windows.Forms.Label lblJoinGameUsernameError;
         private System.Windows.Forms.TextBox txtJoinGameUsername;
@@ -755,26 +769,18 @@
         private System.Windows.Forms.Label lblJoinGamePasswordError;
         private System.Windows.Forms.TextBox txtJoinGamePassword;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lblMatchName;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label lblMatchId;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblMatchStatus;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label lblMatchDate;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Panel pnlMatchInfo;
         private System.Windows.Forms.Label lblSelectMatchError;
         private System.Windows.Forms.Panel pnlPlayers;
         private System.Windows.Forms.Label lblSelectedMatchName;
         private System.Windows.Forms.Button btnStartMatch;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ListBox lstPlayers;
         private System.Windows.Forms.Label lblGroupName;
         private System.Windows.Forms.Button btnBackToMatchList;
         private System.Windows.Forms.Timer tmrStartMatch;
+        private System.Windows.Forms.DataGridView dgvMatches;
+        private System.Windows.Forms.DataGridView dgvSelectedMatchPlayers;
+        private System.Windows.Forms.DataGridView dgvMatchPlayers;
     }
 }
 

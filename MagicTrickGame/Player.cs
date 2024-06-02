@@ -38,6 +38,9 @@ namespace MagicTrickGame
         public PlayerPosition playerPosition;
         public PlayerStatus status;
 
+        public string Name { get { return this.name; } }
+        public int FinalScore { get { return this.finalScore; } }
+
         public Player(string playerData = "")
         {
             if (playerData == "")
@@ -53,8 +56,8 @@ namespace MagicTrickGame
                 string[] data = playerData.Split(',');
                 this.id = data[0];
                 this.name = data[1];
-                this.score = Convert.ToInt32(data[2]);
-                this.finalScore = 0;
+                this.score = Convert.ToInt32(data[3]);
+                this.finalScore = Convert.ToInt32(data[2]);
                 this.bet = null;
                 this.status = PlayerStatus.Wait;
             }

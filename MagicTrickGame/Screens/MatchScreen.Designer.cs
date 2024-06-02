@@ -1,6 +1,6 @@
 ﻿namespace MagicTrickGame
 {
-    partial class Match
+    partial class MatchScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Match));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MatchScreen));
             this.pnlPlayer3 = new System.Windows.Forms.Panel();
             this.lblP3Id = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -1668,7 +1668,7 @@
             // 
             // tmrCheckDatabase
             // 
-            this.tmrCheckDatabase.Interval = 1000;
+            this.tmrCheckDatabase.Interval = 1500;
             this.tmrCheckDatabase.Tick += new System.EventHandler(this.tmrCheckDatabase_Tick);
             // 
             // Match

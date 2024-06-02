@@ -14,11 +14,17 @@ namespace MagicTrickGame
             if (player.status == PlayerStatus.Bet)
             {
                 int betIndex = 8;
-                while (player.cards[betIndex-1].value != -1)
+                Card betCard;
+
+                do
                 {
+                    betCard = player.cards.Find(c => c.index == betIndex);
+                    if (betCard == null) return;
+
                     betIndex--;
-                }
-                player.BetCard(Convert.ToInt32(player.id), player.password, betIndex);
+                } while(betCard.value != -1);
+
+                player.BetCard(Convert.ToInt32(player.id), player.password, betCard.index);
             } 
             else if (turnData.Contains("C:")) // alguém jogou um carta
             {
@@ -49,15 +55,30 @@ namespace MagicTrickGame
                 {
                     if (playerCardsLeft.Count == 0)
                     {
-                        if (player.cards.Exists(card => card.value == -1 && card.suitLetter == 'C') && cardsPlayed.Exists(card => card.suitLetter == 'C') == false)
+                        bool hasHeartCard = player.cards.Exists(card => card.value == -1 && card.suitLetter == 'C');
+                        bool someonePlayedHeartCard = cardsPlayed.Exists(card => card.suitLetter == 'C');
+
+                        if (hasHeartCard && someonePlayedHeartCard == false)
                         {
-                            Card heartCard = player.cards.Find(card => card.value == -1 && card.suitLetter == 'C');
-                            player.PlayCard(Convert.ToInt32(player.id), player.password, heartCard.index);
+                            List<Card> heartCards = player.cards.FindAll(card => card.value == -1 && card.suitLetter == 'C');   
+                            if (player.bet != null && player.score - player.bet.CardValue > 1)
+                            {
+                                player.PlayCard(Convert.ToInt32(player.id), player.password, heartCards[heartCards.Count-1].index);
+                            } 
+                            else
+                            {
+                                player.PlayCard(Convert.ToInt32(player.id), player.password, heartCards[0].index);
+                            }
+                            // Card heartCard = player.cards.Find(card => card.value == -1 && card.suitLetter == 'C');
+                            // player.PlayCard(Convert.ToInt32(player.id), player.password, heartCard.index);
                         }
                         else
                         {
                             Card lowestCard = player.cards.Find(card => card.value == -1);
-                            player.PlayCard(Convert.ToInt32(player.id), player.password, lowestCard.index);
+                            if (lowestCard != null)
+                            {
+                                player.PlayCard(Convert.ToInt32(player.id), player.password, lowestCard.index);
+                            }
                         }
                     } 
                     else
@@ -71,7 +92,7 @@ namespace MagicTrickGame
                             int highestValuePlayed = 0;
                             foreach (Card card in cardsPlayed)
                             {
-                                if (card.value > highestValuePlayed)
+                                if (cardsPlayed[0].suitLetter == card.suitLetter && card.value > highestValuePlayed)
                                 {
                                     highestValuePlayed = card.value;
                                 }
