@@ -1,10 +1,6 @@
 ﻿using MagicTrickServer;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MagicTrickGame.Controllers
@@ -24,7 +20,6 @@ namespace MagicTrickGame.Controllers
                 string response = Jogo.ListarJogadores2(matchId, round);
                 if (response.Length > 0 && response.Substring(0, 4) == "ERRO")
                 {
-                    MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
 
@@ -55,7 +50,6 @@ namespace MagicTrickGame.Controllers
                 string response = Jogo.ListarJogadores2(matchId);
                 if (response.Length > 0 && response.Substring(0, 4) == "ERRO")
                 {
-                    MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
 

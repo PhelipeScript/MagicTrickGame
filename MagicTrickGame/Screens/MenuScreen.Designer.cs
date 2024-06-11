@@ -71,13 +71,13 @@
             this.lblBack = new System.Windows.Forms.LinkLabel();
             this.pnlPlayers = new System.Windows.Forms.Panel();
             this.btnBackToMatchList = new System.Windows.Forms.Button();
+            this.dgvMatchPlayers = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.lblSelectedMatchName = new System.Windows.Forms.Label();
             this.btnStartMatch = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.lblGroupName = new System.Windows.Forms.Label();
             this.tmrStartMatch = new System.Windows.Forms.Timer(this.components);
-            this.dgvMatchPlayers = new System.Windows.Forms.DataGridView();
             this.pnlNewGame.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.pnlJoinGame.SuspendLayout();
@@ -591,6 +591,53 @@
             this.btnBackToMatchList.UseVisualStyleBackColor = false;
             this.btnBackToMatchList.Click += new System.EventHandler(this.btnBackToMatchList_Click);
             // 
+            // dgvMatchPlayers
+            // 
+            this.dgvMatchPlayers.AllowUserToAddRows = false;
+            this.dgvMatchPlayers.AllowUserToDeleteRows = false;
+            this.dgvMatchPlayers.AllowUserToResizeColumns = false;
+            this.dgvMatchPlayers.AllowUserToResizeRows = false;
+            this.dgvMatchPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMatchPlayers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(158)))), ((int)(((byte)(199)))));
+            this.dgvMatchPlayers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvMatchPlayers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMatchPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvMatchPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMatchPlayers.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.MediumSlateBlue;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMatchPlayers.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvMatchPlayers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvMatchPlayers.GridColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvMatchPlayers.Location = new System.Drawing.Point(17, 83);
+            this.dgvMatchPlayers.MultiSelect = false;
+            this.dgvMatchPlayers.Name = "dgvMatchPlayers";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.DarkSlateBlue;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMatchPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvMatchPlayers.RowHeadersVisible = false;
+            this.dgvMatchPlayers.RowTemplate.Height = 30;
+            this.dgvMatchPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMatchPlayers.Size = new System.Drawing.Size(305, 203);
+            this.dgvMatchPlayers.TabIndex = 25;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -656,53 +703,6 @@
             this.tmrStartMatch.Interval = 1500;
             this.tmrStartMatch.Tick += new System.EventHandler(this.tmrStartMatch_Tick);
             // 
-            // dgvMatchPlayers
-            // 
-            this.dgvMatchPlayers.AllowUserToAddRows = false;
-            this.dgvMatchPlayers.AllowUserToDeleteRows = false;
-            this.dgvMatchPlayers.AllowUserToResizeColumns = false;
-            this.dgvMatchPlayers.AllowUserToResizeRows = false;
-            this.dgvMatchPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvMatchPlayers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(158)))), ((int)(((byte)(199)))));
-            this.dgvMatchPlayers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvMatchPlayers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkSlateBlue;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DarkSlateBlue;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMatchPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvMatchPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMatchPlayers.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.MediumSlateBlue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMatchPlayers.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvMatchPlayers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvMatchPlayers.GridColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvMatchPlayers.Location = new System.Drawing.Point(17, 83);
-            this.dgvMatchPlayers.MultiSelect = false;
-            this.dgvMatchPlayers.Name = "dgvMatchPlayers";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.DarkSlateBlue;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.DarkSlateBlue;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMatchPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgvMatchPlayers.RowHeadersVisible = false;
-            this.dgvMatchPlayers.RowTemplate.Height = 30;
-            this.dgvMatchPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMatchPlayers.Size = new System.Drawing.Size(305, 203);
-            this.dgvMatchPlayers.TabIndex = 25;
-            // 
             // MenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -711,12 +711,12 @@
             this.BackgroundImage = global::MagicTrickGame.Properties.Resources.bg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1034, 611);
-            this.Controls.Add(this.pnlJoinGame);
             this.Controls.Add(this.lblGroupName);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlNewGame);
             this.Controls.Add(this.pnlPlayers);
+            this.Controls.Add(this.pnlJoinGame);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);

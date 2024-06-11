@@ -9,22 +9,6 @@ namespace MagicTrickGame.Controllers
     {
         const string groupName = "atenas";
 
-        // Resumo:
-        //     Cria uma nova partida
-        //
-        // Parâmetros:
-        //   nome:
-        //     Nome da partida (deve ser único)
-        //
-        //   senha:
-        //     Senha da partida (até 10 caracteres)
-        //
-        //   grupo:
-        //     Nome do grupo
-        //
-        // Devoluções:
-        //     Id da partida criada
-
         /// <summary>
         ///     Cria uma nova partida
         /// </summary>

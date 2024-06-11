@@ -1,26 +1,12 @@
 ﻿using MagicTrickServer;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MagicTrickGame.Controllers
 {
     public static class FetchHistoric
     {
-        //
-        // Resumo:
-        //     
-        //
-        // Parâmetros:
-        //     Id da Partida
-        //     Número do Round
-        //
-        // Devoluções:
-        //     
         /// <summary>
         ///     Retorna a relação de jogadas já realizadas no round especificado
         /// </summary>
@@ -37,7 +23,6 @@ namespace MagicTrickGame.Controllers
                 if (response == "") return null;
                 if (response.Substring(0, 4) == "ERRO")
                 {
-                    MessageBox.Show($"Ocorreu um erro:\n {response.Substring(5)}", "MagicTrick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
 

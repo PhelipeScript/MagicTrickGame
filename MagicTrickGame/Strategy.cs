@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MagicTrickGame
 {
@@ -69,8 +66,6 @@ namespace MagicTrickGame
                             {
                                 player.PlayCard(Convert.ToInt32(player.id), player.password, heartCards[0].index);
                             }
-                            // Card heartCard = player.cards.Find(card => card.value == -1 && card.suitLetter == 'C');
-                            // player.PlayCard(Convert.ToInt32(player.id), player.password, heartCard.index);
                         }
                         else
                         {
